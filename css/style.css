@@ -308,9 +308,8 @@ blockquote.pull-right {
 /*----- 2.1 Commons  -----*/
 /*----------------------------------------*/
 .content-top {
-	margin-top: 30px;
-	margin-bottom: 30px;
 	position: relative;
+  height: 400px;
 }
 .relativeto {
 	position: relative;
@@ -1323,4 +1322,9 @@ left: 0;
 	border: 1px solid #484848;
 	border-bottom-color: transparent;
 	outline: none;
+}
+
+#slider-bg {
+	background: url("../img/chalky.png") no-repeat center center; 
+  background-size: 100%;
 }
