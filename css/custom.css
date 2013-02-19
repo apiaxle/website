@@ -1,0 +1,65 @@
+#header, #copyright {
+  background-image: none;
+  background-color: #000000;
+}
+
+#footer {
+  background-image: none;
+  background-color: #000;
+  border-top-width: 1px;
+  border-top-style: none;
+  border-top-color: #A7A7A7;
+
+  background: url(../img/footer-item-divider.png) repeat-x top;
+
+  text-shadow:      none;
+}
+
+#footer a {
+  color:     #D95B44;
+}
+
+#footer h5 {
+  color:     #D95B44;
+}
+
+#footer h6 {
+    color: #646464;
+}
+
+.logo {
+  font-size: 1.0em;
+}
+
+.logo a{
+  font-size: 2.4em;
+}
+
+.logo p {
+  margin-top: 15px;
+}
+
+
+.ddsmoothmenu ul li a, .ddsmoothmenu ul li a:hover .ddsmoothmenu ul li a.selected {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.slide-text p {
+  font-size: 1.2em;
+  color: #ddd;
+}
+
+.slide-text h2 {
+  padding-top: 30px;
+  color: #ddd;
+}
+
+.features-icon {
+  font-size: 6.2em;
+  color:     #D95B44;
+}
+
+.heading-icon {
+  color:     #D95B44;
+}

@@ -1,0 +1,170 @@
+---
+layout:   default
+title:    Home
+---
+
+<section id="content" class="clearfix">
+  <div id="slider-bg">
+    <div class="container">
+      <div class="row content-top">
+          <div id="slider" class="flexslider">
+            <ul class="slides">
+
+              <!--slide one starts-->
+              <li>
+                <div class="row">
+                  <div class="span6 slide-text">
+                    <h2>The Open Source <br/>
+                     API Management Platform</h2>
+                    <p>ApiAxle is a proxy that sits in front of your
+        API(s) and manages things that you shouldn't have to like rate
+        limiting, authentication and caching. It's fast, open and easy
+        to configure.</p>
+
+                    <div class="spacer-20px"></div>
+
+                    <p class="text-center">
+                      <a class="btn btn-large btn-warning btn-download" href="docs/try-it-now">
+                        Download now!
+                      </a>
+                    </p>
+                  </div>
+                  <div class="span6"><img src="img/fp-diagram.png" alt="slide"/></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!--slider-bg ends-->
+
+    <div class="spacer-40px"></div>
+
+
+  <div class="container">
+
+    <!--features starts-->
+    <div class="row">
+      <div class="span12">
+        <h1>Simple API Management and Analytics</h1>
+        <ul class="list-3col text-center">
+          <li>
+            <div class="features-icon icon-bar-chart"></div>
+            <h2>Analytics</h2>
+            Real time usage statistics per key and API.
+          <li>
+            <div class="features-icon icon-group"></div>
+            <h2>Management</h2>
+            Create keys and assign to APIs<br />
+            Use keyrings to group collections of keys<br />
+            Set per second and daily rate limits.
+          <li>
+            <div class="features-icon icon-dashboard"></div>
+            <h2>Performance</h2>
+            Cache requests using proxy style or global caching
+            headers.
+        </ul>
+      </div>
+    </div>
+    <!--features ends-->
+
+    <!--spacer here-->
+    <div class="spacer-40px"></div>
+
+    <!--row starts-->
+    <div class="row">
+        <h1>Powerful Administration API</h1>
+
+        <!--two column list (nested columns) starts-->
+        <div class="span6">
+            <ul class="list-checkmark">
+              <li>Create, modify and delete APIs and Keys</li>
+              <li>Grab real time stats</li>
+              <li>Simple RESTful interface, integrate with your apps</li>
+            </ul>
+            <a href="/api.html">Read The Docs &raquo;</a>
+        </div>
+        <div class="span6">
+            <p>
+              Here are some libraries you can use to access the API:
+            </p>
+
+            <ul class="list-info">
+              <li><strong class="icon-cog"></strong><a href="https://github.com/stuartquin/node-axle">node-axle-client</a></li>
+            </ul>
+
+            <div class="spacer-10px"></div>
+
+            <p>
+              Want to contribute a library yourself? Send it over and
+              we'll send you back a t-shirt!
+            </p>
+        </div><!-- span6 -->
+    </div><!--row ends-->
+
+    <!--spacer here-->
+    <div class="spacer-30px"></div>
+
+    <!--box starts-->
+    <div class="row">
+      <div class="span12">
+        <div class="dark-box">
+          <h1><span class="color">Download</span> now!</h1>
+          <ul class="list-separator">
+            <li>Get up and running instantly<span class="separator">|</span></li>
+            <li>Everything you need to manage your API <span class="separator">|</span> </li>
+            <li> <span class="color">Support contracts</span> available</li>
+          </ul>
+          <a class="btn btn-large btn-github" href="https://github.com/apiaxle/apiaxle">
+            <i class="icon-github pull-left"></i>
+            Get The Code
+          </a>
+          <a class="btn btn-large btn-github" href="docs/try-it-now">
+            <i class="icon-download pull-left"></i>
+            Download Now
+          </a>
+      </div>
+    </div>
+    <!--box ends-->
+
+  </div>
+</section>
+
+<!-- footer starts
+================================================== -->
+<footer id="footer" class="clearfix">
+  <div class="container">
+    <!--spacer here-->
+    <div class="spacer-30px"></div>
+
+    <!--row starts-->
+    <div class="row">
+      <!--column two starts-->
+      <div class="span6">
+        <h5>Latest Documentation</h5>
+        <ul class="list-unstyled">
+        {% for post in site.posts %}
+          <li>{{ post.date | date:"%Y-%m-%d" }} - <a href="{{ post.url }}">{{ post.title }}</a>
+        {% endfor %}
+        </ul>
+      </div>
+      <!--column two ends-->
+
+      <!--column three starts-->
+      <div class="span6">
+        <h5>Get in touch</h5>
+        <ul class="list-info">
+          <li><strong class="icon-phone"></strong>+44 (0) 7772 809 487</li>
+          <li><strong class="icon-envelope"></strong> <a href="mailto:support@apiaxle.com">support@apiaxle.com</a></li>
+        </ul>
+      </div>
+      <!--column three ends-->
+
+    </div>
+    <!--row ends-->
+
+  </div>
+</footer>
+<!-- footer ends
+================================================== -->

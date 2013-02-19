@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en">
+<!--<![endif]-->
+<head>
+{% include meta.html %}
+
+<!--Fav and touch icons-->
+<link rel="shortcut icon" href="/img/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/img/icons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/icons/apple-touch-icon-114x114.png">
+
+<!--google web font-->
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
+
+<!--style sheet-->
+<link rel="stylesheet" media="screen" href="/css/bootstrap.css"/>
+<link rel="stylesheet" media="screen" href="/css/bootstrap-responsive.css"/>
+<link rel="stylesheet" media="screen" href="/css/style.css"/>
+<link rel="stylesheet" media="screen" href="/css/custom.css"/>
+<link rel="stylesheet" media="screen" href="/css/docs.css"/>
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+
+<!--jquery libraries / others are at the bottom-->
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script src="js/modernizr.js" type="text/javascript"></script>
+<script src="https://raw.github.com/jgallen23/toc/master/dist/jquery.toc.min.js"></script>
+
+    <script type="text/javascript">
+      var toc_options = {
+        "container": ".container",
+        "selectors": "h1,h2"
+      };
+
+      $( function () { $('#toc').toc(toc_options) } );
+    </script>
+
+{% include ga.html %}
+
+</head>
+<body>
+
+{% include header.html %}
+
+<section id="content" >
+  <div class="container">
+    <div class="row">
+      <div class="spacer-40px"></div>
+
+      <div class="span12">
+        <div id="toc"></div>
+        <div id="documentation">{{ content }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include footer.html %}
+
+<!--other jqueries required-->
+<script src="js/bootstrap.js" type="text/javascript" ></script>
+<script src="js/ddsmoothmenu.js" type="text/javascript" ></script>
+<script src="js/twitter.js" type="text/javascript" ></script>
+<script src="js/jquery.easing.1.3.js" type="text/javascript" ></script>
+<script src="js/custom.js" type="text/javascript" ></script>
+</body>
+</html>

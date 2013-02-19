@@ -1,0 +1,8 @@
+title: API Axle
+safe: true
+twitter: "https://twitter.com/#!/apiaxle"
+email: "phil@shellarchive.co.uk"
+exclude: "node_modules"
+permalink: "/docs/:title"
+description: "ApiAxle is a proxy that sits in front of your API(s) and manages things that you shouldn't have to like rate limiting, authentication and caching. It's fast, open and easy to configure."
+keywords: "3scale, api, open api, web service, web api, api management, infrastructure, api business, application programing interface, saas, web services, api security, api key, programmable web, api analytics, accelerate, distribution, data, content, services, free, enterprise, demo, sign-up, signup, plug&play, plug & play, developer portal, developer relations, mobile apps, developer apps, ipad, ipod, mashery alternative, apigee alternative, sonoa alternative, mashery, apigee, layer7, caching, request signing, xml, json, rate limiting, quotas"
