@@ -45,6 +45,10 @@
   -webkit-box-shadow: none;
 }
 
+.slide-text {
+  padding-left: 20px;
+}
+
 .slide-text p {
   font-size: 1.2em;
   color: #ddd;
