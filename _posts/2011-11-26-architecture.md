@@ -1,6 +1,6 @@
 ---
-title: "Architecture"
 layout: docs
+title: "Architecture"
 description: "Architecture overview."
 ---
 
