@@ -1,39 +1,16 @@
 ---
 layout: apidocs
-title: "Api documentation"
+title: "Api documentation (generated from 'gh-pages'"
 ---
-# /v1/api/:api
-## Update an API. (PUT)
-Will merge fields you pass in.
-
+# ApiAxle API Documentation
+This documentation was generated from branch 'gh-pages'
+## /v1/api/:api
+### Provision a new API. (POST)
 ### JSON fields supported
 
 * globalCache: The time in seconds that every call under this API should be cached.
 * endPoint: The endpoint for the API. For example; `graph.facebook.com`
-* apiFormat: (default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.
-* endPointTimeout: (default: 2) Seconds to wait before timing out the connection
-* endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
-* extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
-
-### Returns
-
-* The merged structure (including the timestamp fields).
-
-## Delete an API. (DELETE)
-### Returns
-
-* `true` on success.
-
-## Get the definition for an API. (GET)
-### Returns
-
-* The API structure (including the timestamp fields).
-
-## Provision a new API. (POST)
-### JSON fields supported
-
-* globalCache: The time in seconds that every call under this API should be cached.
-* endPoint: The endpoint for the API. For example; `graph.facebook.com`
+* protocol: (default: http) The protocol for the API, whether or not to use SSL
 * apiFormat: (default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.
 * endPointTimeout: (default: 2) Seconds to wait before timing out the connection
 * endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
@@ -43,8 +20,55 @@ Will merge fields you pass in.
 
 * The inserted structure (including the new timestamp fields).
 
-# /v1/api/:api/keys
-## List keys belonging to an API. (GET)
+### Update an API. (PUT)
+Will merge fields you pass in.
+
+### JSON fields supported
+
+* globalCache: The time in seconds that every call under this API should be cached.
+* endPoint: The endpoint for the API. For example; `graph.facebook.com`
+* protocol: (default: http) The protocol for the API, whether or not to use SSL
+* apiFormat: (default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.
+* endPointTimeout: (default: 2) Seconds to wait before timing out the connection
+* endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
+* extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
+
+### Returns
+
+* The merged structure (including the timestamp fields).
+
+### Delete an API. (DELETE)
+### Returns
+
+* `true` on success.
+
+### Get the definition for an API. (GET)
+### Returns
+
+* The API structure (including the timestamp fields).
+
+## /v1/api/:api/addkey/:key
+### Associate an existing key with an API. (PUT)
+### Returns
+
+* The key details.
+
+## /v1/api/:api/hits
+### Get the statistics for an api. (GET)
+### Returns
+
+* Object where the keys represent timestamp for a given second
+  and the values the amount of hits to the specified API for that second
+
+## /v1/api/:api/hits/now
+### Get the statistics for an api. (GET)
+### Returns
+
+* Integer, the number of hits to the API this second.
+  Designed light weight real time statistics
+
+## /v1/api/:api/keys
+### List keys belonging to an API. (GET)
 ### Supported query params
 
 * from: Integer for the index of the first key you want to
@@ -62,16 +86,16 @@ Will merge fields you pass in.
 * If `resolve` is passed then results will be an object with the
   key name as the key and the details as the value.
 
-# /v1/api/:api/stats
-## Get the statistics for an api. (GET)
+## /v1/api/:api/stats
+### Get the statistics for an api. (GET)
 ### Returns
 
 * Object where the keys represent the HTTP status code of the
   endpoint or the error returned by apiaxle (QpsExceededError, for
   example). Each object contains date to hit count pairs.
 
-# /v1/apis
-## List all APIs. (GET)
+## /v1/apis
+### List all APIs. (GET)
 ### Supported query params
 
 * from: Integer for the index of the first api you want to
@@ -89,31 +113,31 @@ Will merge fields you pass in.
 * If `resolve` is passed then results will be an object with the
   api name as the api and the details as the value.
 
-# /v1/key/:key
-## Provision a new key. (POST)
+## /v1/key/:key
+### Provision a new key. (POST)
 ### JSON fields supported
 
 * sharedSecret: A shared secret which is used when signing a call to the api.
 * qpd: (default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.
 * qps: (default: 2) Number of queries that can be called per second. Set to `-1` for no limit.
-* forApi: Name of the Api that this key belongs to.
+* forApis: Names of the Apis that this key belongs to.
 
 ### Returns
 
 * The newly inseted structure (including the new timestamp
   fields).
 
-## Get the definition of a key. (GET)
+### Get the definition of a key. (GET)
 ### Returns
 
 * The key object (including timestamps).
 
-## Delete a key. (DELETE)
+### Delete a key. (DELETE)
 ### Returns
 
 * `true` on success.
 
-## Update a key. (PUT)
+### Update a key. (PUT)
 Fields passed in will will be merged with the old key details.
 
 ### JSON fields supported
@@ -121,28 +145,42 @@ Fields passed in will will be merged with the old key details.
 * sharedSecret: A shared secret which is used when signing a call to the api.
 * qpd: (default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.
 * qps: (default: 2) Number of queries that can be called per second. Set to `-1` for no limit.
-* forApi: Name of the Api that this key belongs to.
+* forApis: Names of the Apis that this key belongs to.
 
 ### Returns
 
 * The newly inseted structure (including the new timestamp
   fields).
 
-# /v1/key/:key/stats
-## Get the statistics for a key. (GET)
+## /v1/key/:key/hits
+### Get hits for a key in the past minute. (GET)
+### Returns
+
+* Object where the keys represent timestamp for a given second
+  and the values the amount of hits to the Key for that second
+
+## /v1/key/:key/hits/now
+### Get the real time hits for a key. (GET)
+### Returns
+
+* Integer, the number of hits to the Key this second.
+  Designed light weight real time statistics
+
+## /v1/key/:key/stats
+### Get the statistics for a key. (GET)
 ### Returns
 
 * Object where the keys represent the HTTP status code of the
-  endpoint or the error returned by ApiAxle (QpsExceededError, for
+  endpoint or the error returned by apiaxle (QpsExceededError, for
   example). Each object contains date to hit count pairs.
 
-# /v1/keyring/:keyring
-## Get the definition for an KEYRING. (GET)
+## /v1/keyring/:keyring
+### Get the definition for an KEYRING. (GET)
 ### Returns
 
 * The KEYRING structure (including the timestamp fields).
 
-## Update an KEYRING. (PUT)
+### Update an KEYRING. (PUT)
 Will merge fields you pass in.
 
 ### JSON fields supported
@@ -153,12 +191,12 @@ Will merge fields you pass in.
 
 * The merged structure (including the timestamp fields).
 
-## Delete an KEYRING. (DELETE)
+### Delete an KEYRING. (DELETE)
 ### Returns
 
 * `true` on success.
 
-## Provision a new KEYRING. (POST)
+### Provision a new KEYRING. (POST)
 ### JSON fields supported
 
 
@@ -167,8 +205,19 @@ Will merge fields you pass in.
 
 * The inserted structure (including the new timestamp fields).
 
-# /v1/keyring/:keyring/keys
-## List keys belonging to an KEYRING. (GET)
+## /v1/keyring/:keyring/key/:key
+### Delete and existing KEY from an existing KEYRING. (POST)
+### Returns
+
+* `true` if the operation is successful.
+
+### Add existing KEY to existing KEYRING. (POST)
+### Returns
+
+* `true` if the operation is successful.
+
+## /v1/keyring/:keyring/keys
+### List keys belonging to an KEYRING. (GET)
 ### Supported query params
 
 * from: Integer for the index of the first key you want to
@@ -186,8 +235,8 @@ Will merge fields you pass in.
 * If `resolve` is passed then results will be an object with the
   key name as the key and the details as the value.
 
-# /v1/keyrings
-## List all KEYRINGs. (GET)
+## /v1/keyrings
+### List all KEYRINGs. (GET)
 ### Supported query params
 
 * from: Integer for the index of the first keyring you want to
@@ -205,8 +254,8 @@ Will merge fields you pass in.
 * If `resolve` is passed then results will be an object with the
   keyring name as the keyring and the details as the value.
 
-# /v1/keys
-## List all of the available keys. (GET)
+## /v1/keys
+### List all of the available keys. (GET)
 ### Supported query params
 * from: Integer for the index of the first key you want to
   see. Starts at zero.
