@@ -1,24 +1,9 @@
 ---
 layout: apidocs
-title: "Api documentation (generated from 'develop'"
+title: "Api documentation (generated from 'feature/repl-via-api'"
 ---
-This documentation was generated from branch 'develop'
+This documentation was generated from branch 'feature/repl-via-api'
 # /v1/api/:api
-## Provision a new API. (POST)
-### JSON fields supported
-
-* globalCache: The time in seconds that every call under this API should be cached.
-* endPoint: The endpoint for the API. For example; `graph.facebook.com`
-* protocol: (default: http) The protocol for the API, whether or not to use SSL
-* apiFormat: (default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.
-* endPointTimeout: (default: 2) Seconds to wait before timing out the connection
-* endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
-* extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
-
-### Returns
-
-* The inserted structure (including the new timestamp fields).
-
 ## Update an API. (PUT)
 Will merge fields you pass in.
 
@@ -46,11 +31,20 @@ Will merge fields you pass in.
 
 * The API structure (including the timestamp fields).
 
-# /v1/api/:api/addkey/:key
-## Associate an existing key with an API. (PUT)
+## Provision a new API. (POST)
+### JSON fields supported
+
+* globalCache: The time in seconds that every call under this API should be cached.
+* endPoint: The endpoint for the API. For example; `graph.facebook.com`
+* protocol: (default: http) The protocol for the API, whether or not to use SSL
+* apiFormat: (default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.
+* endPointTimeout: (default: 2) Seconds to wait before timing out the connection
+* endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
+* extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
+
 ### Returns
 
-* The key details.
+* The inserted structure (including the new timestamp fields).
 
 # /v1/api/:api/hits
 ## Get the statistics for an api. (GET)
@@ -85,6 +79,16 @@ Will merge fields you pass in.
 * If `resolve` is passed then results will be an object with the
   key name as the key and the details as the value.
 
+# /v1/api/:api/linkkey/:key
+## Associate a key with an API meaning calls to the API can be made
+with the key.
+
+The key must already exist and will not be modified by this
+operation. (PUT)
+### Returns
+
+* The linked key details.
+
 # /v1/api/:api/stats
 ## Get the statistics for an api. (GET)
 ### Returns
@@ -92,6 +96,15 @@ Will merge fields you pass in.
 * Object where the keys represent the HTTP status code of the
   endpoint or the error returned by apiaxle (QpsExceededError, for
   example). Each object contains date to hit count pairs.
+
+# /v1/api/:api/unlinkkey/:key
+## Disassociate a key with an API meaning calls to the API can no
+longer be made with the key.
+
+The key will still exist and its details won't be affected. (PUT)
+### Returns
+
+* The unlinked key details.
 
 # /v1/apis
 ## List all APIs. (GET)
