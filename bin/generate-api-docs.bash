@@ -4,8 +4,11 @@ set -e
 
 mkdir -p log
 
-# output the documentation
-../apiaxle/api/bin/generate-docs.coffee > api.md
+here="$(pwd)"
+
+pushd ../apiaxle/api
+./bin/generate-docs.coffee > "${here}/api.md"
+popd
 
 # now commit
 git add api.md
