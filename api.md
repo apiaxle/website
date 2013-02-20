@@ -1,8 +1,8 @@
 ---
 layout: apidocs
-title: "Api documentation (generated from 'gh-pages'"
+title: "Api documentation (generated from 'develop'"
 ---
-This documentation was generated from branch 'gh-pages'
+This documentation was generated from branch 'develop'
 # /v1/api/:api
 ## Provision a new API. (POST)
 ### JSON fields supported
