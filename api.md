@@ -1,8 +1,8 @@
 ---
 layout: apidocs
-title: "Api documentation (generated from 'feature/repl-via-api'"
+title: "Api documentation (generated from 'develop'"
 ---
-This documentation was generated from branch 'feature/repl-via-api'
+This documentation was generated from branch 'develop'
 # /v1/api/:api
 ## Update an API. (PUT)
 Will merge fields you pass in.
@@ -217,17 +217,6 @@ Will merge fields you pass in.
 
 * The inserted structure (including the new timestamp fields).
 
-# /v1/keyring/:keyring/key/:key
-## Delete and existing KEY from an existing KEYRING. (POST)
-### Returns
-
-* `true` if the operation is successful.
-
-## Add existing KEY to existing KEYRING. (POST)
-### Returns
-
-* `true` if the operation is successful.
-
 # /v1/keyring/:keyring/keys
 ## List keys belonging to an KEYRING. (GET)
 ### Supported query params
@@ -246,6 +235,23 @@ Will merge fields you pass in.
   entry.
 * If `resolve` is passed then results will be an object with the
   key name as the key and the details as the value.
+
+# /v1/keyring/:keyring/linkkey/:key
+## Associate a key with a KEYRING.
+
+The key must already exist and will not be modified by this
+operation. (PUT)
+### Returns
+
+* The linked key details.
+
+# /v1/keyring/:keyring/unlinkkey/:key
+## Disassociate a key with n KEYRING.
+
+The key will still exist and its details won't be affected. (PUT)
+### Returns
+
+* The unlinked key details.
 
 # /v1/keyrings
 ## List all KEYRINGs. (GET)
