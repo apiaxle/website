@@ -23,7 +23,8 @@ title:    Home
 
                     <div class="spacer-40px"></div>
 
-                      <a class="btn btn-large btn-download" href="docs/try-it-now">
+                      <a class="btn btn-large btn-download" href="#get_started"
+                         data-toggle="modal">
                         <i class="icon-download "></i>
                         Download Now
                       </a>
@@ -165,5 +166,34 @@ title:    Home
 
   </div>
 </footer>
+
+<!-- Modal -->
+<div id="get_started" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Start Using ApiAxle</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      We love to hear about the types of people using <span="color">ApiAxle</span><br />
+      Filling out the form will really help us with continued development.
+    </p>
+    <form class="form-inline" id="details_form" method="GET" action="/">
+      <p>
+        <label for="email">Email:</label><input name="email" />
+      </p>
+      <p>
+        <label for="company">Company:</label><input name="company" />
+      </p>
+    </form>
+    <p>
+      <strong>Note:</strong> We will not use this information for spam,
+      relentless marketing or any other nefarious practice.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Continue</button>
+  </div>
+</div>
 <!-- footer ends
 ================================================== -->
