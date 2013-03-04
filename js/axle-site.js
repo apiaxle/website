@@ -7,15 +7,29 @@
 
     function AxleSite() {
       var _this = this;
+
       $("#details_form").submit(function() {
         _this.submit_details($("#details_form").serialize());
         return false;
       });
+
       $("#get_started").on("shown", function() {
         $("#email").focus();
       });
+
+      $("#get_started").on("show", function(e) {
+        // return straight away if we've done this before
+        if ($.cookie("details-entered") === "true") {
+          window.location.href = _this.redirect_url;
+          return e.preventDefault();
+
+        }
+
+        return e;
+      });
+
       $("#get_started").on("hide", function() {
-        return _this.submit_details($("#details_form").serialize());
+        _this.submit_details($("#details_form").serialize());
       });
     }
 
