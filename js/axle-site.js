@@ -20,11 +20,12 @@
     }
 
     AxleSite.prototype.submit_details = function(query_str) {
+      var _this = this;
+
       $.ajax({
         dataType: "jsonp",
         url: this.details_url + "?" + query_str
-      });
-      return location.href = this.redirect_url;
+      }).always( function () { window.location.href = _this.redirect_url } );
     };
 
     return AxleSite;
