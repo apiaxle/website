@@ -3,7 +3,7 @@
 
   window.AxleSite = (function() {
     AxleSite.prototype.details_url = "http://test.apiaxle.com";
-    AxleSite.prototype.redirect_url = "/docs.html";
+    AxleSite.prototype.redirect_url = "/docs/try-it-now";
 
     function AxleSite() {
       var _this = this;
@@ -25,7 +25,6 @@
     };
 
     return AxleSite;
-
   })();
 
   $(document).ready(function() {
