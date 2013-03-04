@@ -25,7 +25,10 @@
       $.ajax({
         dataType: "jsonp",
         url: this.details_url + "?" + query_str
-      }).always( function () { window.location.href = _this.redirect_url } );
+      }).always(function () {
+        $.cookie('details-entered', 'true', { expires: 365, path: "/" });
+        window.location.href = _this.redirect_url;
+      });
     };
 
     return AxleSite;
