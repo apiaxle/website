@@ -11,6 +11,9 @@
         _this.submit_details($("#details_form").serialize());
         return false;
       });
+      $("#get_started").on("shown", function() {
+        $("#email").focus();
+      });
       $("#get_started").on("hide", function() {
         return _this.submit_details($("#details_form").serialize());
       });
