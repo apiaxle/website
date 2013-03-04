@@ -77,7 +77,7 @@ iframe {
 /*----- 1.2 Typography -----*/
 /*----------------------------------------*/
 /*only font families are specified here - font sizes and weights are in respective section*/
-body, h1, h2, h3, h4, h5, h6, .mybtn, .mybtn-color, .mybtn-small, .mybtn-small-color, label, input, button, select, textarea, input[type="text"], .submit, .ddsmoothmenu ul li a {
+body, h1, h2, h3, h4, h5, h6, .mybtn, .mybtn-color, .mybtn-small, .mybtn-small-color, label, input, button, select, textarea, input[type="text"], input[type="email"], .submit, .ddsmoothmenu ul li a {
 	font-family: 'Raleway', Arial, Helvetica, sans-serif;
 }
 em, blockquote p {
@@ -717,7 +717,7 @@ form input.error, form textarea.error {
 	border-color: #b94a48 !important;
 	box-shadow: none;
 }
-label, input, button, select, textarea, input[type="text"] {
+label, input, button, select, textarea, input[type="text"], intput[type="email"] {
 	font-size: 14px;
 	color: #767676;
 	font-weight: 400;
@@ -730,7 +730,7 @@ label {
 	float: left;
 	height: auto;
 }
-input[type="text"], select, textarea {
+input[type="text"], input[type="email"], select, textarea {
 	width: 66% !important;
 	height: 30px;
 	padding: 5px;
@@ -745,7 +745,7 @@ select {
 	width: 100% !important;
 	height: 40px;
 }
-input[type="text"], textarea, select {
+input[type="text"], input[type="email"], textarea, select {
 	background-color: #fff;
 	border: 1px solid #dadee1;
 	box-shadow: none;
@@ -758,7 +758,7 @@ input[type="text"], textarea, select {
 	-o-transition: border linear 0.2s;
 	transition: border linear 0.2s;
 }
-textarea:focus, input[type="text"]:focus, select:focus {
+textarea:focus, input[type="text"], input[type="email"]:focus, select:focus {
 	box-shadow: none;
 }
 .submit {
@@ -1188,7 +1188,7 @@ padding-right: 0%;
 float: none;
 line-height: 1em;
 }
-input[type="text"], select, textarea {
+input[type="text"], input[type="email"], select, textarea {
 width: 97% !important;
 padding: 5px;
 }
