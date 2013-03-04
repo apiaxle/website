@@ -391,7 +391,7 @@ blockquote.pull-right {
 }
 /*--- social icon list ---*/
 .social {
-	padding-left: 20px;
+	padding-right: 20px;
 	float: right;
 	display: block;
 }
