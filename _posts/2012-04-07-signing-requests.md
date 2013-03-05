@@ -4,8 +4,6 @@ title: Signing requests
 description: How to sign requests for extra security.
 ---
 
-# {{page.title}}
-
 At the cost of a small performance hit, ApiAxle supports the signing
 of requests. Here's how to use and set them up:
 

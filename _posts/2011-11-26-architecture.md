@@ -4,8 +4,6 @@ title: "Architecture"
 description: "Architecture overview."
 ---
 
-# {{page.title}}
-
 ApiAxle is effectively a HTTP proxy meaning it's really easy to slide
 it into your existing architecture. Below is a simple diagram which
 demonstrates the following:

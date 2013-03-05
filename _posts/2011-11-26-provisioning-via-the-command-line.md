@@ -1,10 +1,8 @@
 ---
 layout: docs
-title: "Provisioning via the command line"
+title: Provisioning a new API
 description: "How setup APIs and keys via the command line."
 ---
-
-# Provisioning a new API
 
 Have a look at the options you can assign to an API by running this
 command:

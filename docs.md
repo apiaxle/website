@@ -3,8 +3,6 @@ layout: docs
 title: "Documentation"
 ---
 
-# {{page.title}}
-
 ## Proxy
 
 * [Getting started](docs/try-it-now/) - Start using ApiAxle right away.
@@ -15,6 +13,7 @@ title: "Documentation"
 ## System
 
 * [Architecture](docs/architecture) - A high-level view of the system.
+* [Configuration](docs/configuration/) - Configure logging and other aspects.
 
 ## API
 

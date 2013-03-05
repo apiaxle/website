@@ -4,8 +4,6 @@ title: "A hint at performance"
 description: "A fairly unscientific look at ApiAxle's performance."
 ---
 
-# A hint at performance
-
 * On my not-particularly-fancy desktop machine.
 * 200 concurrent connections.
 * Nginx balancing over four instances of ApiAxle. 
