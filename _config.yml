@@ -1,7 +1,7 @@
-title: API Axle
+title: ApiAxle
 safe: true
 twitter: "https://twitter.com/#!/apiaxle"
-email: "phil@shellarchive.co.uk"
+email: "phil@apiaxle.com"
 exclude: "node_modules"
 permalink: "/docs/:title"
 description: "ApiAxle is a proxy that sits in front of your API(s) and manages things that you shouldn't have to like rate limiting, authentication and caching. It's fast, open and easy to configure."
