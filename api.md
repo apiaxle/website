@@ -16,6 +16,7 @@ Will merge fields you pass in.
 * endPointTimeout: (default: 2) Seconds to wait before timing out the connection
 * endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
 * extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
+* defaultPath: An optional path part that will always be called when the API is hit.
 
 ### Returns
 
@@ -31,6 +32,7 @@ Will merge fields you pass in.
 * endPointTimeout: (default: 2) Seconds to wait before timing out the connection
 * endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
 * extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
+* defaultPath: An optional path part that will always be called when the API is hit.
 
 ### Returns
 
