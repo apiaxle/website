@@ -1,3 +1,4 @@
+[32m[2013-03-23 19:54:16.506] [INFO] [default] - [39mLoading configuration from '/etc/apiaxle/development.json'.
 ---
 layout: apidocs
 title: "Api documentation (generated from 'develop'"
@@ -17,6 +18,7 @@ Will merge fields you pass in.
 * endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
 * extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
 * defaultPath: An optional path part that will always be called when the API is hit.
+* disabled: Disable this API causing errors when it's hit.
 
 ### Returns
 
@@ -33,6 +35,7 @@ Will merge fields you pass in.
 * endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
 * extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
 * defaultPath: An optional path part that will always be called when the API is hit.
+* disabled: Disable this API causing errors when it's hit.
 
 ### Returns
 
@@ -143,6 +146,7 @@ Fields passed in will will be merged with the old key details.
 * qpd: (default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.
 * qps: (default: 2) Number of queries that can be called per second. Set to `-1` for no limit.
 * forApis: Names of the Apis that this key belongs to.
+* disabled: Disable this API causing errors when it's hit.
 
 ### Returns
 
@@ -166,6 +170,7 @@ Fields passed in will will be merged with the old key details.
 * qpd: (default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.
 * qps: (default: 2) Number of queries that can be called per second. Set to `-1` for no limit.
 * forApis: Names of the Apis that this key belongs to.
+* disabled: Disable this API causing errors when it's hit.
 
 ### Returns
 
