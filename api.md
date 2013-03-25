@@ -1,4 +1,3 @@
-[32m[2013-03-23 19:54:16.506] [INFO] [default] - [39mLoading configuration from '/etc/apiaxle/development.json'.
 ---
 layout: apidocs
 title: "Api documentation (generated from 'develop'"
