@@ -1,6 +1,7 @@
 ---
 layout: docs
 title: "Documentation"
+hidetoc: true
 ---
 
 ## Proxy
