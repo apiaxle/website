@@ -27,6 +27,17 @@ You host ApiAxle within your firewall. This means:
    [have us do it](mailto:support@apiaxle.com) according to your
    specific API requirements.
 
+## Cost
+
+The proxy, repl and API parts of ApiAxle are totally free. This means
+you can get a working system for zero cost. As your needs start to
+grow [get in touch](mailto:support@apiaxle.com) for support contracts
+or consultancy.
+
+Soon we will have an enterprise-ready dashboard which will wrap the
+Axle API and integrate with other systems to keep you up to date with
+trends and usage of *your* API.
+
 ## Feature rich
 
 Choosing ApiAxle will get you:
@@ -58,14 +69,3 @@ functionality. Want to provision a new key?
     
 That's it. Easily scriptable if you don't want to have to host the
 API.
-
-## Cost
-
-The proxy, repl and API parts of ApiAxle are totally free. This means
-you can get a working system for zero cost. As your needs start to
-grow [get in touch](mailto:support@apiaxle.com) for support contracts
-or consultancy.
-
-Soon we will have an enterprise-ready dashboard which will wrap the
-Axle API and integrate with other systems to keep you up to date with
-trends and usage of *your* API.
