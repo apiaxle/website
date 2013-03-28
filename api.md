@@ -4,6 +4,16 @@ title: "Api documentation (generated from 'develop'"
 ---
 This documentation was generated from branch 'develop'
 # /v1/api/:api
+## Get the definition for an API. (GET)
+### Returns
+
+* The API structure (including the timestamp fields).
+
+## Delete an API. (DELETE)
+### Returns
+
+* `true` on success.
+
 ## Update an API. (PUT)
 Will merge fields you pass in.
 
@@ -39,16 +49,6 @@ Will merge fields you pass in.
 ### Returns
 
 * The inserted structure (including the new timestamp fields).
-
-## Get the definition for an API. (GET)
-### Returns
-
-* The API structure (including the timestamp fields).
-
-## Delete an API. (DELETE)
-### Returns
-
-* `true` on success.
 
 # /v1/api/:api/hits
 ## Get the statistics for an api. (GET)
@@ -136,9 +136,7 @@ The key will still exist and its details won't be affected. (PUT)
 * Package file output.
 
 # /v1/key/:key
-## Update a key. (PUT)
-Fields passed in will will be merged with the old key details.
-
+## Provision a new key. (POST)
 ### JSON fields supported
 
 * sharedSecret: A shared secret which is used when signing a call to the api.
@@ -162,7 +160,12 @@ Fields passed in will will be merged with the old key details.
 
 * The key object (including timestamps).
 
-## Provision a new key. (POST)
+## Update a key. (PUT)
+Fields passed in will will be merged with the old key
+details. Note that in the case of updating a key's `QPD` it will
+get the new amount of calls minus the amount of calls it has
+already made.
+
 ### JSON fields supported
 
 * sharedSecret: A shared secret which is used when signing a call to the api.
@@ -175,6 +178,21 @@ Fields passed in will will be merged with the old key details.
 
 * The newly inseted structure (including the new timestamp
   fields).
+
+# /v1/key/:key/apis
+## List apis belonging to a key. (GET)
+### Supported query params
+
+* resolve: if set to `true` then the details concerning the listed
+  apis will also be printed. Be aware that this will come with a
+  minor performace hit.
+
+### Returns
+
+* Without `resolve` the result will be an array with one key per
+  entry.
+* If `resolve` is passed then results will be an object with the
+  key name as the key and the details as the value.
 
 # /v1/key/:key/hits
 ## Get hits for a key in the past minute. (GET)
@@ -199,20 +217,6 @@ Fields passed in will will be merged with the old key details.
   example). Each object contains date to hit count pairs.
 
 # /v1/keyring/:keyring
-## Provision a new KEYRING. (POST)
-### JSON fields supported
-
-
-
-### Returns
-
-* The inserted structure (including the new timestamp fields).
-
-## Delete an KEYRING. (DELETE)
-### Returns
-
-* `true` on success.
-
 ## Update an KEYRING. (PUT)
 Will merge fields you pass in.
 
@@ -228,6 +232,20 @@ Will merge fields you pass in.
 ### Returns
 
 * The KEYRING structure (including the timestamp fields).
+
+## Provision a new KEYRING. (POST)
+### JSON fields supported
+
+
+
+### Returns
+
+* The inserted structure (including the new timestamp fields).
+
+## Delete an KEYRING. (DELETE)
+### Returns
+
+* `true` on success.
 
 # /v1/keyring/:keyring/keys
 ## List keys belonging to an KEYRING. (GET)
