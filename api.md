@@ -5,6 +5,7 @@ title: "Api documentation (generated from 'develop'"
 This documentation was generated from branch 'develop'
 # /v1/api/:api
 ## Provision a new API. (POST)
+
 ### JSON fields supported
 
 * globalCache: The time in seconds that every call under this API should be cached.
@@ -22,16 +23,19 @@ This documentation was generated from branch 'develop'
 * The inserted structure (including the new timestamp fields).
 
 ## Get the definition for an API. (GET)
+
 ### Returns
 
 * The API structure (including the timestamp fields).
 
 ## Delete an API. (DELETE)
+
 ### Returns
 
 * `true` on success.
 
 ## Update an API. (PUT)
+
 Will merge fields you pass in.
 
 ### JSON fields supported
@@ -52,6 +56,7 @@ Will merge fields you pass in.
 
 # /v1/api/:api/keys
 ## List keys belonging to an API. (GET)
+
 ### Supported query params
 
 * from: The index of the first key you want to see. Starts at zero.
@@ -66,21 +71,24 @@ Will merge fields you pass in.
   key name as the key and the details as the value.
 
 # /v1/api/:api/linkkey/:key
-## Associate a key with an API meaning calls to the API can be made
-with the key.
+## Associate a key with an API (PUT)
+
+Calls to the API can be made with the key once this is run.
 
 The key must already exist and will not be modified by this
-operation. (PUT)
+operation.
+
 ### Returns
 
 * The linked key details.
 
 # /v1/api/:api/stats
 ## Get stats for an api. (GET)
+
 ### Supported query params
 
-* from: (default: 1365170511) The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.
-* to: (default: 1365171111) The unix epoch from which to finish gathering the statistics. Defaults to `now`.
+* from: (default: 1365171585) The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.
+* to: (default: 1365172185) The unix epoch from which to finish gathering the statistics. Defaults to `now`.
 * granularity: (default: minutes) One of: seconds, minutes, hours, days. Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.
 
 ### Returns
@@ -90,16 +98,20 @@ operation. (PUT)
   these in turn contain objects with timestamp:count
 
 # /v1/api/:api/unlinkkey/:key
-## Disassociate a key with an API meaning calls to the API can no
-longer be made with the key.
+## Disassociate a key with an API. (PUT)
 
-The key will still exist and its details won't be affected. (PUT)
+Calls to the API can no longer be made with the key once this has
+been called.
+
+The key will still exist and its details won't be affected.
+
 ### Returns
 
 * The unlinked key details.
 
 # /v1/apis
 ## List all APIs. (GET)
+
 ### Supported query params
 
 * from: Integer for the index of the first api you want to see. Starts at zero.
@@ -115,12 +127,14 @@ The key will still exist and its details won't be affected. (PUT)
 
 # /v1/info
 ## Information about this project. (GET)
+
 ### Returns
 
 * Package file output.
 
 # /v1/key/:key
 ## Provision a new key. (POST)
+
 ### JSON fields supported
 
 * sharedSecret: A shared secret which is used when signing a call to the api.
@@ -135,16 +149,19 @@ The key will still exist and its details won't be affected. (PUT)
   fields).
 
 ## Delete a key. (DELETE)
+
 ### Returns
 
 * `true` on success.
 
 ## Get the definition of a key. (GET)
+
 ### Returns
 
 * The key object (including timestamps).
 
 ## Update a key. (PUT)
+
 Fields passed in will will be merged with the old key
 details. Note that in the case of updating a key's `QPD` it will
 get the new amount of calls minus the amount of calls it has
@@ -165,6 +182,7 @@ already made.
 
 # /v1/key/:key/apis
 ## List apis belonging to a key. (GET)
+
 ### Supported query params
 
 * from: The index of the first api you want to see. Starts at zero.
@@ -180,6 +198,7 @@ already made.
 
 # /v1/key/:key/stats
 ## Get the real time hits for a key. (GET)
+
 ### Returns
 
 * Object where the keys represent the cache status (cached, uncached or
@@ -188,16 +207,19 @@ already made.
 
 # /v1/keyring/:keyring
 ## Get the definition for an KEYRING. (GET)
+
 ### Returns
 
 * The KEYRING structure (including the timestamp fields).
 
 ## Delete an KEYRING. (DELETE)
+
 ### Returns
 
 * `true` on success.
 
 ## Update an KEYRING. (PUT)
+
 Will merge fields you pass in.
 
 ### JSON fields supported
@@ -209,6 +231,7 @@ Will merge fields you pass in.
 * The merged structure (including the timestamp fields).
 
 ## Provision a new KEYRING. (POST)
+
 ### JSON fields supported
 
 
@@ -219,6 +242,7 @@ Will merge fields you pass in.
 
 # /v1/keyring/:keyring/keys
 ## List keys belonging to an KEYRING. (GET)
+
 ### Supported query params
 
 * from: The index of the first key you want to see. Starts at zero.
@@ -233,24 +257,27 @@ Will merge fields you pass in.
   key name as the key and the details as the value.
 
 # /v1/keyring/:keyring/linkkey/:key
-## Associate a key with a KEYRING.
+## Associate a key with a KEYRING. (PUT)
 
 The key must already exist and will not be modified by this
-operation. (PUT)
+operation.
+
 ### Returns
 
 * The linked key details.
 
 # /v1/keyring/:keyring/unlinkkey/:key
-## Disassociate a key with a KEYRING.
+## Disassociate a key with a KEYRING. (PUT)
 
-The key will still exist and its details won't be affected. (PUT)
+The key will still exist and its details won't be affected.
+
 ### Returns
 
 * The unlinked key details.
 
 # /v1/keyrings
 ## List all KEYRINGs. (GET)
+
 ### Supported query params
 
 * from: Integer for the index of the first keyring you want to see. Starts at zero.
@@ -266,6 +293,7 @@ The key will still exist and its details won't be affected. (PUT)
 
 # /v1/keys
 ## List all of the available keys. (GET)
+
 ### Supported query params
 
 * from: The index of the first key you want to see. Starts at zero.
