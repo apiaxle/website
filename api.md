@@ -4,6 +4,23 @@ title: "Api documentation (generated from 'develop'"
 ---
 This documentation was generated from branch 'develop'
 # /v1/api/:api
+## Provision a new API. (POST)
+### JSON fields supported
+
+* globalCache: The time in seconds that every call under this API should be cached.
+* endPoint: The endpoint for the API. For example; `graph.facebook.com`
+* protocol: (default: http) The protocol for the API, whether or not to use SSL
+* apiFormat: (default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.
+* endPointTimeout: (default: 2) Seconds to wait before timing out the connection
+* endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
+* extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
+* defaultPath: An optional path part that will always be called when the API is hit.
+* disabled: Disable this API causing errors when it's hit.
+
+### Returns
+
+* The inserted structure (including the new timestamp fields).
+
 ## Get the definition for an API. (GET)
 ### Returns
 
@@ -33,48 +50,13 @@ Will merge fields you pass in.
 
 * The merged structure (including the timestamp fields).
 
-## Provision a new API. (POST)
-### JSON fields supported
-
-* globalCache: The time in seconds that every call under this API should be cached.
-* endPoint: The endpoint for the API. For example; `graph.facebook.com`
-* protocol: (default: http) The protocol for the API, whether or not to use SSL
-* apiFormat: (default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.
-* endPointTimeout: (default: 2) Seconds to wait before timing out the connection
-* endPointMaxRedirects: (default: 2) Max redirects that are allowed when endpoint called.
-* extractKeyRegex: Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.
-* defaultPath: An optional path part that will always be called when the API is hit.
-* disabled: Disable this API causing errors when it's hit.
-
-### Returns
-
-* The inserted structure (including the new timestamp fields).
-
-# /v1/api/:api/hits
-## Get the statistics for an api. (GET)
-### Returns
-
-* Object where the keys represent timestamp for a given second
-  and the values the amount of hits to the specified API for that second
-
-# /v1/api/:api/hits/now
-## Get the statistics for an api. (GET)
-### Returns
-
-* Integer, the number of hits to the API this second.
-  Designed light weight real time statistics
-
 # /v1/api/:api/keys
 ## List keys belonging to an API. (GET)
 ### Supported query params
 
-* from: Integer for the index of the first key you want to
-  see. Starts at zero.
-* to: Integer for the index of the last key you want to
-  see. Starts at zero.
-* resolve: if set to `true` then the details concerning the listed
-  keys will also be printed. Be aware that this will come with a
-  minor performace hit.
+* from: The index of the first key you want to see. Starts at zero.
+* to: (default: 10) The index of the last key you want to see. Starts at zero.
+* resolve: If set to `true` then the details concerning the listed keys will also be printed. Be aware that this will come with a minor performace hit.
 
 ### Returns
 
@@ -94,12 +76,18 @@ operation. (PUT)
 * The linked key details.
 
 # /v1/api/:api/stats
-## Get the statistics for an api. (GET)
+## Get stats for an api. (GET)
+### Supported query params
+
+* from: (default: 1365170511) The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.
+* to: (default: 1365171111) The unix epoch from which to finish gathering the statistics. Defaults to `now`.
+* granularity: (default: minutes) One of: seconds, minutes, hours, days. Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.
+
 ### Returns
 
-* Object where the keys represent the HTTP status code of the
-  endpoint or the error returned by apiaxle (QpsExceededError, for
-  example). Each object contains date to hit count pairs.
+* Object where the keys represent the cache status (cached, uncached or
+  error), each containing an object with response codes or error name,
+  these in turn contain objects with timestamp:count
 
 # /v1/api/:api/unlinkkey/:key
 ## Disassociate a key with an API meaning calls to the API can no
@@ -114,13 +102,9 @@ The key will still exist and its details won't be affected. (PUT)
 ## List all APIs. (GET)
 ### Supported query params
 
-* from: Integer for the index of the first api you want to
-  see. Starts at zero.
-* to: Integer for the index of the last api you want to
-  see. Starts at zero.
-* resolve: if set to `true` then the details concerning the listed
-  apis  will also be printed. Be aware that this will come with a
-  minor performace hit.
+* from: Integer for the index of the first api you want to see. Starts at zero.
+* to: (default: 10) Integer for the index of the last api you want to see. Starts at zero.
+* resolve: If set to `true` then the details concerning the listed apis will also be printed. Be aware that this will come with a minor performace hit.
 
 ### Returns
 
@@ -183,9 +167,9 @@ already made.
 ## List apis belonging to a key. (GET)
 ### Supported query params
 
-* resolve: if set to `true` then the details concerning the listed
-  apis will also be printed. Be aware that this will come with a
-  minor performace hit.
+* from: The index of the first api you want to see. Starts at zero.
+* to: (default: 10) The index of the last api you want to see. Starts at zero.
+* resolve: If set to `true` then the details concerning the listed apis will also be printed. Be aware that this will come with a minor performace hit.
 
 ### Returns
 
@@ -194,29 +178,25 @@ already made.
 * If `resolve` is passed then results will be an object with the
   key name as the key and the details as the value.
 
-# /v1/key/:key/hits
-## Get hits for a key in the past minute. (GET)
-### Returns
-
-* Object where the keys represent timestamp for a given second
-  and the values the amount of hits to the Key for that second
-
-# /v1/key/:key/hits/now
+# /v1/key/:key/stats
 ## Get the real time hits for a key. (GET)
 ### Returns
 
-* Integer, the number of hits to the Key this second.
-  Designed light weight real time statistics
-
-# /v1/key/:key/stats
-## Get the statistics for a key. (GET)
-### Returns
-
-* Object where the keys represent the HTTP status code of the
-  endpoint or the error returned by apiaxle (QpsExceededError, for
-  example). Each object contains date to hit count pairs.
+* Object where the keys represent the cache status (cached, uncached or
+  error), each containing an object with response codes or error name,
+  these in turn contain objects with timestamp:count
 
 # /v1/keyring/:keyring
+## Get the definition for an KEYRING. (GET)
+### Returns
+
+* The KEYRING structure (including the timestamp fields).
+
+## Delete an KEYRING. (DELETE)
+### Returns
+
+* `true` on success.
+
 ## Update an KEYRING. (PUT)
 Will merge fields you pass in.
 
@@ -228,11 +208,6 @@ Will merge fields you pass in.
 
 * The merged structure (including the timestamp fields).
 
-## Get the definition for an KEYRING. (GET)
-### Returns
-
-* The KEYRING structure (including the timestamp fields).
-
 ## Provision a new KEYRING. (POST)
 ### JSON fields supported
 
@@ -242,22 +217,13 @@ Will merge fields you pass in.
 
 * The inserted structure (including the new timestamp fields).
 
-## Delete an KEYRING. (DELETE)
-### Returns
-
-* `true` on success.
-
 # /v1/keyring/:keyring/keys
 ## List keys belonging to an KEYRING. (GET)
 ### Supported query params
 
-* from: Integer for the index of the first key you want to
-  see. Starts at zero.
-* to: Integer for the index of the last key you want to
-  see. Starts at zero.
-* resolve: if set to `true` then the details concerning the listed
-  keys will also be printed. Be aware that this will come with a
-  minor performace hit.
+* from: The index of the first key you want to see. Starts at zero.
+* to: (default: 10) The index of the last key you want to see. Starts at zero.
+* resolve: If set to `true` then the details concerning the listed keys will also be printed. Be aware that this will come with a minor performace hit.
 
 ### Returns
 
@@ -287,13 +253,9 @@ The key will still exist and its details won't be affected. (PUT)
 ## List all KEYRINGs. (GET)
 ### Supported query params
 
-* from: Integer for the index of the first keyring you want to
-  see. Starts at zero.
-* to: Integer for the index of the last keyring you want to
-  see. Starts at zero.
-* resolve: if set to `true` then the details concerning the listed
-  keyrings  will also be printed. Be aware that this will come with a
-  minor performace hit.
+* from: Integer for the index of the first keyring you want to see. Starts at zero.
+* to: (default: 10) Integer for the index of the last keyring you want to see. Starts at zero.
+* resolve: If set to `true` then the details concerning the listed keyrings will also be printed. Be aware that this will come with a minor performace hit.
 
 ### Returns
 
@@ -305,13 +267,10 @@ The key will still exist and its details won't be affected. (PUT)
 # /v1/keys
 ## List all of the available keys. (GET)
 ### Supported query params
-* from: Integer for the index of the first key you want to
-  see. Starts at zero.
-* to: Integer for the index of the last key you want to
-  see. Starts at zero.
-* resolve: if set to `true` then the details concerning the listed
-  keys will also be printed. Be aware that this will come with a
-  minor performace hit.
+
+* from: The index of the first key you want to see. Starts at zero.
+* to: (default: 10) The index of the last key you want to see. Starts at zero.
+* resolve: If set to `true` then the details concerning the listed keys will also be printed. Be aware that this will come with a minor performace hit.
 
 ### Returns
 
