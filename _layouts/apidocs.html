@@ -54,14 +54,127 @@
       <div class="span12">
         <h1>ApiAxle API documentation</h1>
 
+        <div class="quick-reference">
+          <h2>Quick Reference</h2>
+          <table class="table">
+            <tr><th>Endpoint</th><th>Description</th><th>Supported Methods</th></tr> 
+            <tr><td><a href='#api'>/api/:api</a></td><td>Provision and manage APIs</td><td>GET POST DELETE PUT</td></tr>
+            <tr><td><a href='#'>/api/:api/keys</a></td><td>List Keys associated with API</td><td>GET</td></tr>
+            <tr><td><a href='#'>/api/:api/linkkey/:key</a></td><td>Associate a Key with an API</td><td>PUT</td></tr>
+            <tr><td><a href='#'>/api/:api/stats</a></td><td>Access Key Stats</td><td>GET</td></tr>
+          </table>
+        </div>
+
+        <div class="usage">
+            <h2>URI Structure</h2>
+            <p>
+              All ApiAxle requests are prefixed with the version tag (currrently 
+              'v1') with the next segment of the endpoint indicating the type of
+              resource we wish to work with. <br />
+              For example the following will retrieve a list of APIs:
+              <p>
+                <code>curl -X GET 'http://localhost:3001/v1/apis'</code>
+              </p>
+            </p>
+            <p>
+              To work with a specific resource we specify it as the next
+              segment following the resource type.<br />
+              For example DELETING an API called 'testapi'
+              <p>
+                <code>curl -X DELETE 'http://localhost:3001/v1/api/testapi'</code>
+              </p>
+            </p>
+            <h2>Response Structure</h2>
+            <p>
+              All API responses are in JSON and include a meta and results
+              block.<br />
+              The meta block contains the api version and status code. The results
+              block will either be an object or list depending on call.<br />
+
+              The following is example output from the <code>/v1/apis</code> call.
+              <div class="well">
+                {<br />
+                &nbsp;&nbsp;"meta": {<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;"version": 1, <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;"status_code": 200 <br />
+                &nbsp;&nbsp;}, <br />
+                &nbsp;&nbsp;"results": [ <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;"testapi" <br />
+                &nbsp;&nbsp;]<br />
+                }<br />
+              </div>
+              In the following command reference examples only the contents of
+              the results field is documents.
+            </p>
+        </div>
+
+        <hr />
+
+        <div id="api">
+          <h2>/v1/api/:api</h2>
+          <p>
+            Create, manage and delete a single API. The ':api' segment of the
+            URI refers to the API name as defined when using the <strong>POST</strong>
+            method to create a new API.
+          </p>
+          <p>
+            <h3>Create a new API <strong>POST</strong></h3>
+            <p>
+              <code>curl -X POST 'http://localhost:3001/v1/api/testapi'</code>
+            </p>
+            <p>
+              <h4>Input</h4>
+              <table class="table">
+                <tr><td>endPoint</td><td>String (required)</td></tr>
+                <tr><td>protocol</td><td>String (default 'http')</td></tr>
+                <tr><td>apiFormat</td><td>String (default 'json')</td></tr>
+                <tr><td>globalCache</td><td>Time in seconds that each API call should be cached</td></tr>
+                <tr><td>endPointTimeout</td><td>Time in seconds before timing out the connection (default 2)</td></tr>
+                <tr><td>endPointMaxRedirects</td><td>Integer (default 2)</td></tr>
+                <tr><td>extractKeyRegex</td><td>String, regular expression used to extract key from URL. <a href='#'>See usage example</a></td></tr>
+                <tr><td>disabled</td><td>Boolean</td></tr>
+                <tr><td>createdAt</td><td>Unix timestamp</td></tr>
+              </table>
+            </p>
+            <p>
+              <h4>Response</h4>
+              <p>
+                A JSON containing with the following
+              </p>
+              <table class="table">
+                <tr><td>endPoint</td><td>String</td></tr>
+                <tr><td>protocol</td><td>String</td></tr>
+                <tr><td>apiFormat</td><td>String</td></tr>
+                <tr><td>globalCache</td><td>Time in seconds</td></tr>
+                <tr><td>endPointTimeout</td><td>Time in seconds</td></tr>
+                <tr><td>endPointMaxRedirects</td><td>Integer</td></tr>
+                <tr><td>disabled</td><td>Boolean</td></tr>
+                <tr><td>createdAt</td><td>Unix timestamp</td></tr>
+              </table>
+            </p>
+          <p>
+            <h3>Get API definition <strong>GET</strong></h3>
+            <p>
+              <code>curl -X GET 'http://localhost:3001/v1/api/testapi'</code>
+            </p>
+            <p>
+              <h4>Response</h4>
+              <p>
+                The same structure as <strong>POST</strong>
+              </p>
+            </p>
+        </div>
+
+        
+
         <div class="spacer-40px"></div>
 
-        <div id="toc"></div>
+        <!--<div id="toc"></div>-->
 
         <div class="spacer-40px"></div>
         <hr />
 
-        <div id="documentation">{{ content }}</div>
+        <!--<div id="documentation">{{ content }}</div>-->
       </div>
     </div>
   </div>
