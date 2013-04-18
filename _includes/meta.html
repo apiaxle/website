@@ -4,7 +4,7 @@
 <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}" />
 
 <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
-<meta property="og:title" content="ApiAxle" />
+<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
 <meta property="og:image" content="https://github.com/apiaxle/apiaxle/raw/gh-pages/img/logo.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
