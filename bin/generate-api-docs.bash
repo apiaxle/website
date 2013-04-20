@@ -7,7 +7,7 @@ mkdir -p log
 here="$(pwd)"
 
 pushd ../apiaxle/api
-./bin/generate-docs.coffee > "${here}/api.md"
+./bin/generate-docs.coffee > "${here}/_includes/docs.html"
 popd
 
 # now commit
