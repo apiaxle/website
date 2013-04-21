@@ -1,0 +1,219 @@
+This documentation was generated from branch 'feature/docs-v2'
+<h2>Quick Reference</h2>
+<table class='table'>
+<tr><th>Endpoint</th><th>Description</th></tr>
+<tr>
+<td><a href='#/v1/api/:api'>/v1/api/:api</a></td>
+<td>Provision a new API.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/keys'>/v1/api/:api/keys</a></td>
+<td>List keys belonging to an API.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/linkkey/:key'>/v1/api/:api/linkkey/:key</a></td>
+<td>Associate a key with an API</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/stats'>/v1/api/:api/stats</a></td>
+<td>Get stats for an api.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/unlinkkey/:key'>/v1/api/:api/unlinkkey/:key</a></td>
+<td>Disassociate a key with an API.</td>
+</tr>
+<tr>
+<td><a href='#/v1/apis'>/v1/apis</a></td>
+<td>List all APIs.</td>
+</tr>
+<tr>
+<td><a href='#/v1/info'>/v1/info</a></td>
+<td>Information about this project.</td>
+</tr>
+<tr>
+<td><a href='#/v1/key/:key'>/v1/key/:key</a></td>
+<td>Provision a new key.</td>
+</tr>
+<tr>
+<td><a href='#/v1/key/:key/apis'>/v1/key/:key/apis</a></td>
+<td>List apis belonging to a key.</td>
+</tr>
+<tr>
+<td><a href='#/v1/key/:key/stats'>/v1/key/:key/stats</a></td>
+<td>Get the real time hits for a key.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyring/:keyring'>/v1/keyring/:keyring</a></td>
+<td>Provision a new KEYRING.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyring/:keyring/keys'>/v1/keyring/:keyring/keys</a></td>
+<td>List keys belonging to an KEYRING.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyring/:keyring/linkkey/:key'>/v1/keyring/:keyring/linkkey/:key</a></td>
+<td>Associate a key with a KEYRING.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyring/:keyring/unlinkkey/:key'>/v1/keyring/:keyring/unlinkkey/:key</a></td>
+<td>Disassociate a key with a KEYRING.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyrings'>/v1/keyrings</a></td>
+<td>List all KEYRINGs.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keys'>/v1/keys</a></td>
+<td>List all of the available keys.</td>
+</tr>
+</table>
+<div class='well' id='/v1/api/:api'>
+<h2>/v1/api/:api</h2>
+<h3><span class='muted'>POST</span> Provision a new API.</h3>
+<p><code>curl -X POST 'http://localhost/v1/api/testapi' -d '{"endPoint":"testapi.api.local"}'</code></p>
+<h4>Input</h4>
+<table class='table'>
+<tr><td>endPoint</td><td>String (required)</td></tr>
+<tr><td>protocol</td><td>String (default 'http')</td></tr>
+<tr><td>apiFormat</td><td>String (default 'json')</td></tr>
+<tr><td>globalCache</td><td>Time in seconds that each API call should be cached</td></tr>
+<tr><td>endPointTimeout</td><td>Time in seconds before timing out the connection (default 2)</td></tr>
+<tr><td>endPointMaxRedirects</td><td>Integer (default 2)</td></tr>
+<tr><td>extractKeyRegex</td><td>String, regular expression used to extract key from URL. See usage example</td></tr>
+<tr><td>disabled</td><td>Boolean</td></tr>
+</table>
+<h4>Response</h4>
+A JSON object containing API details
+<hr />
+<h3><span class='muted'>GET</span> Get the definition of an API</h3>
+<p><code>curl -X GET 'http://localhost/v1/api/testapi'</code></p>
+<h4>Response</h4>
+The API structure (including the timestamp fields).
+<hr />
+<h3><span class='muted'>DELETE</span> Delete an API</h3>
+<p><code>curl -X DELETE 'http://localhost/v1/api/testapi'</code></p>
+<p><strong>Note:</strong> This will have no impact on any statistics or
+keys associated with the API</p>
+<h4>Response</h4>
+TRUE on success
+<hr />
+<h3><span class='muted'>PUT</span> Update an API</h3>
+<p><code>curl -X PUT 'http://localhost/v1/api/testapi' -d '{}'</code></p>
+<p>Will overwrite any fields specified in the input data.
+<br />
+Any unspecified will remain unchanged.</p>
+<h4>Input</h4>
+<table class='table'>
+<tr><td>globalCache</td><td>The time in seconds that every call under this API should be cached.</td></tr>
+<tr><td>endPoint</td><td>The endpoint for the API. For example; graph.facebook.com</td></tr>
+<tr><td>protocol</td><td>(default: http) The protocol for the API, whether or not to use SSL</td></tr>
+<tr><td>apiFormat</td><td>(default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.</td></tr>
+<tr><td>endPointTimeout</td><td>(default: 2) Seconds to wait before timing out the connection</td></tr>
+<tr><td>endPointMaxRedirects</td><td>(default: 2) Max redirects that are allowed when endpoint called.</td></tr>
+<tr><td>extractKeyRegex</td><td>Regular expression used to extract API key from url. Axle will use the first matched grouping and then apply that as the key. Using the api_key or apiaxle_key will take precedence.</td></tr>
+<tr><td>defaultPath</td><td>An optional path part that will always be called when the API is hit.</td></tr>
+<tr><td>disabled</td><td>Disable this API causing errors when it’s hit.</td></tr>
+</table>
+<h4>Response</h4>
+The new structure and the old one.
+</div>
+<div class='well' id='/v1/api/:api/keys'>
+<h2>/v1/api/:api/keys</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/api/testapi/keys'</code></p>
+</div>
+<div class='well' id='/v1/api/:api/linkkey/:key'>
+<h2>/v1/api/:api/linkkey/:key</h2>
+<h3><span class='muted'>PUT</span> Associate a key with an API</h3>
+<p><code>curl -X PUT 'http://localhost/v1/api/testapi/linkkey/1234'</code></p>
+<p>Calls to the API can be made with this key once this is run.
+<br />
+Both the key and the API must already exist before running.</p>
+<h4>Response</h4>
+The linked key details
+</div>
+<div class='well' id='/v1/api/:api/stats'>
+<h2>/v1/api/:api/stats</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/api/testapi/stats'</code></p>
+</div>
+<div class='well' id='/v1/api/:api/unlinkkey/:key'>
+<h2>/v1/api/:api/unlinkkey/:key</h2>
+<h3><span class='muted'>PUT</span> Disassociate a key with an API.</h3>
+<p><code>curl -X PUT 'http://localhost/v1/api/testapi/unlinkkey/1234'</code></p>
+<h4>Response</h4>
+The Unlinked key details
+</div>
+<div class='well' id='/v1/apis'>
+<h2>/v1/apis</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/apis'</code></p>
+</div>
+<div class='well' id='/v1/info'>
+<h2>/v1/info</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/info'</code></p>
+</div>
+<div class='well' id='/v1/key/:key'>
+<h2>/v1/key/:key</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/key/1234'</code></p>
+<hr />
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/key/1234'</code></p>
+<hr />
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/key/1234'</code></p>
+<hr />
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/key/1234'</code></p>
+</div>
+<div class='well' id='/v1/key/:key/apis'>
+<h2>/v1/key/:key/apis</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/key/1234/apis'</code></p>
+</div>
+<div class='well' id='/v1/key/:key/stats'>
+<h2>/v1/key/:key/stats</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/key/1234/stats'</code></p>
+</div>
+<div class='well' id='/v1/keyring/:keyring'>
+<h2>/v1/keyring/:keyring</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/keyring/1234ring'</code></p>
+<hr />
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/keyring/1234ring'</code></p>
+<hr />
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/keyring/1234ring'</code></p>
+<hr />
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/keyring/1234ring'</code></p>
+</div>
+<div class='well' id='/v1/keyring/:keyring/keys'>
+<h2>/v1/keyring/:keyring/keys</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/keyring/1234ring/keys'</code></p>
+</div>
+<div class='well' id='/v1/keyring/:keyring/linkkey/:key'>
+<h2>/v1/keyring/:keyring/linkkey/:key</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/keyring/1234ring/linkkey/:key'</code></p>
+</div>
+<div class='well' id='/v1/keyring/:keyring/unlinkkey/:key'>
+<h2>/v1/keyring/:keyring/unlinkkey/:key</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/keyring/1234ring/unlinkkey/:key'</code></p>
+</div>
+<div class='well' id='/v1/keyrings'>
+<h2>/v1/keyrings</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/keyrings'</code></p>
+</div>
+<div class='well' id='/v1/keys'>
+<h2>/v1/keys</h2>
+<h3><span class='muted'>undefined</span> undefined</h3>
+<p><code>curl -X undefined 'http://localhost/v1/keys'</code></p>
+</div>
