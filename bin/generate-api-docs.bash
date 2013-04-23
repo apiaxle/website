@@ -17,11 +17,11 @@ pushd ../apiaxle/api
 ) > "${here}/api.html"
 popd
 
-# # now commit
-# git add api.md
-# git commit -m "Updated documentation via generate-api-docs.bash."
+# now commit
+git add api.html
+git commit -m "Updated documentation via generate-api-docs.bash."
 
-# git show HEAD
+git show HEAD
 
-# read -p "Push? (y/n) "
-# [ "$REPLY" == "y" ] && git push origin gh-pages
+read -p "Push? (y/n) "
+[ "$REPLY" == "y" ] && git push origin gh-pages
