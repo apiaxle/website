@@ -45,7 +45,6 @@
 <body>
 
 {% include header.html %}
-
 <section id="content" >
   <div class="container">
     <div class="row">
@@ -54,14 +53,51 @@
       <div class="span12">
         <h1>ApiAxle API documentation</h1>
 
-        <div class="spacer-40px"></div>
+        <div class="usage">
+          <h2>URI Structure</h2>
+          <p>
+            All ApiAxle requests are prefixed with the version tag (currrently
+            'v1') with the next segment of the endpoint indicating the type of
+            resource we wish to work with. <br />
+            For example the following will retrieve a list of APIs:
+            <p>
+              <code>curl -X GET 'http://localhost:3001/v1/apis'</code>
+            </p>
+          </p>
+          <p>
+            To work with a specific resource we specify it as the next
+            segment following the resource type.<br />
+            For example DELETING an API called 'testapi'
+            <p>
+              <code>curl -X DELETE 'http://localhost:3001/v1/api/testapi'</code>
+            </p>
+          </p>
+          <h2>Response Structure</h2>
+          <p>
+            All API responses are in JSON and include a meta and results
+            block.<br />
+            The meta block contains the api version and status code. The results
+            block will either be an object or list depending on call.<br />
 
-        <div id="toc"></div>
+            The following is example output from the <code>/v1/apis</code> call.
+            <div class="well">
+              {<br />
+              &nbsp;&nbsp;"meta": {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;"version": 1, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;"status_code": 200 <br />
+              &nbsp;&nbsp;}, <br />
+              &nbsp;&nbsp;"results": [ <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;"testapi" <br />
+              &nbsp;&nbsp;]<br />
+              }<br />
+            </div>
+            In the following command reference examples only the contents of
+            the results field is documents.
+          </p>
+        </div>
 
-        <div class="spacer-40px"></div>
-        <hr />
+        {{ content }}
 
-        <div id="documentation">{{ content }}</div>
       </div>
     </div>
   </div>
