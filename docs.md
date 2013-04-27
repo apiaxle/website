@@ -15,6 +15,7 @@ hidetoc: true
 
 * [Architecture](docs/architecture) - A high-level view of the system.
 * [Configuration](docs/configuration/) - Configure logging and other aspects.
+* [FAQ](docs/faq) - Questions and sometimes some answers.
 
 ## API
 
