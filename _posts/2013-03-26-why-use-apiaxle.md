@@ -43,7 +43,7 @@ trends and usage of *your* API.
 Choosing ApiAxle will get you:
 
  * Thanks to our API integrating us into your current user paradigm is
-   very easy. Just call `addkey` then `linkkey` and you're done!
+   very easy. Just call `create` then `linkkey` and you're done!
  * HMAC token authentication based on secret key and epoch hashing.
  * Rate limiting - limit keys to a number of calls per second or calls per day.
  * [Caching](http://apiaxle.com/docs/caching/) - set global caches or
