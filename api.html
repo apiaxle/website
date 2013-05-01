@@ -1,0 +1,384 @@
+---
+layout: apidocs
+title: Api documentation
+---
+This documentation was generated from branch 'develop'
+<h2>Quick Reference</h2>
+<table class='table'>
+<tr><th>Endpoint</th><th>Description</th></tr>
+<tr>
+<td><a href='#/v1/api/:api'>/v1/api/:api</a></td>
+<td>Provision a new API.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/keys'>/v1/api/:api/keys</a></td>
+<td>List keys belonging to an API.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/linkkey/:key'>/v1/api/:api/linkkey/:key</a></td>
+<td>Associate a key with an API</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/stats'>/v1/api/:api/stats</a></td>
+<td>Get stats for an api</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/unlinkkey/:key'>/v1/api/:api/unlinkkey/:key</a></td>
+<td>Disassociate a key with an API.</td>
+</tr>
+<tr>
+<td><a href='#/v1/apis'>/v1/apis</a></td>
+<td>List all APIs.</td>
+</tr>
+<tr>
+<td><a href='#/v1/info'>/v1/info</a></td>
+<td>Information about this project.</td>
+</tr>
+<tr>
+<td><a href='#/v1/key/:key'>/v1/key/:key</a></td>
+<td>Provision a new key.</td>
+</tr>
+<tr>
+<td><a href='#/v1/key/:key/apis'>/v1/key/:key/apis</a></td>
+<td>List apis belonging to a key.</td>
+</tr>
+<tr>
+<td><a href='#/v1/key/:key/stats'>/v1/key/:key/stats</a></td>
+<td>Get the real time hits for a key.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyring/:keyring'>/v1/keyring/:keyring</a></td>
+<td>Provision a new KEYRING.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyring/:keyring/keys'>/v1/keyring/:keyring/keys</a></td>
+<td>List keys belonging to an KEYRING.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyring/:keyring/linkkey/:key'>/v1/keyring/:keyring/linkkey/:key</a></td>
+<td>Associate a key with a KEYRING.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyring/:keyring/unlinkkey/:key'>/v1/keyring/:keyring/unlinkkey/:key</a></td>
+<td>Disassociate a key with a KEYRING.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keyrings'>/v1/keyrings</a></td>
+<td>List all KEYRINGs.</td>
+</tr>
+<tr>
+<td><a href='#/v1/keys'>/v1/keys</a></td>
+<td>List all of the available keys.</td>
+</tr>
+<tr>
+<td><a href='#/v1/ping'>/v1/ping</a></td>
+<td>undefined</td>
+</tr>
+</table>
+<div class='well' id='/v1/api/:api'>
+<h2>/v1/api/:api</h2>
+<h3><span class='muted'>post</span> Provision a new API.</h3>
+<p><code>curl -X post 'http://localhost/v1/api/testapi' -d '{"endPoint":"testapi.api.local"}'</code></p>
+<h4>Input</h4>
+<table class='table'>
+<tr><td>createdAt</td><td>(optional) </td></tr>
+<tr><td>updatedAt</td><td>(optional) </td></tr>
+<tr><td>globalCache</td><td>(default: 0) The time in seconds that every call under this API should be cached.</td></tr>
+<tr><td>endPoint</td><td>The endpoint for the API. For example; `graph.facebook.com`</td></tr>
+<tr><td>protocol</td><td>(default: http) The protocol for the API, whether or not to use SSL</td></tr>
+<tr><td>apiFormat</td><td>(default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.</td></tr>
+<tr><td>endPointTimeout</td><td>(default: 2) Seconds to wait before timing out the connection</td></tr>
+<tr><td>endPointMaxRedirects</td><td>(default: 2) Max redirects that are allowed when endpoint called.</td></tr>
+<tr><td>extractKeyRegex</td><td>(optional) Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.</td></tr>
+<tr><td>defaultPath</td><td>(optional) An optional path part that will always be called when the API is hit.</td></tr>
+<tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
+<tr><td>strictSSL</td><td>(default: true) Set to true to require that SSL certificates be valid</td></tr>
+</table>
+<h4>Response</h4>
+A JSON object containing API details
+<hr />
+<h3><span class='muted'>get</span> Get the definition of an API</h3>
+<p><code>curl -X get 'http://localhost/v1/api/testapi'</code></p>
+<h4>Response</h4>
+The API structure (including the timestamp fields).
+<hr />
+<h3><span class='muted'>delete</span> Delete an API</h3>
+<p><code>curl -X delete 'http://localhost/v1/api/testapi'</code></p>
+<p><strong>Note:</strong> This will have no impact on any statistics or
+keys associated with the API</p>
+<h4>Response</h4>
+TRUE on success
+<hr />
+<h3><span class='muted'>put</span> Update an API</h3>
+<p><code>curl -X put 'http://localhost/v1/api/testapi' -d '{"endPoint":"testapi.api.local"}'</code></p>
+<p>Will overwrite any fields specified in the input data.
+<br />
+Any unspecified will remain unchanged.</p>
+<h4>Input</h4>
+<table class='table'>
+<tr><td>createdAt</td><td>(optional) </td></tr>
+<tr><td>updatedAt</td><td>(optional) </td></tr>
+<tr><td>globalCache</td><td>(default: 0) The time in seconds that every call under this API should be cached.</td></tr>
+<tr><td>endPoint</td><td>The endpoint for the API. For example; `graph.facebook.com`</td></tr>
+<tr><td>protocol</td><td>(default: http) The protocol for the API, whether or not to use SSL</td></tr>
+<tr><td>apiFormat</td><td>(default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.</td></tr>
+<tr><td>endPointTimeout</td><td>(default: 2) Seconds to wait before timing out the connection</td></tr>
+<tr><td>endPointMaxRedirects</td><td>(default: 2) Max redirects that are allowed when endpoint called.</td></tr>
+<tr><td>extractKeyRegex</td><td>(optional) Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.</td></tr>
+<tr><td>defaultPath</td><td>(optional) An optional path part that will always be called when the API is hit.</td></tr>
+<tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
+<tr><td>strictSSL</td><td>(default: true) Set to true to require that SSL certificates be valid</td></tr>
+</table>
+<h4>Response</h4>
+The new structure and the old one.
+</div>
+<div class='well' id='/v1/api/:api/keys'>
+<h2>/v1/api/:api/keys</h2>
+<h3><span class='muted'>get</span> List keys belonging to an API.</h3>
+<p><code>curl -X get 'http://localhost/v1/api/testapi/keys'</code></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: 0) The index of the first key you want to                 see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) The index of the last key you want to see. Starts at                 zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed keys will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+</table>
+<h4>Response</h4>
+With <strong>resolve</strong>: An object mapping each key to the
+corresponding details.<br />
+Without <strong>resolve</strong>: An array with 1 key per entry
+</div>
+<div class='well' id='/v1/api/:api/linkkey/:key'>
+<h2>/v1/api/:api/linkkey/:key</h2>
+<h3><span class='muted'>put</span> Associate a key with an API</h3>
+<p><code>curl -X put 'http://localhost/v1/api/testapi/linkkey/1234'</code></p>
+<p>Calls to the API can be made with this key once this is run.
+<br />
+Both the key and the API must already exist before running.</p>
+<h4>Response</h4>
+The linked key details
+</div>
+<div class='well' id='/v1/api/:api/stats'>
+<h2>/v1/api/:api/stats</h2>
+<h3><span class='muted'>get</span> Get stats for an api</h3>
+<p><code>curl -X get 'http://localhost/v1/api/testapi/stats'</code></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: 1366888312) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: 1366888912) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minutes) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
+</table>
+<h4>Response</h4>
+Object where the keys represent the cache status (cached, uncached or
+error), each containing an object with response codes or error name,
+these in turn contain objects with timestamp:count
+</div>
+<div class='well' id='/v1/api/:api/unlinkkey/:key'>
+<h2>/v1/api/:api/unlinkkey/:key</h2>
+<h3><span class='muted'>put</span> Disassociate a key with an API.</h3>
+<p><code>curl -X put 'http://localhost/v1/api/testapi/unlinkkey/1234'</code></p>
+<h4>Response</h4>
+The Unlinked key details
+</div>
+<div class='well' id='/v1/apis'>
+<h2>/v1/apis</h2>
+<h3><span class='muted'>get</span> List all APIs.</h3>
+<p><code>curl -X get 'http://localhost/v1/apis'</code></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: 0) Integer for the index of the first api you                 want to see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) Integer for the index of the last api you want                 to see. Starts at zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed apis will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+</table>
+<h4>Response</h4>
+With <strong>resolve</strong>: An object mapping each API to the
+corresponding details.<br />
+Without <strong>resolve</strong>: An array with 1 API per entry
+</div>
+<div class='well' id='/v1/info'>
+<h2>/v1/info</h2>
+<h3><span class='muted'>get</span> Information about this project.</h3>
+<p><code>curl -X get 'http://localhost/v1/info'</code></p>
+<h4>Response</h4>
+Package file output
+</div>
+<div class='well' id='/v1/key/:key'>
+<h2>/v1/key/:key</h2>
+<h3><span class='muted'>post</span> Provision a new key.</h3>
+<p><code>curl -X post 'http://localhost/v1/key/1234' -d '{}'</code></p>
+<h4>Input</h4>
+<table class='table'>
+<tr><td>createdAt</td><td>(optional) </td></tr>
+<tr><td>updatedAt</td><td>(optional) </td></tr>
+<tr><td>sharedSecret</td><td>(optional) A shared secret which is used when signing a call to the api.</td></tr>
+<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
+<tr><td>qps</td><td>(default: 2) Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
+<tr><td>forApis</td><td>(optional) Names of the Apis that this key belongs to.</td></tr>
+<tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
+</table>
+<h4>Response</h4>
+The newly inserted structure (including the new timestamp fields).
+<hr />
+<h3><span class='muted'>get</span> Get the definition of a key.</h3>
+<p><code>curl -X get 'http://localhost/v1/key/1234'</code></p>
+<h4>Response</h4>
+The key object (including timestamps).
+<hr />
+<h3><span class='muted'>delete</span> Delete a key.</h3>
+<p><code>curl -X delete 'http://localhost/v1/key/1234'</code></p>
+<h4>Response</h4>
+TRUE on success
+<hr />
+<h3><span class='muted'>put</span> Update a key.</h3>
+<p><code>curl -X put 'http://localhost/v1/key/1234' -d '{}'</code></p>
+<p>Fields passed in will will be merged with the old key
+details.
+<br />
+<strong>Note:</strong> In the case of updating a key's `QPD` it will
+get the new amount of calls minus the amount of calls it has
+already made.</p>
+<h4>Input</h4>
+<table class='table'>
+<tr><td>createdAt</td><td>(optional) </td></tr>
+<tr><td>updatedAt</td><td>(optional) </td></tr>
+<tr><td>sharedSecret</td><td>(optional) A shared secret which is used when signing a call to the api.</td></tr>
+<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
+<tr><td>qps</td><td>(default: 2) Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
+<tr><td>forApis</td><td>(optional) Names of the Apis that this key belongs to.</td></tr>
+<tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
+</table>
+<h4>Response</h4>
+The new structure and the old one.
+</div>
+<div class='well' id='/v1/key/:key/apis'>
+<h2>/v1/key/:key/apis</h2>
+<h3><span class='muted'>get</span> List apis belonging to a key.</h3>
+<p><code>curl -X get 'http://localhost/v1/key/1234/apis'</code></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: 0) The index of the first api you want to                 see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) The index of the last api you want to see. Starts at                 zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed apis will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+</table>
+<h4>Response</h4>
+With <strong>resolve</strong>: An object mapping each key to the
+corresponding details.<br />
+Without <strong>resolve</strong>: An array with 1 key per entry
+</div>
+<div class='well' id='/v1/key/:key/stats'>
+<h2>/v1/key/:key/stats</h2>
+<h3><span class='muted'>get</span> Get the real time hits for a key.</h3>
+<p><code>curl -X get 'http://localhost/v1/key/1234/stats'</code></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: 1366888312) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: 1366888912) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minutes) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>forapi</td><td>(optional) Narrow results down to all statistics for the specified               api.</td></tr>
+</table>
+<h4>Response</h4>
+Object where the keys represent the cache status (cached,
+uncached or error), each containing an object with response
+codes or error name, these in turn contain objects with
+timestamp:count
+</div>
+<div class='well' id='/v1/keyring/:keyring'>
+<h2>/v1/keyring/:keyring</h2>
+<h3><span class='muted'>post</span> Provision a new KEYRING.</h3>
+<p><code>curl -X post 'http://localhost/v1/keyring/1234ring' -d '{}'</code></p>
+<h4>Input</h4>
+<table class='table'>
+<tr><td>createdAt</td><td>(optional) </td></tr>
+<tr><td>updatedAt</td><td>(optional) </td></tr>
+</table>
+<h4>Response</h4>
+The inserted structure (including the new timestamp fields).
+<hr />
+<h3><span class='muted'>get</span> Get the definition for an KEYRING.</h3>
+<p><code>curl -X get 'http://localhost/v1/keyring/1234ring'</code></p>
+<h4>Response</h4>
+The KEYRING structure (including the timestamp fields).
+<hr />
+<h3><span class='muted'>delete</span> Delete an KEYRING.</h3>
+<p><code>curl -X delete 'http://localhost/v1/keyring/1234ring'</code></p>
+<h4>Response</h4>
+TRUE on success
+<hr />
+<h3><span class='muted'>put</span> Update an KEYRING.</h3>
+<p><code>curl -X put 'http://localhost/v1/keyring/1234ring' -d '{}'</code></p>
+<h4>Input</h4>
+<table class='table'>
+<tr><td>createdAt</td><td>(optional) </td></tr>
+<tr><td>updatedAt</td><td>(optional) </td></tr>
+</table>
+<h4>Response</h4>
+The merged structure (including the timestamp fields).
+</div>
+<div class='well' id='/v1/keyring/:keyring/keys'>
+<h2>/v1/keyring/:keyring/keys</h2>
+<h3><span class='muted'>get</span> List keys belonging to an KEYRING.</h3>
+<p><code>curl -X get 'http://localhost/v1/keyring/1234ring/keys'</code></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: 0) The index of the first key you want to                 see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) The index of the last key you want to see. Starts at                 zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed keys will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+</table>
+<h4>Response</h4>
+With <strong>resolve</strong>: An object mapping each key to the
+corresponding details.<br />
+Without <strong>resolve</strong>: An array with 1 key per entry
+</div>
+<div class='well' id='/v1/keyring/:keyring/linkkey/:key'>
+<h2>/v1/keyring/:keyring/linkkey/:key</h2>
+<h3><span class='muted'>put</span> Associate a key with a KEYRING.</h3>
+<p><code>curl -X put 'http://localhost/v1/keyring/1234ring/linkkey/:key'</code></p>
+<p>The key must already exist and will not be modified by this
+operation.</p>
+<h4>Response</h4>
+The linked key details.
+</div>
+<div class='well' id='/v1/keyring/:keyring/unlinkkey/:key'>
+<h2>/v1/keyring/:keyring/unlinkkey/:key</h2>
+<h3><span class='muted'>put</span> Disassociate a key with a KEYRING.</h3>
+<p><code>curl -X put 'http://localhost/v1/keyring/1234ring/unlinkkey/:key'</code></p>
+<h4>Response</h4>
+The unlinked key details.
+</div>
+<div class='well' id='/v1/keyrings'>
+<h2>/v1/keyrings</h2>
+<h3><span class='muted'>get</span> List all KEYRINGs.</h3>
+<p><code>curl -X get 'http://localhost/v1/keyrings'</code></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: 0) Integer for the index of the first keyring you                 want to see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) Integer for the index of the last keyring you want                 to see. Starts at zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed keyrings will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+</table>
+<h4>Response</h4>
+With <strong>resolve</strong>: An object mapping each keyring to the
+corresponding details.<br />
+Without <strong>resolve</strong>: An array with 1 keyring per entry
+</div>
+<div class='well' id='/v1/keys'>
+<h2>/v1/keys</h2>
+<h3><span class='muted'>get</span> List all of the available keys.</h3>
+<p><code>curl -X get 'http://localhost/v1/keys'</code></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: 0) The index of the first key you want to see. Starts at                 zero.</td></tr>
+<tr><td>to</td><td>(default: 10) The index of the last key you want to see. Starts at                 zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed keys will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+</table>
+<h4>Response</h4>
+With <strong>resolve</strong>: An object mapping each key to the
+corresponding details.<br />
+Without <strong>resolve</strong>: An array with 1 key per entry
+</div>
+<div class='well' id='/v1/ping'>
+<h2>/v1/ping</h2>
+<h3><span class='muted'>get</span> undefined</h3>
+<p><code>curl -X get 'http://localhost/v1/ping'</code></p>
+</div>
