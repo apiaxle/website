@@ -1365,3 +1365,45 @@ left: 0;
 #toc .toc-active {
     background: #fff;
 }
+
+.fold-slide {
+  font-size: x-large;
+  border-bottom: 2px solid #ddd;
+}
+
+.fold-slide pre {
+  font-size: large;
+}
+
+.fold-slide a {
+  color: #767676;
+  border-bottom: 1px dotted;
+}
+
+.fold-slide h1 {
+  font-size: 3em;
+  padding-top: 20px;
+  text-shadow: 0px 1px 0px #333;
+  font-weight: bold;
+  padding-bottom: 30px;
+}
+
+.fold-slide.proxy {
+	background: url("");
+  background-repeat: both;
+}
+
+.fold-slide.api {
+	background: url("");
+  background-repeat: both;
+}
+
+.fold-slide.repl {
+	background: url("../img/patterns/az_subtle.png");
+  background-repeat: both;
+}
+
+.fold-description {
+  font-style: italic;
+  line-height: 150%;
+}

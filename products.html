@@ -1,0 +1,97 @@
+---
+layout:   default
+title:    Products - ApiAxle
+---
+
+<div class="fold-slide repl">
+  <a id="the-repl"></a>
+
+  <div class="row">
+    <div class="span8 offset4">
+      <h1>The Repl</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span7 offset1 fold-description">
+      You probably want this first. The repl allows you to configure
+      ApiAxle from the command line. Setting up an API and API keys
+      ready for the proxy to work with is easy. It fires up an
+      instance of ApiAxle's own <a href="#the-api">HTTP API</a> in the
+      background and uses that to modify aspects of the
+      system. Anything you can do in the REPL you can do
+      programmatically with the API too.
+    </div>
+    <div class="span7 fold-features">
+      <pre>$ sudo npm install apiaxle-repl
+$ apiaxle
+
+axle> key "05050c14643dc" create
+axle> api "acme" create endPoint="localhost:81"
+axle> api "acme" linkkey "05050c14643dc"
+      </pre>
+    </div>
+  </div>
+</div>
+
+<div class="fold-slide proxy">
+  <a id="the-proxy"></a>
+
+  <div class="row">
+    <div class="span8 offset4">
+      <h1>The Proxy</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span7 offset1 fold-description">
+      The main part of the system. This goes between the Internet and
+      your API giving you things you don't want to have to write
+      yourself like <b>authentication</b>, <b>throttling</b>, <b>caching and statistics
+      collection</b>. It's fast, secure and easy to setup.
+    </div>
+    <div class="span7 fold-features">
+      <pre>$ sudo npm install apiaxle-proxy
+$ apiaxle-proxy
+      </pre>
+    </div>
+  </div>
+</div>
+
+<div class="fold-slide api">
+  <a id="the-api"></a>
+
+  <div class="row">
+    <div class="span8 offset4">
+      <h1>The API</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span7 offset1 fold-description">
+      ApiAxle's own HTTP API which gives you full control
+      over <i>your</i> APIs and the API keys used to access them. You
+      can view statistics about individual APIs and API keys from week
+      long granularities right down to near-real-time hits at a second
+      granularity.
+    </div>
+    <div class="span7 fold-features">
+      <pre>$ sudo npm install apiaxle-api
+$ apiaxle-api
+$ curl localhost:3000/v1/apis
+      </pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  $( document ).ready(function () {
+    $( ".fold-slide" ).each( function (index, slide) {
+      height = ( index === 0 )
+             ? $(window).height()
+             : $(window).height() - $("#header").height();
+
+      $(slide).css("height", $(window).height());
+    });
+  });
+</script>
