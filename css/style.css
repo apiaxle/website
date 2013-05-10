@@ -1369,10 +1369,8 @@ left: 0;
 .fold-slide {
   font-size: x-large;
   border-bottom: 2px solid #ddd;
-}
-
-.fold-slide pre {
-  font-size: large;
+  padding-bottom: 60px;
+  padding-top: 100px;
 }
 
 .fold-slide a {
@@ -1384,18 +1382,25 @@ left: 0;
   font-size: 3em;
   padding-top: 20px;
   text-shadow: 0px 1px 0px #333;
-  font-weight: bold;
   padding-bottom: 30px;
 }
 
 .fold-slide.proxy {
-	background: url("");
+	background: url("/img/patterns/binding_light.png");
   background-repeat: both;
 }
 
 .fold-slide.api {
-	background: url("");
+	background: url("/img/patterns/elastoplast.png");
   background-repeat: both;
+}
+
+.fold-slide.repl h1 {
+  font-family: 'Racing Sans One', cursive;
+}
+
+.fold-slide.proxy h1 {
+  font-family: 'Meie Script', cursive;
 }
 
 .fold-slide.repl {
@@ -1406,4 +1411,12 @@ left: 0;
 .fold-description {
   font-style: italic;
   line-height: 150%;
+}
+
+.syntax-optional {
+  color: #777;
+}
+
+.syntax-string {
+  color: green;
 }

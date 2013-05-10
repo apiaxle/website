@@ -3,17 +3,17 @@ layout:   default
 title:    Products - ApiAxle
 ---
 
+<link href='http://fonts.googleapis.com/css?family=Quicksand:700|Racing+Sans+One|Meie+Script'
+      rel='stylesheet'
+      type='text/css'>
+
 <div class="fold-slide repl">
   <a id="the-repl"></a>
+  <h1>The Repl</h1>
 
-  <div class="row">
-    <div class="span8 offset4">
-      <h1>The Repl</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="span7 offset1 fold-description">
+  <div class="container">
+    <div class="row">
+      <div class="span12 fold-description">
       You probably want this first. The repl allows you to configure
       ApiAxle from the command line. Setting up an API and API keys
       ready for the proxy to work with is easy. It fires up an
@@ -21,77 +21,84 @@ title:    Products - ApiAxle
       background and uses that to modify aspects of the
       system. Anything you can do in the REPL you can do
       programmatically with the API too.
+      </div>
     </div>
-    <div class="span7 fold-features">
-      <pre>$ sudo npm install apiaxle-repl
-$ apiaxle
+    <div class="spacer-40px"></div>
+    <div class="row">
+      <div class="span12 fold-code">
+        <pre><span class="syntax-optional">$</span> sudo npm install apiaxle-repl
+<span class="syntax-optional">$</span> apiaxle
 
-axle> key "05050c14643dc" create
-axle> api "acme" create endPoint="localhost:81"
-axle> api "acme" linkkey "05050c14643dc"
-      </pre>
+<span class="syntax-optional">axle></span> key <span class="syntax-string">"05050c14643dc"</span> create
+<span class="syntax-optional">axle></span> api <span class="syntax-string">"acme"</span> create endPoint=<span class="syntax-string">"localhost:81"</span>
+<span class="syntax-optional">axle></span> api <span class="syntax-string">"acme"</span> linkkey <span class="syntax-string">"05050c14643dc"</span>
+</pre>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="fold-slide proxy">
   <a id="the-proxy"></a>
+  <h1>The PROXY</h1>
 
-  <div class="row">
-    <div class="span8 offset4">
-      <h1>The Proxy</h1>
+  <div class="container">
+    <div class="row">
+      <div class="span12 fold-description">
+        The main part of the system. This goes between the Internet
+        and your API giving you things you don't want to have to write
+        yourself
+        like <b>authentication</b>, <b>throttling</b>, <b>caching and
+        statistics collection</b>. It's fast, secure and easy to
+        setup. You'll need either the repl or the API to configure it
+        first.
+      </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="span7 offset1 fold-description">
-      The main part of the system. This goes between the Internet and
-      your API giving you things you don't want to have to write
-      yourself like <b>authentication</b>, <b>throttling</b>, <b>caching and statistics
-      collection</b>. It's fast, secure and easy to setup.
-    </div>
-    <div class="span7 fold-features">
-      <pre>$ sudo npm install apiaxle-proxy
-$ apiaxle-proxy
-      </pre>
+    <div class="spacer-40px"></div>
+    <div class="row">
+      <div class="span12 fold-code">
+        <pre><span class="syntax-optional">$</span> sudo npm install apiaxle-proxy
+<span class="syntax-optional">$</span> apiaxle-proxy</pre>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="fold-slide api">
   <a id="the-api"></a>
+  <h1>The API</h1>
 
-  <div class="row">
-    <div class="span8 offset4">
-      <h1>The API</h1>
+  <div class="container">
+    <div class="row">
+      <div class="span12 fold-description">
+        Bear with me, this will get meta. This is ApiAxle's own HTTP
+        API which gives you full control over <i>your</i> APIs and the
+        API keys used to access them. You can view statistics about
+        individual APIs and API keys from week long granularities
+        right down to near-real-time hits at a second granularity.
+      </div>
     </div>
-  </div>
+    <div class="spacer-40px"></div>
+    <div class="row">
+      <div class="span12 fold-code">
+      <pre><span class="syntax-optional">$</span> sudo npm install apiaxle-api
 
-  <div class="row">
-    <div class="span7 offset1 fold-description">
-      ApiAxle's own HTTP API which gives you full control
-      over <i>your</i> APIs and the API keys used to access them. You
-      can view statistics about individual APIs and API keys from week
-      long granularities right down to near-real-time hits at a second
-      granularity.
-    </div>
-    <div class="span7 fold-features">
-      <pre>$ sudo npm install apiaxle-api
-$ apiaxle-api
-$ curl localhost:3000/v1/apis
-      </pre>
+<span class="syntax-optional">$</span> apiaxle-api
+<span class="syntax-optional">$</span> curl <span class="syntax-string">"localhost:3000/v1/apis"</span></pre>
+      </div>
     </div>
   </div>
 </div>
 
-<script>
-  $( document ).ready(function () {
-    $( ".fold-slide" ).each( function (index, slide) {
-      height = ( index === 0 )
-             ? $(window).height()
-             : $(window).height() - $("#header").height();
 
-      $(slide).css("height", $(window).height());
-    });
-  });
-</script>
+<!-- <script> -->
+<!--   $( document ).ready(function () { -->
+<!--     $( ".fold-slide" ).each( function (index, slide) { -->
+<!--       height = ( index === 0 ) -->
+<!--              ? $(window).height() -->
+<!--              : $(window).height() - $("#header").height(); -->
+
+<!--       $(slide).css("height", height); -->
+<!--     }); -->
+<!--   }); -->
+<!-- </script> -->
