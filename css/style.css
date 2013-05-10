@@ -1376,6 +1376,7 @@ left: 0;
 .fold-slide a {
   color: #767676;
   border-bottom: 1px dotted;
+  font-style: italic;
 }
 
 .fold-slide h1 {
@@ -1403,6 +1404,10 @@ left: 0;
   font-family: 'Meie Script', cursive;
 }
 
+.fold-slide.api h1 {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .fold-slide.repl {
 	background: url("../img/patterns/az_subtle.png");
   background-repeat: both;
@@ -1420,3 +1425,14 @@ left: 0;
 .syntax-string {
   color: green;
 }
+
+.fold-icon {
+  font-size: 6.2em;
+}
+
+
+.fold-slide pre {
+  font-size: large;
+  line-height: 150%;
+}
+
