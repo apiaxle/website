@@ -21,7 +21,7 @@ popd
 git add api.html
 git commit -m "Updated documentation via generate-api-docs.bash."
 
-git diff --patience HEAD..HEAD~1
+git diff --patience HEAD~1..HEAD
 
 read -p "Push? (y/n) "
 [ "$REPLY" == "y" ] && git push origin gh-pages
