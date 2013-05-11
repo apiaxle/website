@@ -7,6 +7,134 @@ title:    Products - ApiAxle
       rel='stylesheet'
       type='text/css'>
 
+<section id="content" class="clearfix">
+  <div class="container"> 
+    
+    <!--features starts-->
+    <div class="row">
+      <div class="span12">
+        <h1 style="margin-top:20px;">Core components of <span class="color">APIAxle</span></h1>
+        <!--feature list starts-->
+        <ul class="features-big">
+          
+          <!--feature one starts-->
+          <li>
+            <div class="row">
+              <div class="span12">
+                <h1 style="text-align:left"><i class="color icon-chevron-right"></i> Repl</h1>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="span6">
+        <!--<div class="pull-left fold-icon icon-chevron-right"></div>-->
+        You probably want this first. The repl allows you to configure
+        ApiAxle from the command line. Setting up an API and API keys
+        ready for the proxy to work with is easy. It fires up an
+        instance of ApiAxle's own <a href="#the-api">HTTP API</a> in
+        the background and uses that to modify aspects of the
+        system. Anything you can do in the REPL you can do
+        programmatically with the API too.
+              </div>
+
+              <div class="span6">
+                <div class="well code">
+                  <span class="syntax-optional">$</span> sudo npm install apiaxle-repl
+                  <br /><span class="syntax-optional">$</span> apiaxle
+                  <br /><span class="syntax-optional">axle></span> key <span class="syntax-string">"05050c14643dc"</span> create
+                  <br /><span class="syntax-optional">axle></span> api <span class="syntax-string">"acme"</span> create endPoint=<span class="syntax-string">"localhost:81"</span>
+                  <br /><span class="syntax-optional">axle></span> api <span class="syntax-string">"acme"</span> linkkey <span class="syntax-string">"05050c14643dc"</span>
+                </div>
+            </div>
+          </li>
+          <!--feature one ends--> 
+          
+          <!--feature two starts-->
+          <li>
+            <div class="row">
+              <div class="span12">
+                <h1 style="text-align:left"><i class="color icon-cogs"></i> Proxy</h1>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="span6">
+                The kernel of the system. This goes between the Internet and
+                your API giving you things you don't want to have to write
+                yourself
+                like <b>authentication</b>, <b>throttling</b>, <b>caching and
+                statistics collection</b>. It's fast, secure and easy to
+                setup. You'll need either the <a href="#the-repl">REPL</a> or
+                the <a href="#the-api">API</a> to configure it first.
+              </div>
+
+              <div class="span6">
+                <div class="well code">
+                  <span class="syntax-optional">$</span> sudo npm install apiaxle-proxy
+                  <br /><span class="syntax-optional">$</span> apiaxle-proxy
+                </div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="row">
+              <div class="span12">
+                <h1 style="text-align:left"><i class="color icon-bar-chart"></i> API</h1>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="span6">
+                Bear with me, this gets a bit meta. This is ApiAxle's own HTTP
+                API which gives you full control over <i>your</i> APIs and the
+                API keys used to access them. You can view statistics about
+                individual APIs and API keys from week long granularities
+                right down to near-real-time hits at a second granularity.
+              </div>
+
+              <div class="span6">
+                <div class="well code">
+                  <span class="syntax-optional">$</span> sudo npm install apiaxle-api
+                  <br /><span class="syntax-optional">$</span> apiaxle-api
+                  <br /><span class="syntax-optional">$</span> curl <span class="syntax-string">"localhost:3000/v1/apis"</span>
+                </div>
+            </div>
+          </li>
+
+        </ul>
+        <!--feature list ends--> 
+        
+      </div>
+    </div>
+    <!--features ends--> 
+    
+    <!--divider here-->
+    <div class="spacer-40px"></div>
+    
+    <!--box starts-->
+    <div class="row">
+      <div class="span12">
+        <div class="dark-box">
+          <h2>Full enterprise support is available for all components</h2>
+          <p>
+            <a class="btn btn-large btn-download" href="#get_started" data-toggle="modal">
+             <i class="icon-email"></i>
+             Get In Touch
+           </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--box ends--> 
+    
+  </div>
+</section>
+
+
+<!--
+
+
+
 <div class="fold-slide repl">
   <a id="the-repl"></a>
   <h1>The Repl</h1>
@@ -38,6 +166,7 @@ title:    Products - ApiAxle
     </div>
   </div>
 </div>
+
 
 <div class="fold-slide proxy">
   <a id="the-proxy"></a>
@@ -92,6 +221,7 @@ title:    Products - ApiAxle
     </div>
   </div>
 </div>
+-->
 
 
 <!-- <script> -->
