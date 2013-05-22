@@ -794,9 +794,7 @@ textarea:focus, input[type="text"], input[type="email"]:focus, select:focus {
 /*----- 2.8 Footer  -----*/
 /*----------------------------------------*/
 #footer {
-	background: url(../img/patterns/body-bg.jpg) repeat #000;
 	padding: 30px 0px;
-	text-shadow: 0px 1px 0px #000;
 }
 #footer h5 a:hover {
 	color: #d95b44;
@@ -842,14 +840,11 @@ textarea:focus, input[type="text"], input[type="email"]:focus, select:focus {
 /*----- 2.9 Copyright  -----*/
 /*----------------------------------------*/
 #copyright {
-	background: #484848;
 	width: 100%;
 	padding: 10px 0px 5px 0px;
-	border-top: 1px solid #5b5c5d;
+	border-top: 2px solid #ddd;
 	font-size: 11px;
-	color: #242424;
 	font-weight: 600;
-	text-shadow: 0px 1px 0px #555;
 }
 #copyright a {
 	color: #242424;
@@ -1435,3 +1430,22 @@ left: 0;
   line-height: 150%;
 }
 
+.api-news-landing #mc_embed_signup {
+  text-align: center;
+}
+
+.api-news-landing input[type="email"] {
+  border-color: #d95b44;
+  margin-bottom: 50px;
+  height: 40px;
+  font-size: 1.2em;
+}
+
+.api-news-landing h1 {
+  font-weight: 600;
+  margin: 50px;
+}
+
+.api-news-landing h2 {
+  font-weight: normal;
+}
