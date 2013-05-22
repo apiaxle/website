@@ -59,6 +59,10 @@ This documentation was generated from branch 'develop'
 <td>Associate a key with a KEYRING.</td>
 </tr>
 <tr>
+<td><a href='#/v1/keyring/:keyring/stats'>/v1/keyring/:keyring/stats</a></td>
+<td>Get stats for an keyring</td>
+</tr>
+<tr>
 <td><a href='#/v1/keyring/:keyring/unlinkkey/:key'>/v1/keyring/:keyring/unlinkkey/:key</a></td>
 <td>Disassociate a key with a KEYRING.</td>
 </tr>
@@ -163,8 +167,8 @@ The linked key details
 <p><code>curl -X get 'http://localhost/v1/api/testapi/stats'</code></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 1367571842) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: 1367572442) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>from</td><td>(default: 1369217333) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: 1369217933) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
 <tr><td>granularity</td><td>(default: minutes) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
 <tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
 <tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
@@ -270,8 +274,8 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 <p><code>curl -X get 'http://localhost/v1/key/1234/stats'</code></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 1367571842) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: 1367572442) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>from</td><td>(default: 1369217333) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: 1369217933) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
 <tr><td>granularity</td><td>(default: minutes) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
 <tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
 <tr><td>forapi</td><td>(optional) Narrow results down to all statistics for the specified               api.</td></tr>
@@ -337,6 +341,24 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 operation.</p>
 <h4>Response</h4>
 The linked key details.
+</div>
+<div class='well' id='/v1/keyring/:keyring/stats'>
+<h2>/v1/keyring/:keyring/stats</h2>
+<h3><span class='muted'>get</span> Get stats for an keyring</h3>
+<p><code>curl -X get 'http://localhost/v1/keyring/1234ring/stats'</code></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: 1369217333) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: 1369217933) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minutes) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
+<tr><td>forapi</td><td>(optional) Narrow results down to all statistics for the specified               api.</td></tr>
+</table>
+<h4>Response</h4>
+Object where the keys represent the cache status (cached, uncached or
+error), each containing an object with response codes or error name,
+these in turn contain objects with timestamp:count
 </div>
 <div class='well' id='/v1/keyring/:keyring/unlinkkey/:key'>
 <h2>/v1/keyring/:keyring/unlinkkey/:key</h2>
