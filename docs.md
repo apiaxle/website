@@ -12,6 +12,8 @@ title: "Documentation"
 
 ## System
 
+* [FAQ](http://apiaxle.com/docs/faq/)
+* [Keyrings](docs/keyrings) - What keyrings are and how they work.
 * [Architecture](docs/architecture) - A high-level view of the system.
 * [Configuration](docs/configuration/) - Configure logging and other aspects.
 * [FAQ](docs/faq) - Questions and sometimes some answers.
