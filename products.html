@@ -7,6 +7,33 @@ title:    Products - ApiAxle
       rel='stylesheet'
       type='text/css'>
 
+<div class="fold-slide proxy">
+  <a id="the-proxy"></a>
+  <h1>The PROXY</h1>
+
+  <div class="container">
+    <div class="row">
+      <div class="span12 fold-description">
+        <div class="pull-right fold-icon icon-cogs"></div>
+        The kernel of the system. This goes between the Internet and
+        your API giving you things you don't want to have to write
+        yourself
+        like <b>authentication</b>, <b>throttling</b>, <b>caching and
+        statistics collection</b>. It's fast, secure and easy to
+        setup. You'll need either the <a href="#the-repl">REPL</a> or
+        the <a href="#the-api">API</a> to configure it first.
+      </div>
+    </div>
+    <div class="spacer-40px"></div>
+    <div class="row">
+      <div class="span12 fold-code">
+        <pre><span class="syntax-optional">$</span> sudo npm install apiaxle-proxy
+<span class="syntax-optional">$</span> apiaxle-proxy</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="fold-slide repl">
   <a id="the-repl"></a>
   <h1>The Repl</h1>
@@ -34,33 +61,6 @@ title:    Products - ApiAxle
 <span class="syntax-optional">axle></span> api <span class="syntax-string">"acme"</span> create endPoint=<span class="syntax-string">"localhost:81"</span>
 <span class="syntax-optional">axle></span> api <span class="syntax-string">"acme"</span> linkkey <span class="syntax-string">"05050c14643dc"</span>
 </pre>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="fold-slide proxy">
-  <a id="the-proxy"></a>
-  <h1>The PROXY</h1>
-
-  <div class="container">
-    <div class="row">
-      <div class="span12 fold-description">
-        <div class="pull-right fold-icon icon-cogs"></div>
-        The kernel of the system. This goes between the Internet and
-        your API giving you things you don't want to have to write
-        yourself
-        like <b>authentication</b>, <b>throttling</b>, <b>caching and
-        statistics collection</b>. It's fast, secure and easy to
-        setup. You'll need either the <a href="#the-repl">REPL</a> or
-        the <a href="#the-api">API</a> to configure it first.
-      </div>
-    </div>
-    <div class="spacer-40px"></div>
-    <div class="row">
-      <div class="span12 fold-code">
-        <pre><span class="syntax-optional">$</span> sudo npm install apiaxle-proxy
-<span class="syntax-optional">$</span> apiaxle-proxy</pre>
       </div>
     </div>
   </div>
