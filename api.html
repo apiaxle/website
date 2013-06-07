@@ -2,7 +2,7 @@
 layout: apidocs
 title: Api documentation
 ---
-This documentation was generated from branch 'feature/key-scores'
+This documentation was generated from branch 'develop'
 <h2>Quick Reference</h2>
 <table class='table'>
 <tr><th>Endpoint</th><th>Description</th></tr>
@@ -158,7 +158,15 @@ The new structure and the old one.
 <p><code>curl -X get 'http://localhost/v1/api/testapi/keycharts'</code></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>granularity</td><td>(default: minutes) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
+<tr><td>from</td><td>(default: function () {
+            return Math.floor(Date.now() / 1000) - 600;
+          }) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: function () {
+            return Math.floor(Date.now() / 1000);
+          }) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
 </table>
 <h4>Response</h4>
 List of the top 100 keys and their hit rate for time
@@ -195,10 +203,15 @@ The linked key details
 <p><code>curl -X get 'http://localhost/v1/api/testapi/stats'</code></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 1369759688) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: 1369760288) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minutes) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>from</td><td>(default: function () {
+            return Math.floor(Date.now() / 1000) - 600;
+          }) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: function () {
+            return Math.floor(Date.now() / 1000);
+          }) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
 <tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
 <tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
 </table>
 <h4>Response</h4>
@@ -234,7 +247,7 @@ Without <strong>resolve</strong>: An array with 1 API per entry
 <p><code>curl -X get 'http://localhost/v1/apis/charts'</code></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>granularity</td><td>(default: minutes) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
 </table>
 <h4>Response</h4>
 List of the top 100 APIs and their hit rate for time
@@ -301,7 +314,7 @@ The new structure and the old one.
 <p><code>curl -X get 'http://localhost/v1/key/1234/apicharts'</code></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>granularity</td><td>(default: minutes) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
 </table>
 <h4>Response</h4>
 List of the top 100 APIs and their hit rate for time
@@ -326,10 +339,15 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 <p><code>curl -X get 'http://localhost/v1/key/1234/stats'</code></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 1369759688) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: 1369760288) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minutes) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>from</td><td>(default: function () {
+            return Math.floor(Date.now() / 1000) - 600;
+          }) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: function () {
+            return Math.floor(Date.now() / 1000);
+          }) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
 <tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
 <tr><td>forapi</td><td>(optional) Narrow results down to all statistics for the specified               api.</td></tr>
 </table>
 <h4>Response</h4>
@@ -400,10 +418,15 @@ The linked key details.
 <p><code>curl -X get 'http://localhost/v1/keyring/1234ring/stats'</code></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 1369759688) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: 1369760288) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minutes) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>from</td><td>(default: function () {
+            return Math.floor(Date.now() / 1000) - 600;
+          }) The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: function () {
+            return Math.floor(Date.now() / 1000);
+          }) The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
 <tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
 <tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
 <tr><td>forapi</td><td>(optional) Narrow results down to all statistics for the specified               api.</td></tr>
 </table>
@@ -455,7 +478,7 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 <p><code>curl -X get 'http://localhost/v1/keys/charts'</code></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>granularity</td><td>(default: minutes) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
 </table>
 <h4>Response</h4>
 List of the top 100 keys and their hit rate for time
