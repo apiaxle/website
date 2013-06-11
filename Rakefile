@@ -5,7 +5,7 @@ task :generate do
 end
 
 task :server do
-  sh "jekyll --server --auto "
+  sh "jekyll serve --watch "
 end
 
 task :deploy => [:generate] do
