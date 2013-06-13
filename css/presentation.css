@@ -1,0 +1,196 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+   */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+  background-repeat: both;
+  background: #ccc;
+  color: #eee;
+  font-size: 22pt;
+  font-weight: normal;
+  line-height: 30pt;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input:focus {
+  outline: 0;
+}
+
+body,h1,h2,h3,h4,h5,h6,a {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+}
+
+div.slide {
+  webkit-box-shadow: 0 0 40px #333;
+  moz-box-shadow: 0 0 40px #333;
+  box-shadow: 0 0 40px #333;
+
+  moz-border-radius: 5px;
+  webkit-border-radius: 5px;
+  border-radius: 5px;
+  moz-background-clip: padding;
+  webkit-background-clip: padding-box;
+  background-clip: padding-box; 
+  height: 700px;
+  padding: 20px;
+  position: relative;
+  width: 900px;
+  background: #111;
+}
+div.inactiveslide {
+  opacity: 0.4;
+}
+div.activeslide {
+  opacity: 1;
+}
+
+div.footer {
+  bottom: 20px;
+  color: #404040;
+  font-size: 26px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+pre {
+  font-size: 16pt;
+  height: 600px;
+  letter-spacing: -1px;
+  line-height: 20pt;
+  overflow: auto;
+}
+pre:focus {
+  outline: 0;
+}
+div.phone {
+  webkit-box-shadow: 0 0 30px #c0c0c0;
+  moz-box-shadow: 0 0 30px #c0c0c0;
+  box-shadow: 0 0 30px #c0c0c0;
+  moz-border-radius: 40px;
+  webkit-border-radius: 40px;
+  border-radius: 40px;
+  moz-background-clip: padding;
+  webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: black;
+  height: 650px;
+  left: 50%;
+  margin-left: -190px;
+  margin-top: -325px;
+  position: absolute;
+  top: 50%;
+  width: 380px;
+}
+iframe {
+  webkit-box-shadow: 0 0 20px #606060;
+  moz-box-shadow: 0 0 20px #606060;
+  box-shadow: 0 0 20px #606060;
+  height: 480px;
+  left: 50%;
+  margin-left: -160px;
+  margin-top: -248px;
+  position: absolute;
+  top: 50%;
+  width: 320px;
+}
+strong {
+  text-shadow: 1px 0 0 #606060;
+}
+h1,h2,h3,h4 {
+  margin-bottom: 14px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 200;
+}
+
+h1 { font-size: 42pt; }
+h2 { font-size: 38pt; }
+h3 { font-size: 28pt; }
+
+ul {
+  padding: 60px;
+}
+
+ul li {
+  color: #eee;
+  list-style-type: disc;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+a {
+  color: #75B143;
+}
+
+a {
+  color: #d95b44;
+  text-decoration: none;
+  cursor: pointer;
+  font-style: normal;
+}
+
+h1,h2,h3,h4,h5 {
+  color: #d95b44;
+}
+
+/*use suitable height' spacer to separate rows*/
+.spacer-20px, .spacer-30px, .spacer-40px, .spacer-200px {
+	width: 100%;
+	height: 20px;
+	display: block;
+	clear: both;
+}
+.spacer-30px {
+	height: 30px !important;
+}
+.spacer-40px {
+	height: 40px !important;
+}
+.spacer-200px {
+	height: 200px !important;
+}
+.center {
+  text-align: center;
+}
