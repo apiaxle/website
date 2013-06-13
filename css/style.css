@@ -329,6 +329,7 @@ blockquote.pull-right {
 	padding: 20px 20px 25px 20px;
 	text-shadow: 0px 1px 0px #000;
 	text-align: center;
+  color: #aaa;
 }
 .dark-box h1, .dark-box h2, .dark-box h3, .dark-box h4, .dark-box h5, .dark-box h6 {
 	text-shadow: 0px 1px 0px #000;
