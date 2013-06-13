@@ -144,7 +144,9 @@ title:    ApiAxle - Free, on-premise, open API management
         <h5>Latest Documentation</h5>
         <ul class="list-unstyled">
         {% for post in site.posts %}
+          {% if post.layout != "presentation" %}
           <li>{{ post.date | date:"%Y-%m-%d" }} - <a href="{{ post.url }}">{{ post.title }}</a>
+          {% endif %}
         {% endfor %}
         </ul>
       </div>
