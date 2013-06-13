@@ -233,3 +233,8 @@ content: "";
 pre { font-family: Monaco, Menlo, Consolas, "Courier New", monospace; }
 .syntax-string { color: orange; }
 .syntax-optional { color: #777; }
+
+.slide-icon {
+  font-size: 200px;
+  color: #171516;
+}
