@@ -65,7 +65,7 @@ div.slide {
   webkit-box-shadow: 0 0 40px #333;
   moz-box-shadow: 0 0 40px #333;
   box-shadow: 0 0 40px #333;
-
+  
   moz-border-radius: 5px;
   webkit-border-radius: 5px;
   border-radius: 5px;
@@ -73,7 +73,7 @@ div.slide {
   webkit-background-clip: padding-box;
   background-clip: padding-box; 
   height: 700px;
-  padding: 20px;
+  padding: 50px;
   position: relative;
   width: 900px;
   background: #111;
@@ -143,6 +143,7 @@ h1,h2,h3,h4 {
   margin-top: 10px;
   text-align: center;
   font-weight: 200;
+  padding-bottom: 20px;
 }
 
 h1 { font-size: 42pt; }
@@ -158,6 +159,20 @@ ul li {
   list-style-type: disc;
   margin-bottom: 24px;
   text-align: left;
+}
+
+dl {
+  padding-top: 20px;
+}
+
+dd {
+  padding-left: 40px;
+  font-weight: 200;
+  padding-bottom: 40px;
+}
+
+dt {
+  font-weight: 500;
 }
 
 a {
@@ -193,4 +208,24 @@ h1,h2,h3,h4,h5 {
 }
 .center {
   text-align: center;
+}
+
+.pull-right {
+	float: right;
+}
+.pull-left {
+	float: left;
+}
+.clearfix {}
+.clearfix:before, .clearfix:after {
+display: table;
+line-height: 0;
+content: "";
+}
+
+#page-logo {
+  position:fixed;
+  top: 20px;
+  left: 20px;
+  display: none;
 }

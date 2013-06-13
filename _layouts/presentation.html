@@ -23,11 +23,18 @@
     var fathom = $('#presentation').fathom({
       onActivateSlide: function() {
         var $slide = $(this);
-        $slide.find('pre:first').focus();
+        if ( $slide.prev().length === 0 ) {
+          $( "#page-logo" ).hide()
+        }
+        else {
+          $( "#page-logo" ).show()
+        }
       }
-    })
+    });
   })
 </script>
+
+<div id="page-logo"><a href="/"><img src="/img/logo-128.png" /></a></div>
 
 </body>
 </html>
