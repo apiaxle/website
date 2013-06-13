@@ -79,7 +79,7 @@ div.slide {
   background: #111;
 }
 div.inactiveslide {
-  opacity: 0.4;
+  opacity: 0.2;
 }
 div.activeslide {
   opacity: 1;
