@@ -229,3 +229,7 @@ content: "";
   left: 20px;
   display: none;
 }
+
+pre { font-family: Monaco, Menlo, Consolas, "Courier New", monospace; }
+.syntax-string { color: orange; }
+.syntax-optional { color: #777; }
