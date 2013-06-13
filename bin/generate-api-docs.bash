@@ -7,6 +7,8 @@ mkdir -p log
 here="$(pwd)"
 
 pushd ../apiaxle/api
+make clean
+
 (
   echo "---"
   echo "layout: apidocs"
