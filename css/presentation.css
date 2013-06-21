@@ -33,7 +33,7 @@ body {
   background-repeat: both;
   background: #ccc;
   color: #eee;
-  font-size: 22pt;
+  font-size: 18pt;
   font-weight: normal;
   line-height: 30pt;
 }
@@ -72,7 +72,7 @@ div.slide {
   moz-background-clip: padding;
   webkit-background-clip: padding-box;
   background-clip: padding-box; 
-  height: 700px;
+  height: 500px;
   padding: 50px;
   position: relative;
   width: 900px;
@@ -139,15 +139,15 @@ strong {
   text-shadow: 1px 0 0 #606060;
 }
 h1,h2,h3,h4 {
-  margin-bottom: 14px;
-  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   text-align: center;
   font-weight: 200;
-  padding-bottom: 20px;
+  padding-bottom: 5px;
 }
 
-h1 { font-size: 42pt; }
-h2 { font-size: 38pt; }
+h1 { font-size: 38pt; }
+h2 { font-size: 32pt; }
 h3 { font-size: 28pt; }
 
 ul {
@@ -168,7 +168,7 @@ dl {
 dd {
   padding-left: 40px;
   font-weight: 200;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 dt {
