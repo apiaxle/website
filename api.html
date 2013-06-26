@@ -98,7 +98,7 @@ This documentation was generated from branch 'develop'
 <div class='well' id='/v1/api/:api'>
 <h2>/v1/api/:api</h2>
 <h3><span class='muted'>post</span> Provision a new API.</h3>
-<p><code>curl -X POST 'http://localhost/v1/api/testapi' -d '{"endPoint":"testapi.api.local"}'</code></p>
+<p><code>curl -H 'content-type: application/json' -X POST 'http://localhost/v1/api/testapi' -d '{"endPoint":"testapi.api.local"}'</code></p>
 <h4>Input</h4>
 <table class='table'>
 <tr><td>createdAt</td><td>(optional) </td></tr>
@@ -118,19 +118,19 @@ This documentation was generated from branch 'develop'
 A JSON object containing API details
 <hr />
 <h3><span class='muted'>get</span> Get the definition of an API</h3>
-<p><code>curl -X GET 'http://localhost/v1/api/testapi'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/api/testapi'</code></p>
 <h4>Response</h4>
 The API structure (including the timestamp fields).
 <hr />
 <h3><span class='muted'>delete</span> Delete an API</h3>
-<p><code>curl -X DELETE 'http://localhost/v1/api/testapi'</code></p>
+<p><code>curl -H 'content-type: application/json' -X DELETE 'http://localhost/v1/api/testapi'</code></p>
 <p><strong>Note:</strong> This will have no impact on any statistics or
 keys associated with the API</p>
 <h4>Response</h4>
 TRUE on success
 <hr />
 <h3><span class='muted'>put</span> Update an API</h3>
-<p><code>curl -X PUT 'http://localhost/v1/api/testapi' -d '{"endPoint":"testapi.api.local"}'</code></p>
+<p><code>curl -H 'content-type: application/json' -X PUT 'http://localhost/v1/api/testapi' -d '{"endPoint":"testapi.api.local"}'</code></p>
 <p>Will overwrite any fields specified in the input data.
 <br />
 Any unspecified will remain unchanged.</p>
@@ -155,7 +155,7 @@ The new structure and the old one.
 <div class='well' id='/v1/api/:api/keycharts'>
 <h2>/v1/api/:api/keycharts</h2>
 <h3><span class='muted'>get</span> Get the most used keys for this api.</h3>
-<p><code>curl -X GET 'http://localhost/v1/api/testapi/keycharts'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/api/testapi/keycharts'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
@@ -171,7 +171,7 @@ period GRANULARITY
 <div class='well' id='/v1/api/:api/keys'>
 <h2>/v1/api/:api/keys</h2>
 <h3><span class='muted'>get</span> List keys belonging to an API.</h3>
-<p><code>curl -X GET 'http://localhost/v1/api/testapi/keys'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/api/testapi/keys'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: 0) The index of the first key you want to                 see. Starts at zero.</td></tr>
@@ -186,7 +186,7 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 <div class='well' id='/v1/api/:api/linkkey/:key'>
 <h2>/v1/api/:api/linkkey/:key</h2>
 <h3><span class='muted'>put</span> Associate a key with an API</h3>
-<p><code>curl -X PUT 'http://localhost/v1/api/testapi/linkkey/1234'</code></p>
+<p><code>curl -H 'content-type: application/json' -X PUT 'http://localhost/v1/api/testapi/linkkey/1234'</code></p>
 <p>Calls to the API can be made with this key once this is run.
 <br />
 Both the key and the API must already exist before running.</p>
@@ -196,7 +196,7 @@ The linked key details
 <div class='well' id='/v1/api/:api/stats'>
 <h2>/v1/api/:api/stats</h2>
 <h3><span class='muted'>get</span> Get stats for an api</h3>
-<p><code>curl -X GET 'http://localhost/v1/api/testapi/stats'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/api/testapi/stats'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
@@ -214,14 +214,14 @@ these in turn contain objects with timestamp:count
 <div class='well' id='/v1/api/:api/unlinkkey/:key'>
 <h2>/v1/api/:api/unlinkkey/:key</h2>
 <h3><span class='muted'>put</span> Disassociate a key with an API.</h3>
-<p><code>curl -X PUT 'http://localhost/v1/api/testapi/unlinkkey/1234'</code></p>
+<p><code>curl -H 'content-type: application/json' -X PUT 'http://localhost/v1/api/testapi/unlinkkey/1234'</code></p>
 <h4>Response</h4>
 The Unlinked key details
 </div>
 <div class='well' id='/v1/apis'>
 <h2>/v1/apis</h2>
 <h3><span class='muted'>get</span> List all APIs.</h3>
-<p><code>curl -X GET 'http://localhost/v1/apis'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/apis'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: 0) Integer for the index of the first api you                 want to see. Starts at zero.</td></tr>
@@ -236,7 +236,7 @@ Without <strong>resolve</strong>: An array with 1 API per entry
 <div class='well' id='/v1/apis/charts'>
 <h2>/v1/apis/charts</h2>
 <h3><span class='muted'>get</span> Get the most used APIs and their hit counts.</h3>
-<p><code>curl -X GET 'http://localhost/v1/apis/charts'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/apis/charts'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
@@ -248,14 +248,14 @@ perioud GRANULATIRY
 <div class='well' id='/v1/info'>
 <h2>/v1/info</h2>
 <h3><span class='muted'>get</span> Information about this project.</h3>
-<p><code>curl -X GET 'http://localhost/v1/info'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/info'</code></p>
 <h4>Response</h4>
 Package file output.
 </div>
 <div class='well' id='/v1/key/:key'>
 <h2>/v1/key/:key</h2>
 <h3><span class='muted'>post</span> Provision a new key.</h3>
-<p><code>curl -X POST 'http://localhost/v1/key/1234' -d '{}'</code></p>
+<p><code>curl -H 'content-type: application/json' -X POST 'http://localhost/v1/key/1234' -d '{}'</code></p>
 <h4>Input</h4>
 <table class='table'>
 <tr><td>createdAt</td><td>(optional) </td></tr>
@@ -276,17 +276,17 @@ your being linked to it or not.</td></tr>
 The newly inserted structure (including the new timestamp fields).
 <hr />
 <h3><span class='muted'>get</span> Get the definition of a key.</h3>
-<p><code>curl -X GET 'http://localhost/v1/key/1234'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/key/1234'</code></p>
 <h4>Response</h4>
 The key object (including timestamps).
 <hr />
 <h3><span class='muted'>delete</span> Delete a key.</h3>
-<p><code>curl -X DELETE 'http://localhost/v1/key/1234'</code></p>
+<p><code>curl -H 'content-type: application/json' -X DELETE 'http://localhost/v1/key/1234'</code></p>
 <h4>Response</h4>
 TRUE on success
 <hr />
 <h3><span class='muted'>put</span> Update a key.</h3>
-<p><code>curl -X PUT 'http://localhost/v1/key/1234' -d '{}'</code></p>
+<p><code>curl -H 'content-type: application/json' -X PUT 'http://localhost/v1/key/1234' -d '{}'</code></p>
 <p>Fields passed in will will be merged with the old key
 details.
 <br />
@@ -309,7 +309,7 @@ The new structure and the old one.
 <div class='well' id='/v1/key/:key/apicharts'>
 <h2>/v1/key/:key/apicharts</h2>
 <h3><span class='muted'>get</span> Get the most used apis for this key.</h3>
-<p><code>curl -X GET 'http://localhost/v1/key/1234/apicharts'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/key/1234/apicharts'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
@@ -321,7 +321,7 @@ period GRANULARITY
 <div class='well' id='/v1/key/:key/apis'>
 <h2>/v1/key/:key/apis</h2>
 <h3><span class='muted'>get</span> List apis belonging to a key.</h3>
-<p><code>curl -X GET 'http://localhost/v1/key/1234/apis'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/key/1234/apis'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed apis will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
@@ -334,7 +334,7 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 <div class='well' id='/v1/key/:key/stats'>
 <h2>/v1/key/:key/stats</h2>
 <h3><span class='muted'>get</span> Get the real time hits for a key.</h3>
-<p><code>curl -X GET 'http://localhost/v1/key/1234/stats'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/key/1234/stats'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
@@ -353,7 +353,7 @@ timestamp:count
 <div class='well' id='/v1/keyring/:keyring'>
 <h2>/v1/keyring/:keyring</h2>
 <h3><span class='muted'>post</span> Provision a new KEYRING.</h3>
-<p><code>curl -X POST 'http://localhost/v1/keyring/1234ring' -d '{}'</code></p>
+<p><code>curl -H 'content-type: application/json' -X POST 'http://localhost/v1/keyring/1234ring' -d '{}'</code></p>
 <h4>Input</h4>
 <table class='table'>
 <tr><td>createdAt</td><td>(optional) </td></tr>
@@ -363,17 +363,17 @@ timestamp:count
 The inserted structure (including the new timestamp fields).
 <hr />
 <h3><span class='muted'>get</span> Get the definition for an KEYRING.</h3>
-<p><code>curl -X GET 'http://localhost/v1/keyring/1234ring'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/keyring/1234ring'</code></p>
 <h4>Response</h4>
 The KEYRING structure (including the timestamp fields).
 <hr />
 <h3><span class='muted'>delete</span> Delete an KEYRING.</h3>
-<p><code>curl -X DELETE 'http://localhost/v1/keyring/1234ring'</code></p>
+<p><code>curl -H 'content-type: application/json' -X DELETE 'http://localhost/v1/keyring/1234ring'</code></p>
 <h4>Response</h4>
 TRUE on success
 <hr />
 <h3><span class='muted'>put</span> Update an KEYRING.</h3>
-<p><code>curl -X PUT 'http://localhost/v1/keyring/1234ring' -d '{}'</code></p>
+<p><code>curl -H 'content-type: application/json' -X PUT 'http://localhost/v1/keyring/1234ring' -d '{}'</code></p>
 <h4>Input</h4>
 <table class='table'>
 <tr><td>createdAt</td><td>(optional) </td></tr>
@@ -385,7 +385,7 @@ The merged structure (including the timestamp fields).
 <div class='well' id='/v1/keyring/:keyring/keys'>
 <h2>/v1/keyring/:keyring/keys</h2>
 <h3><span class='muted'>get</span> List keys belonging to an KEYRING.</h3>
-<p><code>curl -X GET 'http://localhost/v1/keyring/1234ring/keys'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/keyring/1234ring/keys'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: 0) The index of the first key you want to                 see. Starts at zero.</td></tr>
@@ -400,7 +400,7 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 <div class='well' id='/v1/keyring/:keyring/linkkey/:key'>
 <h2>/v1/keyring/:keyring/linkkey/:key</h2>
 <h3><span class='muted'>put</span> Associate a key with a KEYRING.</h3>
-<p><code>curl -X PUT 'http://localhost/v1/keyring/1234ring/linkkey/:key'</code></p>
+<p><code>curl -H 'content-type: application/json' -X PUT 'http://localhost/v1/keyring/1234ring/linkkey/:key'</code></p>
 <p>The key must already exist and will not be modified by this
 operation.</p>
 <h4>Response</h4>
@@ -409,7 +409,7 @@ The linked key details.
 <div class='well' id='/v1/keyring/:keyring/stats'>
 <h2>/v1/keyring/:keyring/stats</h2>
 <h3><span class='muted'>get</span> Get stats for an keyring</h3>
-<p><code>curl -X GET 'http://localhost/v1/keyring/1234ring/stats'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/keyring/1234ring/stats'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
@@ -428,14 +428,14 @@ these in turn contain objects with timestamp:count
 <div class='well' id='/v1/keyring/:keyring/unlinkkey/:key'>
 <h2>/v1/keyring/:keyring/unlinkkey/:key</h2>
 <h3><span class='muted'>put</span> Disassociate a key with a KEYRING.</h3>
-<p><code>curl -X PUT 'http://localhost/v1/keyring/1234ring/unlinkkey/:key'</code></p>
+<p><code>curl -H 'content-type: application/json' -X PUT 'http://localhost/v1/keyring/1234ring/unlinkkey/:key'</code></p>
 <h4>Response</h4>
 The unlinked key details.
 </div>
 <div class='well' id='/v1/keyrings'>
 <h2>/v1/keyrings</h2>
 <h3><span class='muted'>get</span> List all KEYRINGs.</h3>
-<p><code>curl -X GET 'http://localhost/v1/keyrings'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/keyrings'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: 0) Integer for the index of the first keyring you                 want to see. Starts at zero.</td></tr>
@@ -450,7 +450,7 @@ Without <strong>resolve</strong>: An array with 1 keyring per entry
 <div class='well' id='/v1/keys'>
 <h2>/v1/keys</h2>
 <h3><span class='muted'>get</span> List all of the available keys.</h3>
-<p><code>curl -X GET 'http://localhost/v1/keys'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/keys'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: 0) The index of the first key you want to see. Starts at                 zero.</td></tr>
@@ -465,7 +465,7 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 <div class='well' id='/v1/keys/charts'>
 <h2>/v1/keys/charts</h2>
 <h3><span class='muted'>get</span> Get the most used keys and their hit counts.</h3>
-<p><code>curl -X GET 'http://localhost/v1/keys/charts'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/keys/charts'</code></p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
@@ -477,5 +477,5 @@ perioud GRANULATIRY
 <div class='well' id='/v1/ping'>
 <h2>/v1/ping</h2>
 <h3><span class='muted'>get</span> undefined</h3>
-<p><code>curl -X GET 'http://localhost/v1/ping'</code></p>
+<p><code>curl -H 'content-type: application/json' -X GET 'http://localhost/v1/ping'</code></p>
 </div>
