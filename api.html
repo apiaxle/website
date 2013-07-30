@@ -2,7 +2,7 @@
 layout: apidocs
 title: Api documentation
 ---
-This documentation was generated from branch 'develop'
+This documentation was generated from branch 'feature/abstract-stats'
 <h2>Quick Reference</h2>
 <table class='table'>
 <tr><th>Endpoint</th><th>Description</th></tr>
@@ -25,6 +25,10 @@ This documentation was generated from branch 'develop'
 <tr>
 <td><a href='#/v1/api/:api/stats'>/v1/api/:api/stats</a></td>
 <td>Get stats for an api</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/stats/timers'>/v1/api/:api/stats/timers</a></td>
+<td>Get timer stats for an api</td>
 </tr>
 <tr>
 <td><a href='#/v1/api/:api/unlinkkey/:key'>/v1/api/:api/unlinkkey/:key</a></td>
@@ -115,7 +119,9 @@ This documentation was generated from branch 'develop'
 <tr><td>extractKeyRegex</td><td>(optional) Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.</td></tr>
 <tr><td>defaultPath</td><td>(optional) An optional path part that will always be called when the API is hit.</td></tr>
 <tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
-<tr><td>strictSSL</td><td>(default: true) Set to true to require that SSL certificates be valid</td></tr>
+<tr><td>strictSSL</td><td>(default: true) Set to true to require that SSL certificates be valid.</td></tr>
+<tr><td>sendThroughApiKey</td><td>(default: false) If true then the api_key parameter will be passed through in the request.</td></tr>
+<tr><td>sendThroughApiSig</td><td>(default: false) If true then the api_sig parameter will be passed through in the request.</td></tr>
 </table>
 <h4>Response</h4>
 A JSON object containing API details
@@ -157,7 +163,9 @@ Any unspecified will remain unchanged.</p>
 <tr><td>extractKeyRegex</td><td>(optional) Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.</td></tr>
 <tr><td>defaultPath</td><td>(optional) An optional path part that will always be called when the API is hit.</td></tr>
 <tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
-<tr><td>strictSSL</td><td>(default: true) Set to true to require that SSL certificates be valid</td></tr>
+<tr><td>strictSSL</td><td>(default: true) Set to true to require that SSL certificates be valid.</td></tr>
+<tr><td>sendThroughApiKey</td><td>(default: false) If true then the api_key parameter will be passed through in the request.</td></tr>
+<tr><td>sendThroughApiSig</td><td>(default: false) If true then the api_sig parameter will be passed through in the request.</td></tr>
 </table>
 <h4>Response</h4>
 The new structure and the old one.
@@ -228,6 +236,24 @@ The linked key details
 Object where the keys represent the cache status (cached, uncached or
 error), each containing an object with response codes or error name,
 these in turn contain objects with timestamp:count
+</div>
+<div class='well' id='/v1/api/:api/stats/timers'>
+<h2>/v1/api/:api/stats/timers</h2>
+<h3><span class='muted'>get</span> Get timer stats for an api</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X GET \
+	'http://localhost/v1/api/testapi/stats/timers' </pre></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
+</table>
+<h4>Response</h4>
+Object where the keys represent the type of timer, these in
+turn contain objects with timestamp: [ min, max, avg ]. The
+values in the array are a span of time measured in ms.
 </div>
 <div class='well' id='/v1/api/:api/unlinkkey/:key'>
 <h2>/v1/api/:api/unlinkkey/:key</h2>
