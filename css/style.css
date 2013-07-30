@@ -1328,11 +1328,6 @@ left: 0;
 	outline: none;
 }
 
-#slider-bg {
-	background: url("../img/chalky.png");
-  background-repeat: both;
-}
-
 #toc ul {
     margin: 0;
     padding: 0;
