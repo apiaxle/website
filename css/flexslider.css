@@ -19,6 +19,7 @@
 	padding: 0;
 	list-style: none;
 }
+
 /* FlexSlider Necessary Styles
 *********************************/ 
 .flexslider {
@@ -220,6 +221,10 @@ right: 0;
 	margin-top: 10px;
 }
 /*slider thumbnails*/
+#thumb-slider .thumb-text .icon{
+  font-size: 22px;
+}
+
 #thumb-slider .thumb-text {
 	padding: 5px;
 	font-size: 14px;
