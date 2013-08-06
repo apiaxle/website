@@ -144,11 +144,22 @@ h1,h2,h3,h4 {
   text-align: center;
   font-weight: 200;
   padding-bottom: 5px;
+  color: #d95b44;
 }
 
-h1 { font-size: 38pt; }
-h2 { font-size: 32pt; }
-h3 { font-size: 28pt; }
+h1 {
+  font-size: 38pt;
+}
+
+h2 {
+  font-size: 32pt;
+}
+
+h3 {
+  font-size: 24pt;
+  text-align: left;
+  color: #eee;
+}
 
 ul {
   padding: 60px;
@@ -184,10 +195,6 @@ a {
   text-decoration: none;
   cursor: pointer;
   font-style: normal;
-}
-
-h1,h2,h3,h4,h5 {
-  color: #d95b44;
 }
 
 /*use suitable height' spacer to separate rows*/
@@ -229,6 +236,8 @@ content: "";
   left: 20px;
   display: none;
 }
+
+code { font-family: Monaco, Menlo, Consolas, "Courier New", monospace; }
 
 pre { font-family: Monaco, Menlo, Consolas, "Courier New", monospace; }
 .syntax-string { color: orange; }
