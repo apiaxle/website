@@ -250,3 +250,20 @@ pre { font-family: Monaco, Menlo, Consolas, "Courier New", monospace; }
 .icons-ul {
   list-style-type: none;
 }
+
+.price {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.price-container {
+  display: table;
+  float: right;
+	border-radius: 50%;
+	width: 200px;
+	height: 200px; 
+  background: #d95b44;
+  text-align: center;
+
+  font-size: 2em;
+}
