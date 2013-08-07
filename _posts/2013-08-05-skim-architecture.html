@@ -25,23 +25,52 @@ description: "Streamlining the Skim API stack."
   <i class="pull-right slide-icon icon-bell"></i>
   <div class="clearfix"></div>
 
-  <dt>Authentication</dt>
-  <dd>
-    Different key sources (being addressed as I left?), signatures in
-    some places.
-  </dd>
+  <dl>
+    <dt>Authentication</dt>
+    <dd>
+      Different key sources (being addressed as I left?), signatures in
+      some places. POST credentials in a couple of places.
+    </dd>
 
-  <dt>Logging</dt>
-  <dd>
-    Just Apache logs. Little structure and use
-    of <code>error_log()</code> in places.
-  </dd>
+    <dt>Logging</dt>
+    <dd>
+      Just Apache logs. Little structure and use
+      of <code>error_log()</code> in places.
+    </dd>
 
-  <dt>Statistics</dt>
-  <dd>
-    None, other than logs.
-  </dd>
+    <dt>Statistics</dt>
+    <dd>
+      None, other than logs. Performance monitoring via pingdom?
+    </dd>
+  </dl>
 
+</div>
+
+<div class="slide">
+  <h2>How ApiAxle can help</h2>
+  <i class="pull-right slide-icon icon-cogs"></i>
+  <div class="clearfix"></div>
+
+  <dl>
+    <dt>Authentication</dt>
+    <dd>
+      Several methods, HMAC signatures, simple key-based. OAuth2
+      coming.
+    </dd>
+
+    <dt>Logging</dt>
+    <dd>
+      Pluggable logging system. Let me know what you need and we'll
+      give you the plugin. Feed to Flume, process later.
+    </dd>
+
+    <dt>Statistics</dt>
+    <dd>
+      ApiAxle logs your APIs performance, the min, max and rolling
+      mean times for all calls. Keep track of call counts from all
+      keys and keyrings.
+    </dd>
+  </dl>
 </div>
 
 <div class="slide">
@@ -51,5 +80,38 @@ description: "Streamlining the Skim API stack."
 
   <div class="center">
     <img src="/img/skim-arch.png" />
+  </div>
+</div>
+
+<div class="slide">
+  <h2>Benifits to the company</h2>
+  <i class="pull-right slide-icon icon-money"></i>
+  <div class="clearfix"></div>
+
+  <dl>
+    <dt>Build cost</dt>
+    <dd>
+      When starting a new api, forget about all of the things that are
+      boring and error-prone to build. Let ApiAxle test security,
+      speed and evaluate usefulness of features before receiving them.
+    </dd>
+
+    <dt>Business growth</bdt>
+    <dd>
+      Harness the anyalytics to derive trends, find note-worthy
+      partners and find paths to monitization.
+    </dd>
+  </dl>
+</div>
+
+<div class="slide">
+  <h2>AxleDash</h2>
+  <div class="clearfix"></div>
+  <div class="spacer-40px"></div>
+
+  <div class="center">
+    <a href="http://test.apiaxle.com:83">
+      <img src="/img/demo-dash-framed.png" height="400" />
+    </a>
   </div>
 </div>
