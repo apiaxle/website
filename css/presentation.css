@@ -167,7 +167,6 @@ ul {
 
 ul li {
   color: #eee;
-  list-style-type: disc;
   margin-bottom: 24px;
   text-align: left;
 }
@@ -246,4 +245,8 @@ pre { font-family: Monaco, Menlo, Consolas, "Courier New", monospace; }
 .slide-icon {
   font-size: 200px;
   color: #171516;
+}
+
+.icons-ul {
+  list-style-type: none;
 }
