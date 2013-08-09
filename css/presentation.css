@@ -219,6 +219,7 @@ a {
 .pull-right {
 	float: right;
 }
+
 .pull-left {
 	float: left;
 }
@@ -266,4 +267,13 @@ pre { font-family: Monaco, Menlo, Consolas, "Courier New", monospace; }
   text-align: center;
 
   font-size: 2em;
+}
+
+p {
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.footnote {
+  font-size: 0.7em;
 }
