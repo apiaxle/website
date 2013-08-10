@@ -89,18 +89,51 @@ description: "What ApiAxle is and isn't."
 
 <div class="slide">
   <h2>AxleDash</h2>
+
+  <dl>
+    <dt>
+      <b class="large">1.</b>
+      <a href="http://baconipsum.api.apiaxle.com:82/api/?type=meat-and-filler&api_key=exicon">Call the API through the proxy</a>
+    </dt>
+    <dd class="footnote">
+      The baconipsum.com api is hosted behind an ApiAxle proxy
+      instance. Click to call it with the key 'exicon'.
+    </dd>
+
+    <dt>
+      <b class="large">2.</b>
+      <a href="http://test.apiaxle.com:81/v1/apis?resolve=true">List of APIs</a>
+    </dl>
+    <dd class="footnote">
+      Calls through to the ApiAxle API which contains information
+      about the registered keys, keyrings and APIs.
+    </dd>
+
+    <dt>
+      <b class="large">2.</b>
+      <a href="http://test.apiaxle.com:81/v1/api/baconipsum/stats?granularity=hour">Hit counts</a>
+    </dt>
+    <dd class="footnote">
+      See how many hits we've made in the last hour.
+    </dd>
+
+    <dt>
+      <b class="large">3.</b>
+      <a href="http://test.apiaxle.com:81/v1/api/baconipsum/stats/timers?granularity=hour">Performance statistics</a>
+    </dt>
+    <dd class="footnote">
+      What were the timings like for the call (in the last hour)?
+    </dd>
+  </dl>
+</div>
+
+<div class="slide">
+  <h2>AxleDash</h2>
   <div class="spacer-40px"></div>
 
   <div class="center">
     <a href="http://test.apiaxle.com:83">
       <img src="/img/demo-dash-framed.png" height="300" />
     </a>
-
-    <div>
-      <a href="http://baconipsum.api.apiaxle.com:82/api/?type=meat-and-filler&api_key=phil">Bacon Ipsum Call</a>
-    </div>
-    <div>
-      <a href="http://test.apiaxle.com:81/v1/apis">ApiAxle's API</a>
-    </div>
   </div>
 </div>
