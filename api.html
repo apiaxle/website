@@ -2,13 +2,41 @@
 layout: apidocs
 title: Api documentation
 ---
-This documentation was generated from branch 'feature/abstract-stats'
+This documentation was generated from branch 'feature/segmented-path-parts'
 <h2>Quick Reference</h2>
 <table class='table'>
 <tr><th>Endpoint</th><th>Description</th></tr>
 <tr>
 <td><a href='#/v1/api/:api'>/v1/api/:api</a></td>
 <td>Provision a new API.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/addcapturepath/:path'>/v1/api/:api/addcapturepath/:path</a></td>
+<td>Add a capture path to :api</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/capturepath/:capturepath/stats/counters'>/v1/api/:api/capturepath/:capturepath/stats/counters</a></td>
+<td>Capture path statistics.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/capturepath/:capturepath/stats/timers'>/v1/api/:api/capturepath/:capturepath/stats/timers</a></td>
+<td>Capture path statistics.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/capturepaths'>/v1/api/:api/capturepaths</a></td>
+<td>List capture paths.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/capturepaths/stats/counters'>/v1/api/:api/capturepaths/stats/counters</a></td>
+<td>View all capture path counters for :api.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/capturepaths/stats/timers'>/v1/api/:api/capturepaths/stats/timers</a></td>
+<td>View all capture path counts for :api.</td>
+</tr>
+<tr>
+<td><a href='#/v1/api/:api/delcapturepath/:path'>/v1/api/:api/delcapturepath/:path</a></td>
+<td>Delete a capture path from :api</td>
 </tr>
 <tr>
 <td><a href='#/v1/api/:api/keycharts'>/v1/api/:api/keycharts</a></td>
@@ -170,6 +198,106 @@ Any unspecified will remain unchanged.</p>
 <h4>Response</h4>
 The new structure and the old one.
 </div>
+<div class='well' id='/v1/api/:api/addcapturepath/:path'>
+<h2>/v1/api/:api/addcapturepath/:path</h2>
+<h3><span class='muted'>put</span> Add a capture path to :api</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X PUT \
+	'http://localhost/v1/api/testapi/addcapturepath/:path' </pre></p>
+<p>Add a path that will have statistics associated with it.</p>
+<h4>Response</h4>
+The path added.
+</div>
+<div class='well' id='/v1/api/:api/capturepath/:capturepath/stats/counters'>
+<h2>/v1/api/:api/capturepath/:capturepath/stats/counters</h2>
+<h3><span class='muted'>get</span> Capture path statistics.</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X GET \
+	'http://localhost/v1/api/testapi/capturepath/:capturepath/stats/counters' </pre></p>
+<p>List details stats for :capturepath</p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
+<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
+</table>
+</div>
+<div class='well' id='/v1/api/:api/capturepath/:capturepath/stats/timers'>
+<h2>/v1/api/:api/capturepath/:capturepath/stats/timers</h2>
+<h3><span class='muted'>get</span> Capture path statistics.</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X GET \
+	'http://localhost/v1/api/testapi/capturepath/:capturepath/stats/timers' </pre></p>
+<p>List details stats for :capturepath</p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
+</table>
+</div>
+<div class='well' id='/v1/api/:api/capturepaths'>
+<h2>/v1/api/:api/capturepaths</h2>
+<h3><span class='muted'>get</span> List capture paths.</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X GET \
+	'http://localhost/v1/api/testapi/capturepaths' </pre></p>
+<p>List all of the capture paths belonging to :api.</p>
+<h4>Response</h4>
+List of paths.
+</div>
+<div class='well' id='/v1/api/:api/capturepaths/stats/counters'>
+<h2>/v1/api/:api/capturepaths/stats/counters</h2>
+<h3><span class='muted'>get</span> View all capture path counters for :api.</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X GET \
+	'http://localhost/v1/api/testapi/capturepaths/stats/counters' </pre></p>
+<p>All capture paths and their counts for :api.</p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
+<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
+</table>
+</div>
+<div class='well' id='/v1/api/:api/capturepaths/stats/timers'>
+<h2>/v1/api/:api/capturepaths/stats/timers</h2>
+<h3><span class='muted'>get</span> View all capture path counts for :api.</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X GET \
+	'http://localhost/v1/api/testapi/capturepaths/stats/timers' </pre></p>
+<p>All capture paths and their timings for :api.</p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
+<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
+</table>
+</div>
+<div class='well' id='/v1/api/:api/delcapturepath/:path'>
+<h2>/v1/api/:api/delcapturepath/:path</h2>
+<h3><span class='muted'>put</span> Delete a capture path from :api</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X PUT \
+	'http://localhost/v1/api/testapi/delcapturepath/:path' </pre></p>
+<p>Remove a path and prevent statistics being collected for it.</p>
+<h4>Response</h4>
+The path removed.
+</div>
 <div class='well' id='/v1/api/:api/keycharts'>
 <h2>/v1/api/:api/keycharts</h2>
 <h3><span class='muted'>get</span> Get the most used keys for this api.</h3>
@@ -231,6 +359,7 @@ The linked key details
 <tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
 <tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
+<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
 </table>
 <h4>Response</h4>
 Object where the keys represent the cache status (cached, uncached or
@@ -249,6 +378,7 @@ these in turn contain objects with timestamp:count
 <tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
 <tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
+<tr><td>debug</td><td>(default: false) (optional) Show some ApiAxle related timings too.</td></tr>
 </table>
 <h4>Response</h4>
 Object where the keys represent the type of timer, these in
