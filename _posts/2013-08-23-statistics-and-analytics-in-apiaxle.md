@@ -392,4 +392,4 @@ $ curl 'http://localhost:5000/v1/api/guardian/stats/timers?granularity=day'
 }
 {% endhighlight %}
 
-Again, `forkey` and `keyring` is supported for the calls.
+Again, `forkey` and `keyring` are supported for the calls.
