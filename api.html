@@ -2,7 +2,7 @@
 layout: apidocs
 title: Api documentation
 ---
-This documentation was generated from branch 'feature/segmented-path-parts'
+This documentation was generated from branch 'develop'
 <h2>Quick Reference</h2>
 <table class='table'>
 <tr><th>Endpoint</th><th>Description</th></tr>
@@ -124,7 +124,7 @@ This documentation was generated from branch 'feature/segmented-path-parts'
 </tr>
 <tr>
 <td><a href='#/v1/ping'>/v1/ping</a></td>
-<td>undefined</td>
+<td>Ping the API for a super fast response.</td>
 </tr>
 </table>
 <div class='well' id='/v1/api/:api'>
@@ -150,6 +150,7 @@ This documentation was generated from branch 'feature/segmented-path-parts'
 <tr><td>strictSSL</td><td>(default: true) Set to true to require that SSL certificates be valid.</td></tr>
 <tr><td>sendThroughApiKey</td><td>(default: false) If true then the api_key parameter will be passed through in the request.</td></tr>
 <tr><td>sendThroughApiSig</td><td>(default: false) If true then the api_sig parameter will be passed through in the request.</td></tr>
+<tr><td>hasCapturePaths</td><td>(default: false) When true ApiAxle will parse and capture bits of information about the API being called.</td></tr>
 </table>
 <h4>Response</h4>
 A JSON object containing API details
@@ -194,6 +195,7 @@ Any unspecified will remain unchanged.</p>
 <tr><td>strictSSL</td><td>(default: true) Set to true to require that SSL certificates be valid.</td></tr>
 <tr><td>sendThroughApiKey</td><td>(default: false) If true then the api_key parameter will be passed through in the request.</td></tr>
 <tr><td>sendThroughApiSig</td><td>(default: false) If true then the api_sig parameter will be passed through in the request.</td></tr>
+<tr><td>hasCapturePaths</td><td>(default: false) When true ApiAxle will parse and capture bits of information about the API being called.</td></tr>
 </table>
 <h4>Response</h4>
 The new structure and the old one.
@@ -214,7 +216,8 @@ The path added.
 <p><pre>curl -H 'content-type: application/json' \
 	-X GET \
 	'http://localhost/v1/api/testapi/capturepath/:capturepath/stats/counters' </pre></p>
-<p>List details stats for :capturepath</p>
+<p>List details of counter stats for :capturepath belonging to
+:api.</p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
@@ -225,6 +228,8 @@ The path added.
 <tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
 <tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
 </table>
+<h4>Response</h4>
+Objects with timestamp:count.
 </div>
 <div class='well' id='/v1/api/:api/capturepath/:capturepath/stats/timers'>
 <h2>/v1/api/:api/capturepath/:capturepath/stats/timers</h2>
@@ -232,7 +237,8 @@ The path added.
 <p><pre>curl -H 'content-type: application/json' \
 	-X GET \
 	'http://localhost/v1/api/testapi/capturepath/:capturepath/stats/timers' </pre></p>
-<p>List details stats for :capturepath</p>
+<p>List details of timing stats for :capturepath belonging to
+:api.</p>
 <h4>Params</h4>
 <table class='table'>
 <tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
@@ -241,6 +247,9 @@ The path added.
 <tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
 </table>
+<h4>Response</h4>
+Objects with timestamps as the key, each referencing an array
+containing min, max and average times.
 </div>
 <div class='well' id='/v1/api/:api/capturepaths'>
 <h2>/v1/api/:api/capturepaths</h2>
@@ -269,6 +278,8 @@ List of paths.
 <tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
 <tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
 </table>
+<h4>Response</h4>
+Objects with timestamp:count.
 </div>
 <div class='well' id='/v1/api/:api/capturepaths/stats/timers'>
 <h2>/v1/api/:api/capturepaths/stats/timers</h2>
@@ -287,6 +298,9 @@ List of paths.
 <tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
 <tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
 </table>
+<h4>Response</h4>
+Objects with timestamps as the key, each referencing an array
+containing min, max and average times.
 </div>
 <div class='well' id='/v1/api/:api/delcapturepath/:path'>
 <h2>/v1/api/:api/delcapturepath/:path</h2>
@@ -698,8 +712,10 @@ perioud GRANULATIRY
 </div>
 <div class='well' id='/v1/ping'>
 <h2>/v1/ping</h2>
-<h3><span class='muted'>get</span> undefined</h3>
+<h3><span class='muted'>get</span> Ping the API for a super fast response.</h3>
 <p><pre>curl -H 'content-type: application/json' \
 	-X GET \
 	'http://localhost/v1/ping' </pre></p>
+<h4>Response</h4>
+Just a 'pong'.
 </div>
