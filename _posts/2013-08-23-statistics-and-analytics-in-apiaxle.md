@@ -40,7 +40,7 @@ following definition, or one like it:
         value: tconst.days 1
         redis_ttl: tconst.years 2
 
-Nice and simple. Without worrying too much about low-level
+Nice and simple. Without worrying too much more about low-level
 implementation details (you can always read the source), the
 `Counters` object has a method `log` which, when called, will
 increment a named counter. Each of the above granularity level will
@@ -95,16 +95,18 @@ an API. Given the call we made above let's explore ApiAxle's own API:
 Gives us:
 
     {
-      meta: {
-        version: 1,
-        status_code: 200
+      "meta": {
+        "version": 1,
+        "status_code": 200
       },
-      results: {
-        uncached: {
-          "2013-08-25T21:00:00.000Z": { 200: 1 }
+      "results": {
+        "uncached": {
+          "2013-08-27T15:00:00.000Z": {
+            "200": 1
+          }
         },
-        cached: { },
-        error: { }
+        "cached": {},
+        "error": {}
       }
     }
 
@@ -112,54 +114,209 @@ One call in the current hour, you can swap hour in this case for
 second, minute or day. Let's wait and then hit the API a few more
 times and see what else we can get:
 
-    $curl 'http://localhost:5000/v1/api/guardian/stats?granularity=hour&format_timestamp=ISO'
+    $ siege -c 3 -i -t24h 'http://guardian.api.localhost:3000/search?q=debate&format=json&api_key=frankbruno'
 
-Now gives us:
+Don't worry, by default keys can only do two queries a second, we're
+not going to take down the Guardian.
+
+Now ApiAxle's API tells us:
+
+    $ curl 'http://localhost:5000/v1/api/guardian/stats?granularity=hour&format_timestamp=ISO'
 
     {
-      meta: {
-        version: 1,
-        status_code: 200
+      "meta": {
+        "version": 1,
+        "status_code": 200
       },
-      results: {
-        uncached: {
-          2013-08-25T21:00:00.000Z: { 200: 12 }
+      "results": {
+        "uncached": {
+          "2013-08-27T15:00:00.000Z": {
+            "200": 71
+          }
         },
-        cached: { },
-        error: {
-          2013-08-25T21:00:00.000Z: { QpsExceededError: 5 }
+        "cached": {},
+        "error": {
+          "2013-08-27T15:00:00.000Z": {
+            "QpsExceededError": 107,
+            "EndpointTimeoutError": 7
+          }
         }
       }
     }
 
-This shows that I had five QPS (queries per second) errors and
-successfully called the API 12 times.
+Let's ask for the same thing with a second-level granularity. I've
+snipped the results for the sake of readability:
+
+    $ curl 'http://localhost:5000/v1/api/guardian/stats?granularity=second&format_timestamp=ISO'
 
     {
-      meta: {
-        version: 1,
-        status_code: 200
+      "meta": {
+        "version": 1,
+        "status_code": 200
       },
-      results: {
-        uncached: {
-          2013-08-25T21:44:23.000Z: { 200: 1 },
-          2013-08-25T21:44:25.000Z: { 200: 1 },
-          2013-08-25T21:44:26.000Z: { 200: 2 },
-          2013-08-25T21:44:27.000Z: { 200: 1 },
-          2013-08-25T21:44:28.000Z: { 200: 2 },
-          2013-08-25T21:44:29.000Z: { 200: 1 },
-          2013-08-25T21:44:30.000Z: { 200: 2 }
+      "results": {
+        "uncached": {
+          "2013-08-27T15:06:26.000Z": { "200": 1 },
+          "2013-08-27T15:09:56.000Z": { "200": 1 },
+          "2013-08-27T15:09:57.000Z": { "200": 2 },
+          "2013-08-27T15:09:58.000Z": { "200": 1 },
+          "2013-08-27T15:09:59.000Z": { "200": 1 },
+          [ snip... ]
+          "2013-08-27T15:10:34.000Z": { "200": 2 },
+          "2013-08-27T15:10:35.000Z": { "200": 2 },
+          "2013-08-27T15:10:36.000Z": { "200": 2 },
+          "2013-08-27T15:10:37.000Z": { "200": 2 },
+          "2013-08-27T15:10:38.000Z": { "200": 2 }
         },
-        cached: { },
-        error: {
-          2013-08-25T21:44:30.000Z: { QpsExceededError: 4 },
+        "cached": {},
+        "error": {
+          "2013-08-27T15:09:56.000Z": { "QpsExceededError": 1 },
+          "2013-08-27T15:09:57.000Z": { "QpsExceededError": 2 },
+          "2013-08-27T15:09:58.000Z": { "QpsExceededError": 6 },
+          "2013-08-27T15:09:59.000Z": { "QpsExceededError": 4 },
+          "2013-08-27T15:10:01.000Z": { "EndpointTimeoutError": 1 },
+          "2013-08-27T15:10:02.000Z": { "EndpointTimeoutError": 2 },
+          "2013-08-27T15:10:04.000Z": {
+            "QpsExceededError": 2,
+            "EndpointTimeoutError": 2
+          },
+          "2013-08-27T15:10:05.000Z": { "EndpointTimeoutError": 1 },
+          "2013-08-27T15:10:07.000Z": {
+            "QpsExceededError": 4,
+            "EndpointTimeoutError": 1
+          },
+          "2013-08-27T15:10:08.000Z": { "QpsExceededError": 7 },
+          "2013-08-27T15:10:10.000Z": { "QpsExceededError": 2 },
+          [ snip... ]
+          "2013-08-27T15:10:31.000Z": { "QpsExceededError": 1 },
+          "2013-08-27T15:10:33.000Z": { "QpsExceededError": 1 },
+          "2013-08-27T15:10:34.000Z": { "QpsExceededError": 6 },
+          "2013-08-27T15:10:35.000Z": { "QpsExceededError": 4 },
+          "2013-08-27T15:10:38.000Z": { "QpsExceededError": 2 }
         }
       }
     }
 
-By asking for second granularity I've shown when exactly I've made the
-calls. Each of the QpsExceededErrors were made in the same second.
+The calls here all support the `forkey` and `forkeyring` query
+parameter which allows me to narrow down results even further.
+
+Make a new call as miketyson:
+
+    $ curl 'http://guardian.api.localhost:3000/search?q=debate&format=json&api_key=miketyson'
+
+    {
+      "meta": {
+        "version": 1,
+        "status_code": 200
+      },
+      "results": {
+        "uncached": {
+          "2013-08-27T00:00:00.000Z": {
+            "200": 1
+          }
+        },
+        "cached": {},
+        "error": {}
+      }
+    }
+
+For all of the boxers combined:
+
+    $ curl 'http://guardian.api.localhost:3000/search?q=debate&format=json&api_key=miketyson'
+
+    {
+      "meta": {
+        "version": 1,
+        "status_code": 200
+      },
+      "results": {
+        "uncached": {
+          "2013-08-27T00:00:00.000Z": {
+            "200": 72
+          }
+        },
+        "cached": {},
+        "error": {
+          "2013-08-27T00:00:00.000Z": {
+            "QpsExceededError": 107,
+            "EndpointTimeoutError": 7
+          }
+        }
+      }
+    }
+
+#### Endpoint capturing
+
+As implied above it's possible to capture individual paths too. We
+did:
+
+    axle> api guardian addcapturepath "/search?q=*"
+
+So all of the above calls should have been caught on this path:
+
+    $ curl 'http://localhost:5000/v1/api/guardian/capturepaths/stats/counters?granularity=day&format_timestamp=ISO'
+
+    {
+      "meta": {
+        "version": 1,
+        "status_code": 200
+      },
+      "results": {
+        "/search?q=*": {
+          "1377561600": "72"
+        }
+      }
+    }
+
+Capturepaths also supports `forkeyring` and `forkey` for more
+narrowing.
 
 ### Charts
+
+Charts allow you to see the top callers for an API. This is useful for
+large-screen statistics:
+
+100 busiest keys for an API (busiest first):
+
+    $ curl 'http://localhost:5000/v1/api/guardian/keycharts?granularity=day'
+
+    {
+      "meta": {
+        "version": 1,
+        "status_code": 200
+      },
+      "results": {
+        "frankbruno": 185,
+        "miketyson": 1
+      }
+    }
+
+100 busiest APIs (busiest first):
+
+    $ curl 'http://localhost:5000/v1/apis/charts?granularity=day'
+    
+    {
+      "meta": {
+        "version": 1,
+        "status_code": 200
+      },
+      "results": {
+        "guardian": 186
+      }
+    }
+
+100 Busiest APIs for a key (busiest first):
+
+    $ curl 'http://localhost:5000/v1/key/miketyson/apicharts?granularity=day'
+    
+    {
+      "meta": {
+        "version": 1,
+        "status_code": 200
+      },
+      "results": {
+        "guardian": 1
+      }
+    }
 
 ### Timers - min, max, rolling mean
