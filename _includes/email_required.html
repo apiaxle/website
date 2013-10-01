@@ -1,0 +1,39 @@
+{% if {{page.email_required}} %}
+<script type="text/javascript" src="/js/axle-site.js"></script>
+<script>
+$(document).ready(function () {
+  $('#get_started').modal();
+  $('#email').focus();
+});
+</script>
+{% endif %}
+
+<div id="get_started" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <h3 id="myModalLabel">Before we take you further...</h3>
+  </div>
+
+  <div class="modal-body">
+    <p>
+      Please fill out your email address and we'll keep
+      you up to date with interesting features and security
+      information surrounding <span="color">ApiAxle</span>.
+    </p>
+    <form class="form-inline" id="details_form" method="GET" action="/">
+      <p>
+        <label for="email">Email:</label><input id="email"
+                                                type="email"
+                                                name="email" />
+      </p>
+    </form>
+    <p>
+      <strong>Note:</strong> We will not use this information for spam,
+      relentless marketing or any other nefarious practice.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success"
+            data-dismiss="modal"
+            aria-hidden="true">Continue</button>
+  </div>
+</div>

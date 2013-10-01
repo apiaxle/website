@@ -3,7 +3,6 @@
 
   window.AxleSite = (function() {
     AxleSite.prototype.details_url = "http://test.apiaxle.com";
-    AxleSite.prototype.redirect_url = "/docs/try-it-now";
 
     function AxleSite() {
       var _this = this;
@@ -20,9 +19,7 @@
       $("#get_started").on("show", function(e) {
         // return straight away if we've done this before
         if ($.cookie("details-entered") === "true") {
-          window.location.href = _this.redirect_url;
           return e.preventDefault();
-
         }
 
         return e;
@@ -41,7 +38,6 @@
         url: this.details_url + "?" + query_str
       }).always(function () {
         $.cookie('details-entered', 'true', { expires: 365, path: "/" });
-        window.location.href = _this.redirect_url;
       });
     };
 
