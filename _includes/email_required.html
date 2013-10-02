@@ -3,7 +3,7 @@
 <script>
 $(document).ready(function () {
   $('#invalid-email-alert').hide();
-  $('#get_started').modal();
+  $('#get_started').modal({ keyboard: false });
   $('#email').focus();
 });
 
@@ -16,6 +16,9 @@ verifyAndSend = function () {
     $('#invalid-email-alert').show();
     $('#email').val("");
     $('#email').focus();
+
+    // hide the warning anyway
+    setTimeout( function () { $('#invalid-email-alert').hide("slow"); }, 3000 );
   }
   else {
     $("#get_started").modal("hide");
@@ -48,8 +51,8 @@ verifyAndSend = function () {
       </p>
     </form>
     <p>
-      <strong>Note:</strong> We will not use this information for spam,
-      relentless marketing or any other nefarious practice.
+      <strong>Note:</strong> We will <b>not</b> use this information
+      for spam, relentless marketing or any other nefarious practice.
     </p>
   </div>
   <div class="modal-footer">
