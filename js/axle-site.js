@@ -12,10 +12,6 @@
         return false;
       });
 
-      $("#get_started").on("shown", function() {
-        $("#email").focus();
-      });
-
       $("#get_started").on("show", function(e) {
         // return straight away if we've done this before
         if ($.cookie("details-entered") === "true") {

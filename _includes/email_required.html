@@ -2,15 +2,36 @@
 <script type="text/javascript" src="/js/axle-site.js"></script>
 <script>
 $(document).ready(function () {
+  $('#invalid-email-alert').hide();
   $('#get_started').modal();
   $('#email').focus();
 });
+
+verifyAndSend = function () {
+  email = $( "#email" ).val();
+
+  // if it doesn't look right then show the warning box and clear the
+  // email input
+  if ( ! /^.+@.+?\..+$/.test( email ) ) {
+    $('#invalid-email-alert').show();
+    $('#email').val("");
+    $('#email').focus();
+  }
+  else {
+    $("#get_started").modal("hide");
+  }
+}
 </script>
 {% endif %}
 
 <div id="get_started" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <h3 id="myModalLabel">Before we take you further...</h3>
+  </div>
+
+  <div id="invalid-email-alert" class="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Email address problem</strong> Please enter a valid email address.
   </div>
 
   <div class="modal-body">
@@ -33,7 +54,7 @@ $(document).ready(function () {
   </div>
   <div class="modal-footer">
     <button class="btn btn-success"
-            data-dismiss="modal"
+            onClick="verifyAndSend()"
             aria-hidden="true">Continue</button>
   </div>
 </div>
