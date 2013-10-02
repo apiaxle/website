@@ -1,7 +1,12 @@
 ---
 layout: docs
+email_required: true
 title: "Documentation"
 ---
+
+## API
+
+* [Documentation](api.html) - Read the API definition.
 
 ## Proxy
 
@@ -16,7 +21,3 @@ title: "Documentation"
 * [Architecture](docs/architecture) - A high-level view of the system.
 * [Configuration](docs/configuration/) - Configure logging and other aspects.
 * [FAQ](docs/faq) - Questions and sometimes some answers.
-
-## API
-
-* [Documentation](api.html) - Read the API definition.
