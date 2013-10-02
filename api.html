@@ -1,5 +1,6 @@
 ---
 layout: apidocs
+email_required: true
 title: Api documentation
 ---
 This documentation was generated from branch 'develop'
@@ -138,12 +139,10 @@ This documentation was generated from branch 'develop'
 <table class='table'>
 <tr><td>createdAt</td><td>(optional) </td></tr>
 <tr><td>updatedAt</td><td>(optional) </td></tr>
-<tr><td>globalCache</td><td>(default: 0) The time in seconds that every call under this API should be cached.</td></tr>
 <tr><td>endPoint</td><td>The endpoint for the API. For example; `graph.facebook.com`</td></tr>
 <tr><td>protocol</td><td>(default: http) The protocol for the API, whether or not to use SSL</td></tr>
 <tr><td>apiFormat</td><td>(default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.</td></tr>
 <tr><td>endPointTimeout</td><td>(default: 2) Seconds to wait before timing out the connection</td></tr>
-<tr><td>endPointMaxRedirects</td><td>(default: 2) Max redirects that are allowed when endpoint called.</td></tr>
 <tr><td>extractKeyRegex</td><td>(optional) Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.</td></tr>
 <tr><td>defaultPath</td><td>(optional) An optional path part that will always be called when the API is hit.</td></tr>
 <tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
@@ -183,12 +182,10 @@ Any unspecified will remain unchanged.</p>
 <table class='table'>
 <tr><td>createdAt</td><td>(optional) </td></tr>
 <tr><td>updatedAt</td><td>(optional) </td></tr>
-<tr><td>globalCache</td><td>(default: 0) The time in seconds that every call under this API should be cached.</td></tr>
 <tr><td>endPoint</td><td>The endpoint for the API. For example; `graph.facebook.com`</td></tr>
 <tr><td>protocol</td><td>(default: http) The protocol for the API, whether or not to use SSL</td></tr>
 <tr><td>apiFormat</td><td>(default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.</td></tr>
 <tr><td>endPointTimeout</td><td>(default: 2) Seconds to wait before timing out the connection</td></tr>
-<tr><td>endPointMaxRedirects</td><td>(default: 2) Max redirects that are allowed when endpoint called.</td></tr>
 <tr><td>extractKeyRegex</td><td>(optional) Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.</td></tr>
 <tr><td>defaultPath</td><td>(optional) An optional path part that will always be called when the API is hit.</td></tr>
 <tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
