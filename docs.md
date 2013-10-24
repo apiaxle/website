@@ -8,6 +8,10 @@ title: "Documentation"
 
 * [Documentation](api.html) - Read the API definition.
 
+## Contributing
+
+* [How to contribute to ApiAxle](docs/how-to-contibute-to-apiaxle/)
+
 ## Proxy
 
 * [Getting started](docs/try-it-now/) - Start using ApiAxle right away.
