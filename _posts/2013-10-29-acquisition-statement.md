@@ -29,7 +29,9 @@ their model, as well as their technology stack.
 ## What will happen to ApiAxle?
 
 Exicon fully intends to keep pushing development forward with
-ApiAxle. I will remain as the product owner and the OSS component will
-live on and keep improving at a steady pace.
+ApiAxle. The project will get a huge boost in resources, not just
+development but also some great advisers not least in the Exicon CEO,
+Stefan Rust. I will remain as the product owner and the OSS component
+will live on and keep improving at a steady pace.
 
 <div class="letter-sig"><b>Phil Jackson</b></div>
