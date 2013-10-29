@@ -34,6 +34,12 @@
 	 -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 	 -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 	 box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+  line-height: 180%;
+ }
+
+ p {
+   padding-bottom: 20px;
  }
 
  .box:before, .box:after {
@@ -64,6 +70,11 @@
 	 -o-transform: skew(5deg) rotate(5deg);
 	 transform: skew(5deg) rotate(5deg);
  }
+
+ .letter-sig {
+   text-align: right;
+  }
+
 </style>
 
 </head>
@@ -74,7 +85,9 @@
 <div class="spacer-40px"></div>
 
 <div class="box">
-{{ content }}
+  <h1>{{ page.title }}</h1>
+  <hr />
+  {{ content }}
 </div>
 
 <div class="spacer-40px"></div>
