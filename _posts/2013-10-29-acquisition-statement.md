@@ -23,12 +23,13 @@ product has improved leaps and bounds.
 [Exicon](http://exiconglobal.com) specialises in the app life-cycle,
 that is, everything trough helping companies to define their
 application's needs, finding developers, hosting and managing the
-APIs, metrics and, growth and marketing.
+APIs, metrics and, growth and marketing. ApiAxle fits perfectly into
+their model, as well as their technology stack.
 
 ## What will happen to ApiAxle?
 
 Exicon fully intends to keep pushing development forward with
-ApiAxle. I will stay on as a product owner and the OSS component will
+ApiAxle. I will remain as the product owner and the OSS component will
 live on and keep improving at a steady pace.
 
 <div class="letter-sig"><b>Phil Jackson</b></div>
