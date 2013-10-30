@@ -3,7 +3,7 @@ layout: apidocs
 email_required: true
 title: Api documentation
 ---
-This documentation was generated from branch 'develop'
+This documentation was generated from branch 'feature/keyless-entry'
 <h2>Quick Reference</h2>
 <table class='table'>
 <tr><th>Endpoint</th><th>Description</th></tr>
@@ -150,6 +150,9 @@ This documentation was generated from branch 'develop'
 <tr><td>sendThroughApiKey</td><td>(default: false) If true then the api_key parameter will be passed through in the request.</td></tr>
 <tr><td>sendThroughApiSig</td><td>(default: false) If true then the api_sig parameter will be passed through in the request.</td></tr>
 <tr><td>hasCapturePaths</td><td>(default: false) When true ApiAxle will parse and capture bits of information about the API being called.</td></tr>
+<tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps and keylessQpd.</td></tr>
+<tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
+<tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
 </table>
 <h4>Response</h4>
 A JSON object containing API details
@@ -193,6 +196,9 @@ Any unspecified will remain unchanged.</p>
 <tr><td>sendThroughApiKey</td><td>(default: false) If true then the api_key parameter will be passed through in the request.</td></tr>
 <tr><td>sendThroughApiSig</td><td>(default: false) If true then the api_sig parameter will be passed through in the request.</td></tr>
 <tr><td>hasCapturePaths</td><td>(default: false) When true ApiAxle will parse and capture bits of information about the API being called.</td></tr>
+<tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps and keylessQpd.</td></tr>
+<tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
+<tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
 </table>
 <h4>Response</h4>
 The new structure and the old one.
