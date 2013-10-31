@@ -1,6 +1,6 @@
 ---
 layout: docs
-email_required: true
+email_required: false
 title: "Documentation"
 ---
 

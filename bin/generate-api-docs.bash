@@ -12,7 +12,7 @@ make clean
 (
   echo "---"
   echo "layout: apidocs"
-  echo "email_required: true"
+  echo "email_required: false"
   echo "title: Api documentation"
   echo "---"
 
