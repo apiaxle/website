@@ -23,8 +23,9 @@ and, the product has improved leaps and bounds.
 [Exicon](http://exiconglobal.com) specialises in the app life-cycle,
 that is, everything from helping companies to define their
 application's needs, finding developers, hosting and managing the
-APIs, metrics, and growth and marketing. ApiAxle fits perfectly into
-the Exicon model, as well as their technology stack.
+APIs, metrics, and growth and marketing. They have an excellent,
+[curated API directory](http://app.exiconglobal.com/api-dir/) which
+complements what ApiAxle does well.
 
 ## What will happen to ApiAxle?
 
@@ -32,7 +33,6 @@ Exicon fully intends to keep pushing development forward with
 ApiAxle. The project will get a huge boost in resources, not just
 development but also some great advisers not least in the Exicon CEO,
 Stefan Rust and CTO, Terry Wong. I will remain as the ApiAxle product
-owner and the OSS component will live on and continue to improve at a
-steady pace.
+owner and the OSS component will live on and continue to improve.
 
 <div class="letter-sig"><b>Phil Jackson</b></div>
