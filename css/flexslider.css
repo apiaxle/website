@@ -204,6 +204,10 @@ right: 0;
 /*============================================================*/
 #slider-bg {
 	background: url(../img/patterns/slider-background.png) no-repeat scroll center top;
+  -webkit-background-size: cover; /* For WebKit*/
+  -moz-background-size: cover;    /* Mozilla*/
+  -o-background-size: cover;      /* Opera*/
+  background-size: cover;         /* Generic*/
 	width: 100%;
 	height: auto;
 	margin-bottom: 30px;
