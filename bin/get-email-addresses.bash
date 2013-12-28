@@ -3,9 +3,9 @@
 set -e
 
 # grab it
-scp -C test.apiaxle.com:/var/log/nginx/access.log /tmp/email-collector.log
+scp -C test.apiaxle.com:/var/log/nginx/emails.log /tmp/emails.log
 
-cat /tmp/email-collector.log | \
+cat /tmp/emails.log | \
   perl -MURI::Escape -nle '/email=([^&]+)/ and print uri_unescape($1)' | \
   grep '@' | \
   sort | \
