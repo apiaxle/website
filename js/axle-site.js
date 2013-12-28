@@ -2,7 +2,7 @@
 (function() {
 
   window.AxleSite = (function() {
-    AxleSite.prototype.details_url = "http://test.apiaxle.com";
+    AxleSite.prototype.details_url = "http://test.apiaxle.com/email";
 
     function AxleSite() {
       var _this = this;
