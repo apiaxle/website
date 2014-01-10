@@ -1444,3 +1444,13 @@ left: 0;
 .api-news-landing h2 {
   font-weight: normal;
 }
+
+#aq-notice {
+  background: #feff95;
+  border: 1px solid #917700;
+  padding: 10px;
+  color: #917700;
+  text-align: center;
+  font-size: 1.2em;
+}
+
