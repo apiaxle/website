@@ -23,7 +23,7 @@ and, the product has improved leaps and bounds.
 [Exicon](http://exiconglobal.com) provides cutting-edge app management
 solutions that simplify the creation, deployment and management of
 mobile applications. They were founded in 2007, based in Hong Kong and
-San François under a digital startup incubator, Catalist. They have an
+San Francisco under a digital startup incubator, Catalist. They have an
 excellent,
 [curated API directory](http://app.exiconglobal.com/api-dir/) which
 complements what ApiAxle does well.
