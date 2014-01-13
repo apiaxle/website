@@ -1,7 +1,7 @@
 ---
 layout: letter
 title: "ApiAxle has been acquired"
-description: "ApiAxle has been acquired"
+description: "We're proud to announce that ApiAxle is now a member of the Exicon family."
 ---
 
 I'm very proud to announce that ApiAxle is now a member of the
