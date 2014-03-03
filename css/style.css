@@ -388,6 +388,19 @@ blockquote.pull-right {
 	width: 100%;
 	padding: 20px 0px;
 }
+
+#header .powered-by {
+    color: #ddd;
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+#header .powered-by a {
+    color: #ddd;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 /*--- social icon list ---*/
 .social {
 	padding-right: 20px;
