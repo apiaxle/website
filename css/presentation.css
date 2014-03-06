@@ -281,3 +281,15 @@ p {
 .large {
   font-size: 2em;
 }
+
+#tutorial {
+    padding-top: 20px;
+    margin: auto;
+    width: 900px;
+    text-align: center;
+    color: #111;
+}
+
+#tutorial #arrows {
+    font-size: 3em;
+}

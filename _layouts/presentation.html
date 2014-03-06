@@ -21,16 +21,29 @@
   {{ content }}
 </div>
 
+<div id="tutorial">
+  <div>
+    This is a presentation. Use your arrow keys to navigate left or
+    right.
+    <div id="arrows">
+      <i class="icon-arrow-left"></i>
+      <i class="icon-arrow-right"></i>
+    </div>
+  </div>
+</div>
+
 <script>
   $(document).ready(function() {
     var fathom = $('#presentation').fathom({
       onActivateSlide: function() {
         var $slide = $(this);
         if ( $slide.prev().length === 0 ) {
-          $( "#page-logo" ).hide()
+          $( "#page-logo" ).hide();
+          $( "#tutorial" ).show();
         }
         else {
-          $( "#page-logo" ).show()
+          $( "#page-logo" ).show();
+          $( "#tutorial" ).hide();
         }
       }
     });
