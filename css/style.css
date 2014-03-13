@@ -1467,3 +1467,12 @@ left: 0;
   font-size: 1.2em;
 }
 
+.attribution {
+    font-size: 1.4em;
+    padding: 20px;
+}
+
+.attribution-sig {
+    font-size: 0.7em;
+    padding-top: 10px;
+}
