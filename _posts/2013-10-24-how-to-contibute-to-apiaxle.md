@@ -27,7 +27,7 @@ fork button and then clone your fork.
 ## Install the dependencies
 
     $ cd apiaxle
-    $ npm install
+    $ make npminstall
 
 ApiAxle uses a library called `apiaxle-base` for things like
 configuration, test helpers, logging etc. Because you want to symlink
