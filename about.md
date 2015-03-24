@@ -26,10 +26,10 @@ gradually the system will become all the better for it.
 
 ## Support & ad-hoc development
 
-[Get in touch](mailto:phil@apiaxle.com) and we can provide new
+[Get in touch](mailto:albert@exiconglobal.com) and we can provide new
 features, integrate the API into your platform and provide support.
 
 ## Licencing
 
-[Get in touch](mailto:phil@apiaxle.com) if you would like to
+[Get in touch](mailto:albert@exiconglobal.com) if you would like to
 purchase a subscription to a non-GPL licence for ApiAxle.
