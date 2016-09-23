@@ -8,14 +8,14 @@ how:
 
     axle> update acmeapi allowKeylessUse=true
 
-You can now fire a request to acmeapi and a temporary (24 hours) key
-will be created and used for that request. You can use `keylessQps`
-and `keylessQpd` to set the initial qps/qpd values for the new keys
-created. E.G:
+You can now fire a request to acmeapi and a key
+will be created and used for that request. You can use `keylessQps`,
+`keylessQpm`, and `keylessQpd` to set the rate limits applied to
+keyless use for that api. E.G:
 
     axle> update acmeapi keylessQps=20 keylessQpd=40000
 
-Now all temporary keys created will be allowed 20 hits a second and
+Now all keyless access to acmeapi will be allowed 20 hits a second and
 40,000 hits per day.
 
 **You can mix keyless and keyed access.**
@@ -23,12 +23,10 @@ Now all temporary keys created will be allowed 20 hits a second and
 ## What happens behind the scenes
 
 Assuming `allowKeylessUse` is `true`, when a keyless request comes in,
-a new key will be created which looks like `ip-<ip address>` and has
-the `qpd` and `qps` set to `keylessQpd` and `keylessQps`
-respectively. You can treeat this key as you would any other. The only
-difference is that it'll expire in 24 hours meaning it will be
-re-created after that period if another keyless hit comes in from the
-same IP.
+a new key will be created which looks like `ip-<ip address>`.
+You can treat this key as you would any other. The only
+difference is that you won't be able to set rate limit overrides as it
+will always use the keylessQpd/Qpm/Qps values set on the API.
 
 ## Where's the IP address taken from
 
