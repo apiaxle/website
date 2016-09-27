@@ -58,7 +58,7 @@ hash length extension attacks. Common implementations and examples:
 * [php](http://php.net/manual/en/function.hash-hmac.php)
 * [perl](http://search.cpan.org/~mshelor/Digest-SHA-5.72/lib/Digest/SHA.pm)
 
-### Code Examples ###
+### Code Examples
   * [PHP](#example_php)
   * [Python 2](#example_python2)
   * [Python 3](#example_python3)
@@ -69,12 +69,12 @@ hash length extension attacks. Common implementations and examples:
   * [Java](#example_java)
   * [JavaScript (NodeJS)](#example_nodejs)
   * [Powershell](#example_powershell)
- 
----
 
 <a name='example_php'></a>
-#### [PHP](http://www.php.net/) Example: ####
+#### [PHP](http://www.php.net/) Example:
+
 Use the following code, or use the [forevermatt/calc-api-sig](https://packagist.org/packages/forevermatt/calc-api-sig) package via [composer](https://getcomposer.org/).
+
 ```php
 <?php
 $key = 'somerandomkey';       // insert Key Value received from API Developer Portal
@@ -83,7 +83,8 @@ $api_sig = hash_hmac('sha1', time().$key, $secret);
 ```
  
 <a name='example_python2'></a>
-#### [Python 2](http://docs.python.org/2/) Example: ####
+#### [Python 2](http://docs.python.org/2/) Example:
+
 ```python
 import hmac
 from hashlib import sha1
@@ -98,7 +99,8 @@ api_sig = h1.hexdigest()
 ```
  
 <a name='example_python3'></a>
-#### [Python 3](http://docs.python.org/3/) Example: ####
+#### [Python 3](http://docs.python.org/3/) Example:
+
 ```python
 import hmac
 from hashlib import sha1
@@ -117,7 +119,8 @@ api_sig = h1.hexdigest()
 ```
  
 <a name='example_vbnet'></a>
-#### [VB.NET](http://msdn.microsoft.com/en-us/vstudio/hh388573) Example: ####
+#### [VB.NET](http://msdn.microsoft.com/en-us/vstudio/hh388573) Example:
+
 ```vbnet
 Dim api_sig As String = ""
 Dim key = "somerandomkey"       ' insert Key Value received from API Developer Portal
@@ -135,7 +138,8 @@ End Using
 ```
  
 <a name='example_vba'></a>
-#### [VBA](http://en.wikipedia.org/wiki/Visual_Basic_for_Applications) Example: ####
+#### [VBA](http://en.wikipedia.org/wiki/Visual_Basic_for_Applications) Example:
+
 ```vbnet
 'type declarations for function Local2GMT
 Private Type SYSTEMTIME
@@ -203,7 +207,8 @@ End Function
 ```
  
 <a name='example_perl'></a>
-#### [Perl](http://perl.org/) Example: ####
+#### [Perl](http://perl.org/) Example:
+
 ```perl
 #!/usr/bin/perl
  
@@ -219,7 +224,8 @@ my $api_sig = $h1->hexdigest;
 ```
  
 <a name='example_cs'></a>
-#### [C#.NET](http://en.wikipedia.org/wiki/C_Sharp_(programming_language)) Example: ####
+#### [C#.NET](http://en.wikipedia.org/wiki/C_Sharp_(programming_language)) Example: 
+
 ```csharp
 public class ApiSigHelper
 {
@@ -256,7 +262,8 @@ public class ApiSigHelper
 ```
  
 <a name='example_java'></a>
-#### [Java](https://www.java.com) Example: ####
+#### [Java](https://www.java.com) Example: 
+
 ```java
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -316,8 +323,10 @@ public class CalculateSignatureSnipplet
 ```
  
 <a name='example_nodejs'></a>
-#### [JavaScript (NodeJS)](https://nodejs.org/) Example: ####
+#### [JavaScript (NodeJS)](https://nodejs.org/) Example: 
+
 Note: This has been tested using NodeJS 0.10.36.
+
 ```javascript
 var crypto = require('crypto');
 
@@ -330,7 +339,8 @@ var signature = hmac.update(unixTimestamp + apiKey).digest('hex');
 ```
 
 <a name='example_powershell'></a>
-#### [Powershell](https://msdn.microsoft.com/en-us/powershell/mt173057.aspx) Example: ####
+#### [Powershell](https://msdn.microsoft.com/en-us/powershell/mt173057.aspx) Example: 
+
 ```posh
 [Reflection.Assembly]::LoadWithPartialName("System.Security") 
 [Reflection.Assembly]::LoadWithPartialName("System.Net") 
