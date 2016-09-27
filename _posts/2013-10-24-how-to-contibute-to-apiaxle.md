@@ -2,6 +2,7 @@
 layout: docs
 title: "How to contribute to ApiAxle"
 description: "How to contribute to ApiAxle"
+permalink: /docs/how-to-contibute-to-apiaxle/
 ---
 
 Thinking of adding a feature? That's great - we obviously encourage
