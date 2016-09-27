@@ -1,6 +1,7 @@
 ---
 layout: docs
 title: Keyless access
+permalink: /docs/keyless-entry/
 ---
 
 It's now possible to configure an API to allow keyless access. Here's
