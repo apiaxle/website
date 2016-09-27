@@ -2,6 +2,7 @@
 layout: docs
 title: ApiAxle Configuration
 description: How to configure ApiAxle
+permalink: /docs/configuration/
 ---
 
 ## The configuration file
