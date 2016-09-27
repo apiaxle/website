@@ -2,7 +2,6 @@ title: "ApiAxle - Free, on-premise, open API management"
 safe: true
 twitter: "https://twitter.com/#!/apiaxle"
 email: "albert@exiconglobal.com"
-pygments: true
 exclude: [ "node_modules" ]
 permalink: "/docs/:title"
 description: "ApiAxle is a proxy that sits in front of your API(s) and manages things that you shouldn't have to like rate limiting, authentication and analytics. It's fast, open and easy to configure."
