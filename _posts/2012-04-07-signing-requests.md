@@ -70,7 +70,9 @@ hash length extension attacks. Common implementations and examples:
   * [JavaScript (NodeJS)](#example_nodejs)
   * [Powershell](#example_powershell)
 
+
 <a name='example_php'></a>
+
 #### [PHP](http://www.php.net/) Example:
 
 Use the following code, or use the [forevermatt/calc-api-sig](https://packagist.org/packages/forevermatt/calc-api-sig) package via [composer](https://getcomposer.org/).
@@ -83,6 +85,7 @@ $api_sig = hash_hmac('sha1', time().$key, $secret);
 ```
  
 <a name='example_python2'></a>
+
 #### [Python 2](http://docs.python.org/2/) Example:
 
 ```python
@@ -99,6 +102,7 @@ api_sig = h1.hexdigest()
 ```
  
 <a name='example_python3'></a>
+
 #### [Python 3](http://docs.python.org/3/) Example:
 
 ```python
@@ -119,6 +123,7 @@ api_sig = h1.hexdigest()
 ```
  
 <a name='example_vbnet'></a>
+
 #### [VB.NET](http://msdn.microsoft.com/en-us/vstudio/hh388573) Example:
 
 ```vbnet
@@ -138,6 +143,7 @@ End Using
 ```
  
 <a name='example_vba'></a>
+
 #### [VBA](http://en.wikipedia.org/wiki/Visual_Basic_for_Applications) Example:
 
 ```vbnet
@@ -207,6 +213,7 @@ End Function
 ```
  
 <a name='example_perl'></a>
+
 #### [Perl](http://perl.org/) Example:
 
 ```perl
@@ -224,6 +231,7 @@ my $api_sig = $h1->hexdigest;
 ```
  
 <a name='example_cs'></a>
+
 #### [C#.NET](http://en.wikipedia.org/wiki/C_Sharp_(programming_language)) Example: 
 
 ```csharp
@@ -262,6 +270,7 @@ public class ApiSigHelper
 ```
  
 <a name='example_java'></a>
+
 #### [Java](https://www.java.com) Example: 
 
 ```java
@@ -323,6 +332,7 @@ public class CalculateSignatureSnipplet
 ```
  
 <a name='example_nodejs'></a>
+
 #### [JavaScript (NodeJS)](https://nodejs.org/) Example: 
 
 Note: This has been tested using NodeJS 0.10.36.
@@ -339,6 +349,7 @@ var signature = hmac.update(unixTimestamp + apiKey).digest('hex');
 ```
 
 <a name='example_powershell'></a>
+
 #### [Powershell](https://msdn.microsoft.com/en-us/powershell/mt173057.aspx) Example: 
 
 ```posh
