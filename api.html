@@ -151,8 +151,9 @@ This documentation was generated from branch 'develop'
 <tr><td>sendThroughApiSig</td><td>(default: false) If true then the api_sig parameter will be passed through in the request.</td></tr>
 <tr><td>hasCapturePaths</td><td>(default: false) When true ApiAxle will parse and capture bits of information about the API being called.</td></tr>
 <tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps and keylessQpd.</td></tr>
-<tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
-<tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
+<tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temporary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
+<tr><td>keylessQpm</td><td>(default: 120) How many queries per minute an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temporary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
+<tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temporary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
 <tr><td>additionalHeaders</td><td>(optional) URL encoded list of headers and values to be transformed into headers on the endpoint call, e.g., "X-SPECIAL=1234&X-VENDOR-TYPE=abc&UNIQUE-VALUE=2js3j%3Dasd"</td></tr>
 </table>
 <h4>Response</h4>
@@ -199,6 +200,7 @@ Any unspecified will remain unchanged.</p>
 <tr><td>hasCapturePaths</td><td>(default: false) When true ApiAxle will parse and capture bits of information about the API being called.</td></tr>
 <tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps and keylessQpd.</td></tr>
 <tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
+<tr><td>keylessQpm</td><td>(default: 120) How many queries per minute an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
 <tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
 <tr><td>additionalHeaders</td><td>(optional) URL encoded list of headers and values to be transformed into headers on the endpoint call, e.g., "X-SPECIAL=1234&X-VENDOR-TYPE=abc&UNIQUE-VALUE=2js3j%3Dasd"</td></tr>
 </table>
@@ -465,8 +467,9 @@ Package file output.
 <tr><td>createdAt</td><td>(optional) </td></tr>
 <tr><td>updatedAt</td><td>(optional) </td></tr>
 <tr><td>sharedSecret</td><td>(optional) A shared secret which is used when signing a call to the api.</td></tr>
-<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
 <tr><td>qps</td><td>(default: 2) Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
+<tr><td>qpm</td><td>(default: 120) Number of queries that can be called per minute. Set to `-1` for no limit.</td></tr>
+<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
 <tr><td>forApis</td><td>(optional) Names of the Apis that this key belongs to.</td></tr>
 <tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
 </table>
@@ -509,8 +512,9 @@ already made.</p>
 <tr><td>createdAt</td><td>(optional) </td></tr>
 <tr><td>updatedAt</td><td>(optional) </td></tr>
 <tr><td>sharedSecret</td><td>(optional) A shared secret which is used when signing a call to the api.</td></tr>
-<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
 <tr><td>qps</td><td>(default: 2) Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
+<tr><td>qpm</td><td>(default: 120) Number of queries that can be called per minute. Set to `-1` for no limit.</td></tr>
+<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
 <tr><td>forApis</td><td>(optional) Names of the Apis that this key belongs to.</td></tr>
 <tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
 </table>
