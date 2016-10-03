@@ -153,6 +153,7 @@ This documentation was generated from branch 'develop'
 <tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps and keylessQpd.</td></tr>
 <tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
 <tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
+<tr><td>additionalHeaders</td><td>(optional) URL encoded list of headers and values to be transformed into headers on the endpoint call, e.g., "X-SPECIAL=1234&X-VENDOR-TYPE=abc&UNIQUE-VALUE=2js3j%3Dasd"</td></tr>
 </table>
 <h4>Response</h4>
 A JSON object containing API details
@@ -199,6 +200,7 @@ Any unspecified will remain unchanged.</p>
 <tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps and keylessQpd.</td></tr>
 <tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
 <tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
+<tr><td>additionalHeaders</td><td>(optional) URL encoded list of headers and values to be transformed into headers on the endpoint call, e.g., "X-SPECIAL=1234&X-VENDOR-TYPE=abc&UNIQUE-VALUE=2js3j%3Dasd"</td></tr>
 </table>
 <h4>Response</h4>
 The new structure and the old one.
