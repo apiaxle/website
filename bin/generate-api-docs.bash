@@ -6,17 +6,17 @@ mkdir -p log
 
 here="$(pwd)"
 
-pushd ../apiaxle/api
+pushd ../apiaxle
 make clean
 
 (
   echo "---"
   echo "layout: apidocs"
-  echo "email_required: true"
+  echo "email_required: false"
   echo "title: Api documentation"
   echo "---"
 
-  ./bin/generate-docs.coffee
+  docker-compose run repl docs
 ) > "${here}/api.html"
 popd
 
