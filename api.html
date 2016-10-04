@@ -72,6 +72,14 @@ This documentation was generated from branch 'develop'
 <td>Get the most used APIs and their hit counts.</td>
 </tr>
 <tr>
+<td><a href='#/v1/docs/controllers'>/v1/docs/controllers</a></td>
+<td>JSON representation of the controller docs.</td>
+</tr>
+<tr>
+<td><a href='#/v1/docs/models'>/v1/docs/models</a></td>
+<td>JSON representation of the model docs.</td>
+</tr>
+<tr>
 <td><a href='#/v1/info'>/v1/info</a></td>
 <td>Information about this project.</td>
 </tr>
@@ -120,6 +128,10 @@ This documentation was generated from branch 'develop'
 <td>List all of the available keys.</td>
 </tr>
 <tr>
+<td><a href='#/v1/keys/all'>/v1/keys/all</a></td>
+<td>List stats for all available keys.</td>
+</tr>
+<tr>
 <td><a href='#/v1/keys/charts'>/v1/keys/charts</a></td>
 <td>Get the most used keys and their hit counts.</td>
 </tr>
@@ -141,6 +153,7 @@ This documentation was generated from branch 'develop'
 <tr><td>updatedAt</td><td>(optional) </td></tr>
 <tr><td>endPoint</td><td>The endpoint for the API. For example; `graph.facebook.com`</td></tr>
 <tr><td>protocol</td><td>(default: http) The protocol for the API, whether or not to use SSL</td></tr>
+<tr><td>tokenSkewProtectionCount</td><td>(default: 3) The amount of seconds you allow a valid token to be calculated against, either side of the current second. The higher the number the greater the computational cost.</td></tr>
 <tr><td>apiFormat</td><td>(default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.</td></tr>
 <tr><td>endPointTimeout</td><td>(default: 2) Seconds to wait before timing out the connection</td></tr>
 <tr><td>extractKeyRegex</td><td>(optional) Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.</td></tr>
@@ -150,11 +163,16 @@ This documentation was generated from branch 'develop'
 <tr><td>sendThroughApiKey</td><td>(default: false) If true then the api_key parameter will be passed through in the request.</td></tr>
 <tr><td>sendThroughApiSig</td><td>(default: false) If true then the api_sig parameter will be passed through in the request.</td></tr>
 <tr><td>hasCapturePaths</td><td>(default: false) When true ApiAxle will parse and capture bits of information about the API being called.</td></tr>
-<tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps and keylessQpd.</td></tr>
-<tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temporary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
-<tr><td>keylessQpm</td><td>(default: 120) How many queries per minute an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temporary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
-<tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temporary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
-<tr><td>additionalHeaders</td><td>(optional) URL encoded list of headers and values to be transformed into headers on the endpoint call, e.g., "X-SPECIAL=1234&X-VENDOR-TYPE=abc&UNIQUE-VALUE=2js3j%3Dasd"</td></tr>
+<tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps, keylessQpm, and keylessQpd.</td></tr>
+<tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have.</td></tr>
+<tr><td>keylessQpm</td><td>(default: 120) How many queries per minute an anonymous key should have.</td></tr>
+<tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have.</td></tr>
+<tr><td>qps</td><td>(default: 2) Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
+<tr><td>qpm</td><td>(default: -1) Number of queries that can be called per minute. Set to `-1` for no limit.</td></tr>
+<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
+<tr><td>corsEnabled</td><td>(default: false) (optional) Whether or not you want to enable CORS (http://www.w3.org/TR/cors/) support. This enables CORS for all origins and is intended to be simple and cover the majority of users. If you need more refined configuration we suggest you use something like varnish or nginx to do this. Note that your API endpoint should support the OPTIONS method which is often used in 'preflight' requests for the XHR object to verify CORS headers. When enabled, the following headers will be returned: Access-Control-Allow-Origin: * Access-Control-Allow-Credentials: true Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, PATCH, HEAD Access-Control-Allow-Headers: Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token Access-Control-Expose-Headers: content-type, content-length, X-ApiaxleProxy-Qps-Left, X-ApiaxleProxy-Qpm-Left, X-ApiaxleProxy-Qpd-Left</td></tr>
+<tr><td>errorMessage</td><td>(optional) This gets added as an info property to any errors returned by the proxy for this api.</td></tr>
+<tr><td>additionalHeaders</td><td>(optional) URL encoded list of headers and values to be transformed into headers on the endpoint call, e.g., X-SPECIAL=1234&X-VENDOR-TYPE=abc&UNIQUE-VALUE=2js3j%3Dasd</td></tr>
 </table>
 <h4>Response</h4>
 A JSON object containing API details
@@ -189,6 +207,7 @@ Any unspecified will remain unchanged.</p>
 <tr><td>updatedAt</td><td>(optional) </td></tr>
 <tr><td>endPoint</td><td>The endpoint for the API. For example; `graph.facebook.com`</td></tr>
 <tr><td>protocol</td><td>(default: http) The protocol for the API, whether or not to use SSL</td></tr>
+<tr><td>tokenSkewProtectionCount</td><td>(default: 3) The amount of seconds you allow a valid token to be calculated against, either side of the current second. The higher the number the greater the computational cost.</td></tr>
 <tr><td>apiFormat</td><td>(default: json) The resulting data type of the endpoint. This is redundant at the moment but will eventually support both XML too.</td></tr>
 <tr><td>endPointTimeout</td><td>(default: 2) Seconds to wait before timing out the connection</td></tr>
 <tr><td>extractKeyRegex</td><td>(optional) Regular expression used to extract API key from url. Axle will use the **first** matched grouping and then apply that as the key. Using the `api_key` or `apiaxle_key` will take precedence.</td></tr>
@@ -198,11 +217,16 @@ Any unspecified will remain unchanged.</p>
 <tr><td>sendThroughApiKey</td><td>(default: false) If true then the api_key parameter will be passed through in the request.</td></tr>
 <tr><td>sendThroughApiSig</td><td>(default: false) If true then the api_sig parameter will be passed through in the request.</td></tr>
 <tr><td>hasCapturePaths</td><td>(default: false) When true ApiAxle will parse and capture bits of information about the API being called.</td></tr>
-<tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps and keylessQpd.</td></tr>
-<tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
-<tr><td>keylessQpm</td><td>(default: 120) How many queries per minute an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
-<tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have when it's created. Note that changing this will not affect on temporary keys that have already been created. However, as temprary keys only live for 24 hours, this limit will be applied when that period expires.</td></tr>
-<tr><td>additionalHeaders</td><td>(optional) URL encoded list of headers and values to be transformed into headers on the endpoint call, e.g., "X-SPECIAL=1234&X-VENDOR-TYPE=abc&UNIQUE-VALUE=2js3j%3Dasd"</td></tr>
+<tr><td>allowKeylessUse</td><td>(default: false) (optional) If true then allow for keyless access to this API. Also see keylessQps, keylessQpm, and keylessQpd.</td></tr>
+<tr><td>keylessQps</td><td>(default: 2) How many queries per second an anonymous key should have.</td></tr>
+<tr><td>keylessQpm</td><td>(default: 120) How many queries per minute an anonymous key should have.</td></tr>
+<tr><td>keylessQpd</td><td>(default: 172800) How many queries per day an anonymous key should have.</td></tr>
+<tr><td>qps</td><td>(default: 2) Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
+<tr><td>qpm</td><td>(default: -1) Number of queries that can be called per minute. Set to `-1` for no limit.</td></tr>
+<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
+<tr><td>corsEnabled</td><td>(default: false) (optional) Whether or not you want to enable CORS (http://www.w3.org/TR/cors/) support. This enables CORS for all origins and is intended to be simple and cover the majority of users. If you need more refined configuration we suggest you use something like varnish or nginx to do this. Note that your API endpoint should support the OPTIONS method which is often used in 'preflight' requests for the XHR object to verify CORS headers. When enabled, the following headers will be returned: Access-Control-Allow-Origin: * Access-Control-Allow-Credentials: true Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, PATCH, HEAD Access-Control-Allow-Headers: Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token Access-Control-Expose-Headers: content-type, content-length, X-ApiaxleProxy-Qps-Left, X-ApiaxleProxy-Qpm-Left, X-ApiaxleProxy-Qpd-Left</td></tr>
+<tr><td>errorMessage</td><td>(optional) This gets added as an info property to any errors returned by the proxy for this api.</td></tr>
+<tr><td>additionalHeaders</td><td>(optional) URL encoded list of headers and values to be transformed into headers on the endpoint call, e.g., X-SPECIAL=1234&X-VENDOR-TYPE=abc&UNIQUE-VALUE=2js3j%3Dasd</td></tr>
 </table>
 <h4>Response</h4>
 The new structure and the old one.
@@ -227,13 +251,13 @@ The path added.
 :api.</p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
-<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
-<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
-<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified key.</td></tr>
+<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified keyring.</td></tr>
 </table>
 <h4>Response</h4>
 Objects with timestamp:count.
@@ -248,10 +272,10 @@ Objects with timestamp:count.
 :api.</p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
-<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
 </table>
 <h4>Response</h4>
@@ -277,13 +301,13 @@ List of paths.
 <p>All capture paths and their counts for :api.</p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
-<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
-<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
-<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified key.</td></tr>
+<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified keyring.</td></tr>
 </table>
 <h4>Response</h4>
 Objects with timestamp:count.
@@ -297,13 +321,13 @@ Objects with timestamp:count.
 <p>All capture paths and their timings for :api.</p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
-<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
-<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
-<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified key.</td></tr>
+<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified keyring.</td></tr>
 </table>
 <h4>Response</h4>
 Objects with timestamps as the key, each referencing an array
@@ -327,14 +351,14 @@ The path removed.
 	'http://localhost/v1/api/testapi/keycharts' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
-<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
 </table>
 <h4>Response</h4>
-List of the top 100 keys and their hit rate for time
+List of the top 1000 keys and their hit rate for time
 period GRANULARITY
 </div>
 <div class='well' id='/v1/api/:api/keys'>
@@ -345,9 +369,9 @@ period GRANULARITY
 	'http://localhost/v1/api/testapi/keys' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 0) The index of the first key you want to                 see. Starts at zero.</td></tr>
-<tr><td>to</td><td>(default: 10) The index of the last key you want to see. Starts at                 zero.</td></tr>
-<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed keys will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+<tr><td>from</td><td>(default: 0) The index of the first key you want to see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) The index of the last key you want to see. Starts at zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the listed keys will also be printed. Be aware that this will come with a minor performace hit.</td></tr>
 </table>
 <h4>Response</h4>
 With <strong>resolve</strong>: An object mapping each key to the
@@ -374,13 +398,13 @@ The linked key details
 	'http://localhost/v1/api/testapi/stats' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
-<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
-<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
-<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified               keyring.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified key.</td></tr>
+<tr><td>forkeyring</td><td>(optional) Narrow results down to all statistics for the specified keyring.</td></tr>
 </table>
 <h4>Response</h4>
 Object where the keys represent the cache status (cached, uncached or
@@ -395,9 +419,9 @@ these in turn contain objects with timestamp:count
 	'http://localhost/v1/api/testapi/stats/timers' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
 <tr><td>debug</td><td>(default: false) (optional) Show some ApiAxle related timings too.</td></tr>
 </table>
@@ -423,9 +447,9 @@ The Unlinked key details
 	'http://localhost/v1/apis' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 0) Integer for the index of the first api you                 want to see. Starts at zero.</td></tr>
-<tr><td>to</td><td>(default: 10) Integer for the index of the last api you want                 to see. Starts at zero.</td></tr>
-<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed apis will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+<tr><td>from</td><td>(default: 0) Integer for the index of the first api you want to see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) Integer for the index of the last api you want to see. Starts at zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the listed apis will also be printed. Be aware that this will come with a minor performace hit.</td></tr>
 </table>
 <h4>Response</h4>
 With <strong>resolve</strong>: An object mapping each API to the
@@ -440,11 +464,29 @@ Without <strong>resolve</strong>: An array with 1 API per entry
 	'http://localhost/v1/apis/charts' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most recent GRANULARTIY.</td></tr>
 </table>
 <h4>Response</h4>
 List of the top 100 APIs and their hit rate for time
 perioud GRANULATIRY
+</div>
+<div class='well' id='/v1/docs/controllers'>
+<h2>/v1/docs/controllers</h2>
+<h3><span class='muted'>get</span> JSON representation of the controller docs.</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X GET \
+	'http://localhost/v1/docs/controllers' </pre></p>
+<h4>Response</h4>
+JSON for each controller.
+</div>
+<div class='well' id='/v1/docs/models'>
+<h2>/v1/docs/models</h2>
+<h3><span class='muted'>get</span> JSON representation of the model docs.</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X GET \
+	'http://localhost/v1/docs/models' </pre></p>
+<h4>Response</h4>
+JSON for each model, including types etc.
 </div>
 <div class='well' id='/v1/info'>
 <h2>/v1/info</h2>
@@ -460,18 +502,20 @@ Package file output.
 <h3><span class='muted'>post</span> Provision a new key.</h3>
 <p><pre>curl -H 'content-type: application/json' \
 	-X POST \
-	-d '{}' \
+	-d '{"qpd":"...","qpm":"...","qps":"..."}' \
 	'http://localhost/v1/key/1234' </pre></p>
 <h4>Input</h4>
 <table class='table'>
 <tr><td>createdAt</td><td>(optional) </td></tr>
 <tr><td>updatedAt</td><td>(optional) </td></tr>
 <tr><td>sharedSecret</td><td>(optional) A shared secret which is used when signing a call to the api.</td></tr>
-<tr><td>qps</td><td>(default: 2) Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
-<tr><td>qpm</td><td>(default: 120) Number of queries that can be called per minute. Set to `-1` for no limit.</td></tr>
-<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
+<tr><td>qpd</td><td>Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
+<tr><td>qpm</td><td>Number of queries that can be called per minute. Set to `-1` for no limit.</td></tr>
+<tr><td>qps</td><td>Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
 <tr><td>forApis</td><td>(optional) Names of the Apis that this key belongs to.</td></tr>
 <tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
+<tr><td>apiLimits</td><td>(optional) Custom api-specific limits. JSON encoded: '{"api1": {"qpd":5, "qps":2}, "api2": {"qpd":2}}'</td></tr>
+<tr><td>allApis</td><td>(optional) Allow this key to work for all APIs</td></tr>
 </table>
 <h4>Params</h4>
 <table class='table'>
@@ -499,7 +543,7 @@ TRUE on success
 <h3><span class='muted'>put</span> Update a key.</h3>
 <p><pre>curl -H 'content-type: application/json' \
 	-X PUT \
-	-d '{}' \
+	-d '{"qpd":"...","qpm":"...","qps":"..."}' \
 	'http://localhost/v1/key/1234' </pre></p>
 <p>Fields passed in will will be merged with the old key
 details.
@@ -512,11 +556,13 @@ already made.</p>
 <tr><td>createdAt</td><td>(optional) </td></tr>
 <tr><td>updatedAt</td><td>(optional) </td></tr>
 <tr><td>sharedSecret</td><td>(optional) A shared secret which is used when signing a call to the api.</td></tr>
-<tr><td>qps</td><td>(default: 2) Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
-<tr><td>qpm</td><td>(default: 120) Number of queries that can be called per minute. Set to `-1` for no limit.</td></tr>
-<tr><td>qpd</td><td>(default: 172800) Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
+<tr><td>qpd</td><td>Number of queries that can be called per day. Set to `-1` for no limit.</td></tr>
+<tr><td>qpm</td><td>Number of queries that can be called per minute. Set to `-1` for no limit.</td></tr>
+<tr><td>qps</td><td>Number of queries that can be called per second. Set to `-1` for no limit.</td></tr>
 <tr><td>forApis</td><td>(optional) Names of the Apis that this key belongs to.</td></tr>
 <tr><td>disabled</td><td>(default: false) Disable this API causing errors when it's hit.</td></tr>
+<tr><td>apiLimits</td><td>(optional) Custom api-specific limits. JSON encoded: '{"api1": {"qpd":5, "qps":2}, "api2": {"qpd":2}}'</td></tr>
+<tr><td>allApis</td><td>(optional) Allow this key to work for all APIs</td></tr>
 </table>
 <h4>Response</h4>
 The new structure and the old one.
@@ -529,7 +575,7 @@ The new structure and the old one.
 	'http://localhost/v1/key/1234/apicharts' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most recent GRANULARTIY.</td></tr>
 </table>
 <h4>Response</h4>
 List of the top 100 APIs and their hit rate for time
@@ -543,7 +589,7 @@ period GRANULARITY
 	'http://localhost/v1/key/1234/apis' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed apis will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the listed apis will also be printed. Be aware that this will come with a minor performace hit.</td></tr>
 </table>
 <h4>Response</h4>
 With <strong>resolve</strong>: An object mapping each key to the
@@ -558,12 +604,12 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 	'http://localhost/v1/key/1234/stats' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
-<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
-<tr><td>forapi</td><td>(optional) Narrow results down to all statistics for the specified               api.</td></tr>
+<tr><td>forapi</td><td>(optional) Narrow results down to all statistics for the specified api.</td></tr>
 </table>
 <h4>Response</h4>
 Object where the keys represent the cache status (cached,
@@ -621,9 +667,9 @@ The merged structure (including the timestamp fields).
 	'http://localhost/v1/keyring/1234ring/keys' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 0) The index of the first key you want to                 see. Starts at zero.</td></tr>
-<tr><td>to</td><td>(default: 10) The index of the last key you want to see. Starts at                 zero.</td></tr>
-<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed keys will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+<tr><td>from</td><td>(default: 0) The index of the first key you want to see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) The index of the last key you want to see. Starts at zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the listed keys will also be printed. Be aware that this will come with a minor performace hit.</td></tr>
 </table>
 <h4>Response</h4>
 With <strong>resolve</strong>: An object mapping each key to the
@@ -649,13 +695,13 @@ The linked key details.
 	'http://localhost/v1/keyring/1234ring/stats' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering                 the statistics. Defaults to `now - 10 minutes`.</td></tr>
-<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering                 the statistics. Defaults to `now`.</td></tr>
-<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level                 of granularity. Results will still arrive in the form                 of an epoch to results pair but will be rounded off                 to the nearest unit.</td></tr>
-<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to                 generating timeseries graphs.</td></tr>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to generating timeseries graphs.</td></tr>
 <tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
-<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified               key.</td></tr>
-<tr><td>forapi</td><td>(optional) Narrow results down to all statistics for the specified               api.</td></tr>
+<tr><td>forkey</td><td>(optional) Narrow results down to all statistics for the specified key.</td></tr>
+<tr><td>forapi</td><td>(optional) Narrow results down to all statistics for the specified api.</td></tr>
 </table>
 <h4>Response</h4>
 Object where the keys represent the cache status (cached, uncached or
@@ -679,9 +725,9 @@ The unlinked key details.
 	'http://localhost/v1/keyrings' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 0) Integer for the index of the first keyring you                 want to see. Starts at zero.</td></tr>
-<tr><td>to</td><td>(default: 10) Integer for the index of the last keyring you want                 to see. Starts at zero.</td></tr>
-<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed keyrings will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+<tr><td>from</td><td>(default: 0) Integer for the index of the first keyring you want to see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) Integer for the index of the last keyring you want to see. Starts at zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the listed keyrings will also be printed. Be aware that this will come with a minor performace hit.</td></tr>
 </table>
 <h4>Response</h4>
 With <strong>resolve</strong>: An object mapping each keyring to the
@@ -696,14 +742,31 @@ Without <strong>resolve</strong>: An array with 1 keyring per entry
 	'http://localhost/v1/keys' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>from</td><td>(default: 0) The index of the first key you want to see. Starts at                 zero.</td></tr>
-<tr><td>to</td><td>(default: 10) The index of the last key you want to see. Starts at                 zero.</td></tr>
-<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the                 listed keys will also be printed. Be aware that this                 will come with a minor performace hit.</td></tr>
+<tr><td>from</td><td>(default: 0) The index of the first key you want to see. Starts at zero.</td></tr>
+<tr><td>to</td><td>(default: 10) The index of the last key you want to see. Starts at zero.</td></tr>
+<tr><td>resolve</td><td>(default: false) If set to `true` then the details concerning the listed keys will also be printed. Be aware that this will come with a minor performace hit.</td></tr>
 </table>
 <h4>Response</h4>
 With <strong>resolve</strong>: An object mapping each key to the
 corresponding details.<br />
 Without <strong>resolve</strong>: An array with 1 key per entry
+</div>
+<div class='well' id='/v1/keys/all'>
+<h2>/v1/keys/all</h2>
+<h3><span class='muted'>get</span> List stats for all available keys.</h3>
+<p><pre>curl -H 'content-type: application/json' \
+	-X GET \
+	'http://localhost/v1/keys/all' </pre></p>
+<h4>Params</h4>
+<table class='table'>
+<tr><td>from</td><td>(default: [generated at runtime] The unix epoch from which to start gathering the statistics. Defaults to `now - 10 minutes`.</td></tr>
+<tr><td>to</td><td>(default: [generated at runtime] The unix epoch from which to finish gathering the statistics. Defaults to `now`.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Allows you to gather statistics tuned to this level of granularity. Results will still arrive in the form of an epoch to results pair but will be rounded off to the nearest unit.</td></tr>
+<tr><td>format_timeseries</td><td>(default: false) Results will be returned in a format more suited to generating timeseries graphs.</td></tr>
+<tr><td>format_timestamp</td><td>(default: epoch_seconds) Format the timestamps a particular way.</td></tr>
+</table>
+<h4>Response</h4>
+Return stats for all available keys.
 </div>
 <div class='well' id='/v1/keys/charts'>
 <h2>/v1/keys/charts</h2>
@@ -713,7 +776,7 @@ Without <strong>resolve</strong>: An array with 1 key per entry
 	'http://localhost/v1/keys/charts' </pre></p>
 <h4>Params</h4>
 <table class='table'>
-<tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most                 recent GRANULARTIY.</td></tr>
+<tr><td>granularity</td><td>(default: minute) Get charts for the most recent values in the most recent GRANULARTIY.</td></tr>
 </table>
 <h4>Response</h4>
 List of the top 100 keys and their hit rate for time
