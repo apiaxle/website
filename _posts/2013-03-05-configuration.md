@@ -53,7 +53,7 @@ only utilises `DEBUG` and `INFO`. The full list is:
  * WARN
  * ERROR
  * FATAL
- 
+
 ### Appenders
 
 log4js supports lots of appenders, you could log from
@@ -86,3 +86,10 @@ typical configuration might be:
       "host": "localhost",
       "port": 6379
     }
+
+## Api pattern configuration
+
+    Configuration used to match api names, i.e., keys.  It needs to have a
+    matching group and it must be formatted for JSON so extra \'s may appear:
+
+        "apiNameRegex": "^(.+?)\\.api\\."  (matches typical pattern, acme.api.org, and captures acme as the key)
